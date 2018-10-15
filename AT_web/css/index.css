@@ -1,0 +1,294 @@
+.at_box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.at_box #home {
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  height: 1035px;
+  background: url(../images/top1.png) no-repeat;
+  background-size: cover;
+  padding-bottom: 50px;
+}
+.at_box #home .text {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  font-size: 45px;
+  color: #fff;
+  text-shadow: -2px 2px 4px #000;
+  margin-bottom: 50px;
+  letter-spacing: 5px;
+}
+.at_box #home1 {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: url(../images/img/top2.png) no-repeat;
+  background-size: cover;
+}
+.at_box #home1 .content {
+  padding-top: 65px;
+  padding-left: 100px;
+  position: relative;
+  width: 445px;
+}
+.at_box #home1 .content img {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.at_box #home1 .content .p_text .title {
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 1.3em;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+.at_box #home1 .content .p_text .text {
+  height: 200px;
+}
+.at_box #home1 .content .p_text .btn {
+  border: 1px solid #b5b5b5;
+  background: linear-gradient(to bottom, #fefefe 0, #f5f5f5 47%, #efefef 100%);
+  margin: 50px 0;
+}
+.at_box #home2 {
+  position: relative;
+  padding-left: 25%;
+}
+.at_box #home2::before {
+  content: "协商集团";
+  background: url(../images/img/top5.png) no-repeat;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-size: auto auto;
+  background-size: contain;
+  height: 66px;
+  line-height: 66px;
+  color: #fff;
+  width: 1055px;
+  z-index: 99;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-position: 0 -1px;
+  text-align: center;
+  font-size: 30px;
+  letter-spacing: 2px;
+  text-shadow: -2px 2px 4px #000;
+}
+.at_box #home2 .center_text {
+  width: 60%;
+  height: auto;
+  margin-bottom: 50px;
+}
+.at_box #home2 .center_text .img_right {
+  width: 100%;
+  text-align: right;
+}
+.at_box #home2 .center_text .img_right img {
+  width: 400px;
+  height: auto;
+  margin-bottom: 30px;
+}
+.at_box #home2 .center_text p {
+  text-align: left;
+}
+.at_box #home2 .img_hand {
+  padding-right: 0;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.at_box #home2 .img_hand img {
+  width: 40%;
+  height: 300px;
+}
+.at_box #home2 .img_hand > div {
+  height: 100%;
+  width: 60%;
+  padding: 50px;
+  background-color: #185f8f;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.at_box #home2 .img_hand > div p {
+  width: 60%;
+  color: #fff;
+}
+.at_box #home2 .right_women {
+  margin-top: 50px;
+  height: auto;
+  text-align: right;
+  position: relative;
+}
+.at_box #home2 .right_women img {
+  width: 100%;
+  height: auto;
+}
+.at_box #home2 .right_women a {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  display: block;
+  color: #4e4d4d !important;
+  font-size: 40px;
+  text-align: left;
+  text-decoration-line: none;
+}
+.at_box #home2 .right_women a:hover {
+  background-color: #2b86c3;
+  color: #fff!important;
+}
+@media (max-width: 768px) {
+  .at_box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .at_box #home .text {
+    left: 24px;
+    font-size: 20px;
+    color: #fff;
+    text-shadow: -2px 2px 4px #000;
+    margin-bottom: 0;
+    letter-spacing: 5px;
+    left: 0;
+    padding: 20px;
+  }
+  .at_box #home1 {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: url(http://159.174.98.151/wp-content/uploads/2016/06/home-firstrow-bg-1.jpg) no-repeat;
+    background-size: cover;
+  }
+  .at_box #home1 .content {
+    width: 340px;
+    border: 1px solid #1f5b85;
+  }
+  .at_box #home1 .content img {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .at_box #home1 .content .p_text .title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 1.3em;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+  }
+  .at_box #home1 .content .p_text .btn {
+    border: 1px solid #b5b5b5;
+    background: linear-gradient(to bottom, #fefefe 0, #f5f5f5 47%, #efefef 100%);
+    margin: 50px 0;
+  }
+  .at_box #home2 {
+    position: relative;
+    padding-left: 0;
+  }
+  .at_box #home2::before {
+    content: "协商集团";
+    background: url(../images/img/top5.png) no-repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-size: auto auto;
+    background-size: 100% 100%;
+    height: 66px;
+    line-height: 66px;
+    color: #fff;
+    width: 100%;
+    z-index: 99;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-position: 0 -1px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 0px;
+    text-shadow: -2px 2px 4px #000;
+  }
+  .at_box #home2 .center_text {
+    width: 100%;
+    height: auto;
+    padding-top: 80px;
+  }
+  .at_box #home2 .center_text .img_right {
+    width: 100%;
+    text-align: center;
+  }
+  .at_box #home2 .center_text .img_right img {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+  .at_box #home2 .center_text p {
+    text-align: left;
+    padding: 0 20px;
+  }
+  .at_box #home2 .img_hand {
+    padding: 0 20px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .at_box #home2 .img_hand img {
+    width: 100%;
+    height: auto;
+  }
+  .at_box #home2 .img_hand > div {
+    height: auto;
+    width: 100%;
+    padding: 50px;
+    background-color: #185f8f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .at_box #home2 .img_hand > div p {
+    width: 100%;
+    color: #fff;
+  }
+  .at_box #home2 .right_women {
+    margin-top: 50px;
+    height: auto;
+    background: url(../images/img/top8.png) no-repeat;
+    background-position: right top;
+    text-align: right;
+    position: relative;
+  }
+  .at_box #home2 .right_women a {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: block;
+    padding: 0 20px;
+    font-size: 40px;
+    text-align: center;
+    text-decoration-line: none;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .at_box #home2 .right_women a:hover {
+    background-color: #2b86c3;
+    color: #fff!important;
+  }
+}

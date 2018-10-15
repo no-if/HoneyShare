@@ -1,0 +1,247 @@
+.at_box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.at_box > .top_box {
+  background: linear-gradient(to bottom, #ffffff 0, rgba(255, 255, 255, 0.86) 48%, rgba(255, 255, 255, 0) 100%);
+  padding: 0 20%;
+  height: 300px;
+  padding-top: 30px;
+  display: none;
+}
+.at_box > .top_box .top_banner {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.at_box > .top_box .top_banner .left_logo img {
+  width: 100%;
+}
+.at_box > .top_box .top_banner .right_banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
+.at_box > .top_box .top_banner .right_banner div {
+  font-size: 15px;
+}
+.at_box #home {
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  height: 1035px;
+  background: url(../images/top5.png) no-repeat;
+  background-size: cover;
+  padding-bottom: 50px;
+}
+.at_box #home .text {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  font-size: 45px;
+  color: #fff;
+  text-shadow: -2px 2px 4px #000;
+  margin-bottom: 50px;
+  letter-spacing: 5px;
+}
+.at_box #home1 {
+  width: 60%;
+  margin: 0 auto;
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+}
+.at_box #home1 .left {
+  width: 50%;
+  text-align: left;
+  font-size: 45px;
+  color: #3fc60a;
+}
+.at_box #home2 {
+  width: 60%;
+  margin: 0 auto;
+}
+.at_box #home2 .card {
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+}
+.at_box #home2 .card > div {
+  width: 50%;
+  box-shadow: 2px 2px 10px rgba(51, 51, 51, 0.6);
+  padding: 30px;
+  margin: 10px;
+}
+.at_box #home2 .card .left input {
+  width: 100%;
+  height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-indent: 20px;
+  margin-bottom: 20px;
+}
+.at_box #home2 .card .left textarea {
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-indent: 20px;
+  outline: none;
+}
+.at_box #home2 .card .left .btn {
+  border: 1px solid #077fcf;
+  color: #077fcf;
+  margin-top: 20px;
+}
+.at_box #home2 .card .left .btn:hover {
+  background: #077fcf;
+  color: #fff;
+}
+.at_box #home2 .card .right {
+  width: 50%;
+  height: auto;
+  background: url(../images/mail_bg.png) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.at_box #footer {
+  background-color: #185f8f;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.at_box #footer p {
+  text-align: center;
+  color: #fff;
+}
+.at_box #footer p a {
+  display: inline-block;
+  color: #2991d6!important;
+}
+@media (max-width: 768px) {
+  .at_box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .at_box > .top_box {
+    background: linear-gradient(to bottom, #ffffff 0, rgba(255, 255, 255, 0.86) 48%, rgba(255, 255, 255, 0) 100%);
+    padding: 0 20%;
+    height: 300px;
+    padding-top: 30px;
+    display: none;
+  }
+  .at_box > .top_box .top_banner {
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .at_box > .top_box .top_banner .left_logo img {
+    width: 100%;
+  }
+  .at_box > .top_box .top_banner .right_banner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+  }
+  .at_box > .top_box .top_banner .right_banner div {
+    font-size: 15px;
+  }
+  .at_box #home .text {
+    left: 24px;
+    font-size: 20px;
+    color: #fff;
+    text-shadow: -2px 2px 4px #000;
+    margin-bottom: 0;
+    letter-spacing: 5px;
+    left: 0;
+    padding: 19px;
+  }
+  .at_box #home1 {
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .at_box #home1 .left {
+    width: 100%;
+    text-align: center;
+    font-size: 25px;
+    color: #3fc60a;
+  }
+  .at_box #home1 .right {
+    width: 90%;
+    padding: 0 20px;
+  }
+  .at_box #home2 {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .at_box #home2 .card {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 15px;
+  }
+  .at_box #home2 .card > div {
+    width: 100%;
+    box-shadow: 2px 2px 10px rgba(51, 51, 51, 0.6);
+    padding: 30px;
+    margin: 10px;
+  }
+  .at_box #home2 .card .left input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-indent: 20px;
+    margin-bottom: 20px;
+  }
+  .at_box #home2 .card .left textarea {
+    width: 100%;
+    height: auto;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    text-indent: 20px;
+    outline: none;
+  }
+  .at_box #home2 .card .left .btn {
+    border: 1px solid #077fcf;
+    color: #077fcf;
+    margin-top: 20px;
+  }
+  .at_box #home2 .card .left .btn:hover {
+    background: #077fcf;
+    color: #fff;
+  }
+  .at_box #home2 .card .right {
+    width: 50%;
+    height: auto;
+    background: url(../images/mail_bg.png) no-repeat;
+    background: cover;
+    background-position: center;
+  }
+  .at_box #footer {
+    background-color: #185f8f;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .at_box #footer p {
+    text-align: center;
+    color: #fff;
+  }
+  .at_box #footer p a {
+    display: inline-block;
+    color: #2991d6!important;
+  }
+}

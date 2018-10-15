@@ -1,0 +1,317 @@
+
+//at_box
+.at_box{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    //home
+    #home{
+        position: relative;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+        height: 1035px;
+        background: url(../images/top1.png) no-repeat;
+        background-size: cover;
+        padding-bottom: 50px;
+        .text{
+            position: absolute;
+            top: 50%;
+            left:10%;
+            font-size: 45px;
+            color:#fff;
+            text-shadow: -2px 2px 4px #000;
+            margin-bottom: 50px;
+            letter-spacing: 5px;
+        }
+    }
+    //home1
+    #home1{
+        height: auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        background: url(../images/img/top2.png) no-repeat;
+        background-size: cover;
+        .content{
+            padding-top:65px;
+            padding-left: 100px;
+            position: relative;
+            width: 445px;
+            img{
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            .p_text{
+                .title{
+                    font-weight: bold;
+                    font-size: 30px;
+                    line-height: 1.3em;
+                    margin-bottom: 40px;
+                    letter-spacing: 2px;
+                }
+                .text{
+                    height: 200px;
+                }
+                .btn{
+                    border: 1px solid #b5b5b5;
+                    background: linear-gradient(to bottom,rgba(254,254,254,1) 0,rgba(245,245,245,1) 47%,rgba(239,239,239,1) 100%);
+                    margin: 50px 0;
+                }
+
+            }
+        }
+    }
+    #home2{
+        position: relative;
+        padding-left: 25%;
+        &::before{
+            content: "协商集团";
+            background: url(../images/img/top5.png)no-repeat;
+            background-position-x: 0%;
+            background-position-y: 0%;
+            background-size: auto auto;
+            background-size: contain;
+            height: 66px;
+            line-height: 66px;
+            color: #fff;
+            width: 1055px;
+            z-index: 99;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-position: 0 -1px;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+            text-shadow: -2px 2px 4px #000;
+        }
+        .center_text{
+            width: 60%;
+            height: auto; 
+            margin-bottom: 50px;
+            .img_right{
+                width: 100%;
+                text-align: right;
+                img{
+                    width: 400px;
+                    height: auto;
+                    margin-bottom: 30px;
+                }
+            }
+            p{
+              text-align: left;
+            }
+            
+        }
+        .img_hand{
+            padding-right: 0;
+            width:100%;
+            height: 300px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+            img{
+                width:40%;
+                height: 300px;
+            }
+            &>div{
+                height: 100%;
+                width: 60%;
+                padding: 50px;
+                background-color:#185f8f;
+                display:flex;
+                justify-content: flex-start;
+                align-items: center;
+                p{
+                    width: 60%;
+                    color: #fff;
+                   
+                }
+            }
+        }
+        .right_women{
+            margin-top: 50px;
+            height: auto;
+            text-align: right;
+            position: relative;
+            img{
+                width: 100%;
+                height: auto;
+            }
+            a{
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translate(0,-50%);
+                display: block;
+                color: rgb(78, 77, 77)!important;
+                font-size: 40px;
+                text-align: left;
+                text-decoration-line: none;
+                &:hover{
+                    background-color:rgb(43, 134, 195);
+                    color: #fff!important;
+                }
+            }
+        }
+    }
+     
+}
+
+@media(max-width:768px){
+.at_box{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        //home
+        #home{
+            .text{
+                left: 24px;
+                font-size: 20px;
+                color: #fff;
+                text-shadow: -2px 2px 4px #000;
+                margin-bottom: 0;
+                letter-spacing: 5px;
+                left: 0;
+                padding: 20px;
+            }
+        }
+        //home1
+        #home1{
+            height: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: url(http://159.174.98.151/wp-content/uploads/2016/06/home-firstrow-bg-1.jpg) no-repeat;
+            background-size: cover;
+            .content{
+                width: 340px;
+                border: 1px solid #1f5b85;
+                img{
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                }
+                .p_text{
+                    .title{
+                        font-weight: bold;
+                        font-size: 30px;
+                        line-height: 1.3em;
+                        margin-bottom: 40px;
+                        letter-spacing: 2px;
+                    }
+                    .btn{
+                        border: 1px solid #b5b5b5;
+                        background: linear-gradient(to bottom,rgba(254,254,254,1) 0,rgba(245,245,245,1) 47%,rgba(239,239,239,1) 100%);
+                        margin: 50px 0;
+                    }
+    
+                }
+            }
+        }
+        #home2{
+            position: relative;
+            padding-left: 0;
+            &::before{
+                content: "协商集团";
+                background: url(../images/img/top5.png)no-repeat;
+                background-position-x: 0%;
+                background-position-y: 0%;
+                background-size: auto auto;
+                background-size: 100% 100%;
+                height: 66px;
+                line-height: 66px;
+                color: #fff;
+                width: 100%;
+                z-index: 99;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background-position: 0 -1px;
+                text-align: center;
+                font-size: 16px;
+                letter-spacing: 0px;
+                text-shadow: -2px 2px 4px #000;
+            }
+            .center_text{
+                width: 100%;
+                height: auto; 
+                padding-top: 80px;
+                .img_right{
+                    width: 100%;
+                    text-align: center;
+                    img{
+                        width: 250px;
+                        height: auto;
+                        margin-bottom: 20px;
+                    }
+                }
+                p{
+                  text-align: left;
+                  padding:0 20px
+                }
+                
+            }
+            .img_hand{
+                padding: 0 20px;
+                width:100%;
+                height: auto;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-wrap: wrap;
+                img{
+                    width:100%;
+                    height: auto;
+                }
+                &>div{
+                    height: auto;
+                    width: 100%;
+                    padding: 50px;
+                    background-color:#185f8f;
+                    display:flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    p{
+                        width: 100%;
+                        color: #fff;
+                       
+                    }
+                }
+            }
+            .right_women{
+                margin-top: 50px;
+                height: auto;
+                background: url(../images/img/top8.png) no-repeat;
+                background-position: right top;
+                text-align: right;
+                position: relative;
+                // img{
+                //     display:none;
+                // }
+                a{
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translate(0,-50%);
+                    display: block;
+                    padding:0 20px;
+                    font-size: 40px;
+                    text-align: center;
+                    text-decoration-line: none;
+                    background-color: rgba(255,255,255,0.5);
+                    &:hover{
+                        background-color:rgb(43, 134, 195);
+                        color: #fff!important;
+                    }
+                }
+            }
+        } 
+    }
+}
