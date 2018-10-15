@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="636px" height="384px" viewBox="0 0 636 384" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 0 31 362.703872 31 725.407743 31 725.407743 0"></polygon>
+    </defs>
+    <g id="bee-v3/03-product" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-804.000000, -268.000000)">
+        <g id="beenest-ui" transform="translate(804.000000, 269.000000)">
+            <g id="Group-4">
+                <path d="M649.7315,370 L75.6765,370 C67.4075,370 60.7045,363.051877 60.7045,354.481765 L60.7045,15.5182353 C60.7045,6.94812325 67.4075,0 75.6765,0 L649.7315,0 C658.0015,0 664.7045,6.94812325 664.7045,15.5182353 L664.7045,354.481765 C664.7045,363.051877 658.0015,370 649.7315,370 Z" id="Fill-1" stroke="#FFFFFF"></path>
+                <g id="Group-5" transform="translate(0.000000, 352.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-4"></g>
+                    <path d="M660.1983,31 L65.2103,31 C64.2403,31 63.3053,30.823 62.5843,30.504 L1.3073,3.367 C-1.3667,2.183 0.3353,0 3.9333,0 L721.4753,0 C725.0723,0 726.7743,2.183 724.1003,3.367 L662.8233,30.504 C662.1023,30.823 661.1683,31 660.1983,31" id="Fill-3" stroke="#FFFFFF" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

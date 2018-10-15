@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="31px" viewBox="0 0 54 31" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>par-icon-1</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="10.5878243 28.8044712 0.323013514 21.8887085 33.8882477 21.8887085 40.6364369 13.7436407 28.488455 0.245369492 40.5170676 0.245369492 52.5810135 14.2597424 46.4174742 21.6992669 40.5309144 28.8044712"></polygon>
+    </defs>
+    <g id="bee-v3/03-product" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-738.000000, -1612.000000)">
+        <g id="par-icon-1" transform="translate(738.000000, 1613.000000)">
+            <polygon id="Fill-1" fill="#FFFFFF" points="28.488455 0.245762712 40.6359595 13.7440339 33.8882477 21.8886102 0.323013514 21.8886102 10.5878243 28.8043729 40.5309144 28.8043729 52.5810135 14.2596441 40.5170676 0.245762712"></polygon>
+            <g id="Stroke-2">
+                <use stroke="#263238" stroke-width="0.6" fill="#fff" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <use stroke="#979797" stroke-width="1" xlink:href="#path-1"></use>
+            </g>
+            <polygon id="Fill-4" fill="#FFFFFF" points="14.6776099 17.8161746 22.4671775 8.86746271 14.4383937 0.245615254 21.8383396 0.245615254 29.5071054 8.86746271 22.0928351 17.8161746"></polygon>
+            <polygon id="Stroke-5" stroke="#263238" stroke-width="0.6" fill="#fff" points="14.6776099 17.8161746 22.4671775 8.86746271 14.4383937 0.245615254 21.8383396 0.245615254 29.5071054 8.86746271 22.0928351 17.8161746"></polygon>
+            <polygon id="Fill-7" fill="#FFFFFF" points="0.562659459 17.8161746 8.35222703 8.86746271 0.323443243 0.245615254 7.72338919 0.245615254 15.392155 8.86746271 7.97788468 17.8161746"></polygon>
+            <polygon id="Stroke-8" stroke="#263238" stroke-width="0.6" fill="#fff" points="0.562659459 17.8161746 8.35222703 8.86746271 0.323443243 0.245615254 7.72338919 0.245615254 15.392155 8.86746271 7.97788468 17.8161746"></polygon>
+        </g>
+    </g>
+</svg>

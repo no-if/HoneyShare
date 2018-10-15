@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+	<meta name="renderer" content="webkit">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>Honey Share</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/basics.css">
+	<link rel="stylesheet" href="../css/home.css">
+	<style>
+		.card {
+			display: inline-block;
+			background: #2B2B47;
+			width: 250px;
+			padding: 15px 0;
+		}
+
+		.card>span {
+			width: 100%;
+			display: inline-block;
+			text-align: center;
+		}
+
+		.card>span:nth-child(3) {
+			margin-top: 10px;
+			font-size: 15px;
+		}
+
+		.card:first-child {
+			margin-right: 20px;
+		}
+
+		.card>span.money_text {
+			color: #316CBC;
+		}
+
+		.notic {
+			margin-top: 20px;
+			color: #F99534;
+			font-size: 15px;
+		}
+
+		.addTr th {
+			color: #47C8F5;
+		}
+
+		table tr td span {
+			display: inline-block;
+			width: 50px;
+			height: 20px;
+			border-radius: 7px;
+			text-align: center;
+		}
+
+		.status1_color {
+			background: #47C8F5;
+		}
+
+		.status2_color {
+			background: #B26520;
+		}
+
+		.status3_color {
+			background: #545469;
+		}
+
+		.msg_box {
+			position: fixed;
+			top: 20%;
+			left: 50%;
+			transform: translate(-50%, 0%);
+			width: 375px;
+			background: #aaa;
+			border-radius: 10px;
+			padding: 20px;
+			z-index: 1;
+		}
+
+		.msg_box .btn {
+			width: 100%;
+			margin-top: 100px;
+		}
+		select{
+			width: 180px;
+			margin: 10px 0;
+		}
+		@media(max-width: 768px) {
+			.endTime {
+				margin-top: 20px;
+			}
+			.card2 {
+				margin-top: 20px;
+			}
+			.notic {
+				text-align: center;
+			}
+			.card:first-child {
+				margin-right: 0;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<p>出金审核</p>
+			</div>
+			<div class="centent">
+				<div class="col-sm-12" style="margin-bottom: 20px;">
+					<div class="bt">
+						<input type="text" placeholder="邮箱" id="mail"><br>
+						<select name="value" id="status">
+							<option value="">全部</option>
+							<option value="1">失败</option>
+							<option value="2">成功</option>
+							<option value="0">未审核</option>
+						</select><br>
+						<select name="value" id="reason">
+							<option value="">失败原因</option>
+							<option value="202">钱数不是整倍数</option>
+							<option value="203">不是提款日期</option>
+							<option value="204">银行卡类型不对</option>
+							<option value="205">比特币地址不对</option>
+							<option value="206">以太坊地址不对</option>
+						</select><br>
+						<select name="value" id="type">
+							<option value="">全部</option>
+							<option value="1">CNY</option>
+							<option value="2">BTC</option>
+							<option value="3">ETH</option>
+						</select>
+						<span class="search search2">搜索</span>
+					</div>
+					<div>
+
+					</div>
+					<div>
+						<table class="addChild">
+							<tr class="addTr">
+									<th>邮箱</th>
+								<th>CNY</th>
+								<th>BTC</th>
+								<th>ETH</th>
+								<th>总数</th>
+								<th>银行</th>
+								<th>比特币地址</th>
+								<th>以太坊地址</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</table>
+						<div class="text">暂时没有会员数据</div>
+					</div>
+					<nav aria-label="Page navigation" class="col-xs-12 col-sm-12 col-lg-12 paging">
+						<ul class="pagination pagination1">
+						</ul>
+					</nav>
+					<div class="msg_box">
+						<select name="value" id="reason">
+							<option value="202">钱数不是整倍数</option>
+							<option value="203">不是提款日期</option>
+							<option value="204">银行卡类型不对</option>
+							<option value="205">比特币地址不对</option>
+							<option value="206">以太坊地址不对</option>
+						</select>
+						<div>
+							<button class="btn">确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../lib/jquery-1.12.2.js"></script>
+	<script src="../js/common.js"></script>
+	<script>
+		$('.msg_box').hide();
+		// 出金信息
+		var ajaxData = {
+			startRow: '1',
+			pageSize: '20',
+		}
+		$('.text').hide();
+		$('.addTr').hide();
+		$('.search2').click(function () {
+			ajaxData.mail = $('#mail').val();
+			ajaxData.goldType = $('#type').val();
+			ajaxData.failType = $('#reason').val();
+			ajaxData.status = $('#status').val();
+			deltaGoAjax('outGold/findOutGoldList', ajaxData, getMemberData);
+		})
+		deltaGoAjax('outGold/findOutGoldList', ajaxData, getMemberData);
+
+		function getMemberData(data) {
+			$('.child').remove();
+			$()
+			var str;
+			var str1;
+			var str2;
+			if (data.data.list.length == '0') {
+				$('.text').show();
+				$('.addTr').hide();
+			} else {
+				$('.addTr').show();
+				$('.text').hide();
+				$.each(data.data.list, function (k, val) {
+					if (val.status != 0) {
+						str2 = '<span class="status3_color" data-id="' + val.id + '" data-status="0">已审核</span>';
+					} else {
+						str2 = '<span class="status1_color" data-id="' + val.id + '" data-status="2">通过</span>' + ' ' +
+							'<span class="status2_color" data-id="' + val.id + '" data-status="1">驳回</span>';
+					}
+
+					str += '<tr class="child">' +
+							'<td>' + val.mail + '</td>' +
+						'<td>' + moneyToFloat(val.cny || 0) + '</td>' +
+						'<td>' + moneyToFloat(val.btc || 0) + '</td>' +
+						'<td>' + moneyToFloat(val.eth || 0) + '</td>' +
+						'<td>' + moneyToFloat(val.sumMoney || 0) + '</td>' +
+						'<td>' + (val.bankName || '') + '</td>' +
+						'<td>' + (val.btcAddress || '') + '</td>' +
+						'<td>' + (val.ethAddress || '') + '</td>' +
+						'<td>' + (val.statusName || '') + '</td>' +
+						'<td>' + str2 + '</td>' +
+						'</tr>';
+				})
+				$('.addChild').append(str);
+				allPage = page(data, $('.pagination'), ajaxData.startRow);
+			}
+		}
+		// 通过
+		$('.addChild').on('click', '.status1_color', function () {
+			ajaxData.status = $(this).attr('data-status');
+			ajaxData.id = $(this).attr('data-id');
+			deltaGoAjax('outGold/updateOutGold', ajaxData, submiteOK);
+		})
+		// 驳回
+		$('.addChild').on('click', '.status2_color', function () {
+			$('.msg_box').show();
+			// 确定驳回
+			$('.btn').click(function () {
+				ajaxData.failType = Number($('#reason').val());
+				ajaxData.status = $('.status2_color').attr('data-status');
+				ajaxData.id = $('.status2_color').attr('data-id');
+				deltaGoAjax('outGold/updateOutGold', ajaxData, submiteOK);
+			})
+		})
+
+		function submiteOK(data) {
+			$('.msg_box').hide();
+			if (data.status == 0) {
+				errorMsg('成功');
+			} else {
+				errorMsg(data.msg);
+			}
+			var reData = {
+				startRow: '1',
+				pageSize: '20',
+			}
+			deltaGoAjax('outGold/findOutGoldList', reData, getMemberData);
+		}
+		//    分页
+		$('.pagination').on('click', '.starLi', function () { //首页
+			ajaxData.startRow = '1';
+			deltaGoAjax('outGold/findOutGoldList', ajaxData, getMemberData);
+		})
+		$('.pagination').on('click', '.numberLi', function () { //随意页
+			ajaxData.startRow = $(this).text();
+			deltaGoAjax('outGold/findOutGoldList', ajaxData, getMemberData);
+		})
+		$('.pagination').on('click', '.lastLi', function () { //尾页
+			ajaxData.startRow = allPage;
+			deltaGoAjax('outGold/findOutGoldList', ajaxData, getMemberData);
+		})
+		$('.pagination').on('click', '.gotoPageBtn', function () { //跳转到
+			var gotoPageNum = $('.gotoPage').val();
+			if (gotoPageNum == '') {
+				return;
+			} else if (gotoPageNum > $(this).attr('data-page')) {
+				gotoPageNum = $(this).attr('data-page');
+			}
+			ajaxData.startRow = gotoPageNum;
+			deltaGoAjax('outGold/findOutGoldList', ajaxData, getMemberData);
+		})
+	</script>
+</body>
+
+</html>

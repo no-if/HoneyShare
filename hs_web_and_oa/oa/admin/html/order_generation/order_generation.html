@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+	<meta name="renderer" content="webkit">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>Honey Share</title>
+	<link rel="stylesheet" href="../../css/bootstrap.css">
+	<link rel="stylesheet" href="../../css/basics.css">
+	<link rel="stylesheet" href="../../css/home.css">
+	<style>
+		.box h4 {
+			font-weight: normal;
+			font-size: 18px;
+			color: #ddd;
+		}
+
+		.icon {
+			font-size: 12px;
+		}
+
+		.border {
+			border: 2px solid #444644;
+			padding: 0 15px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		button {
+			width: 100%;
+			background: RGBA(253, 178, 56, 1);
+			border: none;
+			line-height: 30px;
+			outline: none;
+		}
+
+		.rate p {
+			margin: 20px auto;
+		}
+
+		.border span {
+			color: #71c8f1;
+		}
+
+		.card {
+			padding: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
+		.card>div {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			width: 33%;
+			height: 88px;
+			min-width: 295px;
+			background: RGBA(253, 178, 56, 1);
+			margin: 10px 0;
+			cursor: pointer;
+		}
+
+		#sel_method {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		#sel_method>div {
+			/* border: 1px solid #F49A06; */
+			display: flex;
+			color: #000;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 20px;
+			text-align: center;
+			width: 200px;
+			cursor: pointer;
+			/* border-radius: 10px; */
+		}
+
+		#sel_method>div>span:nth-child(2) {
+			/* margin-right: 45px; */
+			height: 80px;
+			text-align: center;
+			line-height: 80px;
+			width: 100%;
+			min-width: 200px;
+			border-radius: 0 7px 7px 0;
+			border: 1px solid #F49A06;
+		}
+
+		.card {
+			position: relative;
+		}
+
+		.color1 {
+			background: #fff;
+		}
+
+		#sel_method>div img {
+			width: 80px;
+			height: auto;
+			position: absolute;
+			left: -18%;
+			top: 0;
+		}
+
+		#sel_money {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		#sel_money>span {
+			margin-bottom: 20px;
+			padding: 8px 5px;
+			text-align: center;
+			width: 100px;
+			background: #fff;
+			border: 1px solid #F49A06;
+			border-radius: 10px;
+			color: #EF9121;
+			cursor: pointer;
+		}
+
+		.input input {
+			background: none;
+			border: 1px solid RGBA(253, 178, 56, 1);
+			color: #000;
+		}
+
+		.input+p {
+			font-size: 16px;
+			color: RGBA(253, 178, 56, 1);
+			line-height: 30px;
+		}
+
+		.bg_color {
+			background: linear-gradient(to right, #F58625 0, #F58625 30%, #ED352E 100%) !important;
+			color: #fff !important;
+		}
+
+		.limit {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.sel_method_icon {
+			position: absolute;
+			left: 166px;
+			top: 0;
+			background: url(../../images/select.png) no-repeat;
+			width: 50px;
+			height: 50px;
+			visibility: hidden;
+		}
+
+		.show {
+			visibility: visible;
+		}
+
+		.sel_text {
+			color: #000;
+			font-size: 15px;
+			margin: 10px 0;
+		}
+
+		.transfer_top_box {
+			display: none;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background: RGBA(0, 0, 0, 0.8);
+			left: 0;
+			top: 0;
+		}
+
+		.pay_code_img {
+			padding: 50px;
+		}
+
+		.pay_code_img img {
+			display: block;
+			margin: 0 auto;
+		}
+
+		.transfer_top_box>div {
+			position: absolute;
+			/* width: 30%; */
+			height: auto;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: #fff;
+			border-radius: 7px 7px 0 0;
+		}
+
+		.top_message {
+			font-size: 16px;
+			background: #fff;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 375px;
+			height: auto;
+			z-index: 1;
+			border-radius: 5px;
+			color: #000;
+		}
+
+
+		.close {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			color: #000;
+			font-size: 12px;
+		}
+
+		.advise p span {
+			color: #EF9121;
+		}
+
+		.transfer_money {
+			color: #000;
+		}
+
+		.transfer_money>p {
+			margin: 10px 0;
+		}
+
+		.transfer_money>p>span:nth-child(2) {
+			color: #EF9121;
+		}
+
+		.transfer_money>p>span:nth-child(1) {
+			display: inline-block;
+			width: 100px;
+		}
+
+		.transfer_money table {
+			border: 1px solid #fbba18;
+			margin-top: 10px;
+			width: 30%;
+		}
+
+		.transfer_top_box table {
+			border: 1px solid #fbba18;
+			margin-top: 10px;
+			width: 100%;
+		}
+
+		table tr:nth-child(odd) {
+			background: #f7dd80;
+		}
+
+		table tr:nth-child(even) {
+			background: #fff;
+		}
+
+		.transfer_top_box .transfer_title {
+			text-align: center;
+			background: #fbba18;
+			height: 40px;
+			line-height: 40px;
+			color: #fff;
+			border-radius: 7px 7px 0 0;
+		}
+
+		.transfer_top_box .content {
+			padding: 0 20px;
+			margin-bottom:20px;
+		}
+
+		.transfer_top_box .content p {
+			margin: 10px 0;
+			color: #000;
+			font-size: 16px;
+		}
+
+		.transfer_top_box .content .notic_text {
+			font-size: 15px;
+			color: #EF9121;
+		}
+
+		
+
+		@media(max-width: 768px) {
+			#sel_method {
+				justify-content: center;
+			}
+			.transfer_money table {
+				width: 100%;
+			}
+			.transfer_top_box>div {
+				width: 100%;
+				height: auto;
+			}
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<p>购买</p>
+			</div>
+			<div class="centent">
+				<div class="box">
+					<div class="col-sm-12" style="margin-top: 20px;">
+						<p class="sel_text">请选择支付方式</p>
+						<div class="col-xs-12" id="sel_method">
+                            <div class="card color1 transfer YL">
+                            	<img src="../../images/zhifu7.png" alt="">
+                            	<span>银联汇款</span>
+                            	<span class="sel_method_icon show"></span>
+                            </div>
+                        </div>
+                        <p style="font-size: 13px;margin-top: 5px; color: #F49A06;">当前的价格：
+                        	<span class="lvx_rate">0</span> USD/HSC</p>
+                        	<p class="sel_text sel_text1">请选择或输入购买数量</p>
+                        	<!-- 选择数量 -->
+                        	<div class="col-xs-12" id="sel_money">
+                            <!-- <span>31</span>
+                            <span>3</span> -->
+                            <!-- <span>2000</span> -->
+                            <!-- <span value="5000">5,000</span> -->
+                            <span value="15000">15,000</span>
+                            <span value="30000">30,000</span>
+                            <span value="50000">50,000</span>
+                            <span value="100000">100,000</span>
+                            <span value="200000">200,000</span>
+                            <span value="300000">300,000</span>
+                            <span value="500000">500,000</span>
+                            <span value="1000000">1,000,000</span>
+                        </div>
+
+						<div class="col-xs-12" style="margin:20px 0 20px 0;">
+							<!-- 输入用户邮箱 -->
+                        	<div class="input">
+								<input type="text" placeholder="输入用户邮箱" id="email">
+							</div>
+							<br>
+                        	<!-- 输入HSC -->
+                        	<div class="input">
+								<input type="number" placeholder="输入HSC数量" id="count">
+							</div>
+							<br>
+							<!-- 输入人民币 -->
+                        	<div class="input">
+								<input type="text" placeholder="输入人民币数量" id="cny_num">
+							</div>
+                        	<div class="advise">
+                                <!-- <p style="font-size: 13px;margin-top: 5px;">
+                                    <span>最少 = 5,000.00 HSC</span>
+                                    <span>&nbsp;&nbsp;</span>
+                                    <span>最多 = 800,000.00 HSC</span>
+                                </p> -->
+                                <p style="font-size: 15px;margin-top: 10px;color: #000;" class="usd_text">您需要支付USD：&nbsp;
+                                	<span class="dor">0</span>
+                                </p>
+                            </div>
+                            <div class="transfer_money">
+                                <table>
+                                    <tr>
+                                        <td>银行:</td>
+                                        <td class="bankName"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>支行:</td>
+                                        <td class="bankAdress"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>收款人:</td>
+                                        <td class="username"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>卡号:</td>
+                                        <td  class="bankNum"></td>
+                                    </tr>
+								</table>
+                            </div>
+                        </div>
+                        <button class="next">提交购买申请</button>
+                    </div>
+                    <div class="transfer_top_box">
+                    	<div>
+                    		<span class="close">关闭</span>
+                    		<div class="transfer_box">
+                    			<div class="transfer_title">提交成功</div>
+                    			<div class="content">
+                    				<p>您购买的HSC数量为：
+                    					<span class="count_hsc"></span>
+                    				</p>
+                    				<p>您需要支付USD：
+                    					<span class="count_usd"></span>
+                    				</p>
+                    				<p>您需要支付CNY：
+                    					<span class="count_cny"></span>
+									</p>
+									
+									<table>
+										<tr>
+											<td>银行:</td>
+											<td class="bankName"></td>
+										</tr>
+										<tr>
+											<td>支行:</td>
+											<td class="bankAdress"></td>
+										</tr>
+										<tr>
+											<td>收款人:</td>
+											<td class="username"></td>
+										</tr>
+										<tr>
+											<td>卡号:</td>
+											<td  class="bankNum"></td>
+										</tr>
+									</table>
+                                </div>
+
+                            </div>
+                        </div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="" class="new_page" target="_blank"></a>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+    	$(function () {
+
+			/* 获取银行信息 */
+			deltaGoAjax('user/findBankCodeFinal','',findBankCodeFinal,'get');
+			function findBankCodeFinal(data){
+				$('.bankName').text(data.data.bankName);
+				$('.bankAdress').text(data.data.payee);
+				$('.username').text(data.data.branchName);
+				$('.bankNum').text(data.data.bankNo);
+			}
+
+            var count = 0;
+            var rate;
+            var lvx_rate;
+            deltaGoAjax('user/exchange', "", function (data) {
+            	rate = data.data.RMB;
+            }, 'get')
+            deltaGoAjax('wallet/getHscRate', "", function (data) {
+            	lvx_rate = data.data.nowHsc;
+            	$('.lvx_rate').text(lvx_rate);
+            }, 'get')
+
+
+            // 选择数量
+            $('#sel_money').on('click', 'span', function () {
+            	$('#count').val('');
+            	$('#sel_money>span').removeClass('bg_color');
+            	$(this).toggleClass('bg_color');
+            	if ($(this).hasClass('bg_color')) {
+            		count = $(this).attr("value");
+            		dor = count * lvx_rate;
+            		$('.dor').text(moneyToFloat(dor.toFixed(2)));
+            	} else {
+            		return;
+            	}
+            })
+            $('#count').keyup(function () {
+            	$('#sel_money>span').removeClass('bg_color');
+            	count = $(this).val();
+            	dor = count * lvx_rate;
+            	$('.dor').text(moneyToFloat(dor.toFixed(2)));
+            	if ($(this).val() == '' || $(this).val() == 0) {
+            		$('.dor').text(0);
+            	}
+            })
+
+            // 点击下一步
+            $('.next').click(function () {
+				if($('#email').val() == ''){
+					errorMsg('请输入用户邮箱!');
+				}else if($('#cny_num').val() == ''){
+					errorMsg('请输入人民币数量!');
+				} else {
+					var walletData6 = {};
+					walletData6.usd = dor;
+					walletData6.cny = $('#cny_num').val();
+					walletData6.hsc = count;
+					walletData6.mail = $('#email').val();
+					deltaGoAjax('user/getOrder', walletData6, transferPay);
+                }
+            })
+            function transferPay(data) {
+            	if (data.status == 0) {
+            		$('.transfer_top_box').show();
+                    $('.count_hsc').text(moneyToFloat(count));
+                    $('.count_usd').text($('.dor').text());
+                    $('.count_cny').text(moneyToFloat($('#cny_num').val()));
+                    return;
+                } else {
+
+                }
+			}
+			
+			$('.close').click(function () {
+            	$('.top_message').hide();
+            	$('.transfer_top_box').hide();
+            })
+
+        })
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>

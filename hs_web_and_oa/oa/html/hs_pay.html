@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/basics.css">
+    <link rel="stylesheet" href="../css/home.css">
+    <style>
+        .box h4 {
+            font-weight: normal;
+            font-size: 16px;
+            color: #aaa;
+        }
+
+        .rate_list table {
+            width: auto;
+        }
+
+        .rate_list tr td:first-child {
+            text-align: right;
+        }
+
+        .buy_list {
+            margin-top: 30px;
+        }
+
+        .bit_list {
+            overflow: hidden;
+            color: #000;
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .bit_list li {
+            float: left;
+            padding: 0 10px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .bit_list li.on {
+            border-bottom: 3px solid #000;
+        }
+        
+        .buy_btn{
+            text-align: center;
+            background-color: #fdb238;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>HS-PAY</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="rate_list">
+                        <table>
+                            <tr>
+                                <td>HSC购买量=</td>
+                                <td>
+                                    <input type="number" id="hscnum">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>今日比率兑换USD=</td>
+                                <td id="usdnum">0</td>
+                            </tr>
+                            <tr>
+                                <td>今日比率兑换CNY=</td>
+                                <td id="cnynum">0</td>
+                            </tr>
+                            <tr>
+                                <td>今日比率兑换BTC=</td>
+                                <td id="btcnum">0</td>
+                            </tr>
+                            <tr>
+                                <td>今日比率兑换ETH=</td>
+                                <td id="ethnum">0</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <ul class="bit_list">
+                        <li value="1" class="on">BTC</li>
+                        <li value="2">ETH</li>
+                    </ul>
+                    <div class="buy_list col-sm-12">
+                        <div class="">
+                            <table class="addChild">
+                            </table>
+                            <div class="text">没有找到记录。</div>
+                        </div>
+                        <nav aria-label="Page navigation" class="col-xs-12 col-sm-12 col-lg-12 paging">
+                            <ul class="pagination">
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="model">
+            <div class="box">
+                <p>卖家信息</p>
+                <ul>
+                    <li><label>姓名：</label><span data-uid></span></li>
+                    <li><label>账号：</label><span data-ord></span></li>
+                    <li><label>银行：</label><span></span></li>
+                    <li><label>所属分行：</label><span></span></li>
+                    <li><label>出售数量：</label><span></span></li>
+                    <li><label>单价(USD)：</label><span></span></li>
+                </ul>
+                <!--<span class="box_pic">请上传您的转账截图：</span>-->
+                <!--<input class="inp" type="file" name="file">-->
+                <div class="file_box">
+                    <input type="file" id="upload">
+                    <span>请上传您的转账截图</span>
+                </div>
+                <button id="btn1">提交</button>
+                <button id="btn2">关闭</button>
+            </div>
+        </div>
+        <div class="model_alert">
+            <div class="box">
+                <div>
+                    <p class="p1">提示</p>
+                    <p class="p2">请输入HSC购买量</p>
+                </div>
+                <span>×</span>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery-1.12.2.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        $(function () {
+            var ajaxData = {
+                pageNum: '1',
+                pageSize: '20',
+                startTime: "",
+                endTime: "",
+                systemName: "hsc",
+                userId: userInfo.uuid,
+                commodityTypeId: 1,
+                num: 0
+            }
+            var rate = {
+                btc: 0,
+                eth: 0,
+                cny: 0,
+                usd: 0
+            }
+
+            getData();
+
+            function getData() {
+                hsPayAjax('Sell/getSells', ajaxData, getMemberData, "get");
+            }
+            getRate();
+
+            function getRate() {
+                $.ajax({
+                    type: "get",
+                    url: "https://api.exchangerate.enrich-global.com:8443/ExRate/pair/numf/3",
+                    data: {},
+                    beforeSend: function (xhr) {
+                        loadingShow();
+                    },
+                    success: function (data) {
+                        $('body', parent.document).find('.loading').remove();
+                        data.forEach(function (val, k) {
+                            if (val.symbol == "BTCUSD") {
+                                rate.btc = 1 / val.price
+                            }
+                            if (val.symbol == "ETHUSD") {
+                                rate.eth = 1 / val.price
+                            }
+                        })
+                    }
+                })
+                $.ajax({
+                    type: "get",
+                    url: "http://192.168.1.202:8084/hsc/user/exchange",
+                    data: {},
+                    beforeSend: function (xhr) {
+                        loadingShow();
+                    },
+                    success: function (data) {
+                        $('body', parent.document).find('.loading').remove();
+                        rate.cny=data.data.RMB;
+                    }
+                })
+                deltaGoAjax('wallet/getHscRate', "", function (res) {
+                    rate.usd = res.data.nowHsc
+                }, 'get')
+            }
+            $('#hscnum').change(function () {
+                $("#usdnum").text(parseFloat(($(this).val() * rate.usd).toFixed(8)))
+                $("#cnynum").text(parseFloat(($(this).val() * rate.usd * rate.cny).toFixed(8)))
+                $("#btcnum").text(parseFloat(($(this).val() * rate.usd * rate.btc).toFixed(8)))
+                $("#ethnum").text(parseFloat(($(this).val() * rate.usd * rate.eth).toFixed(8)))
+                if (ajaxData.commodityTypeId == 1) {
+                    ajaxData.num = $("#btcnum").text();
+                } else if (ajaxData.commodityTypeId == 2) {
+                    ajaxData.num = $("#ethnum").text();
+                }
+                getData();
+            })
+            $('.text').hide();
+            $('.addTr').hide();
+
+            $('.search').click(function () {
+                ajaxData.mail = $('.mail').val();
+                getData();
+            })
+
+
+
+            function getMemberData(data) {
+                var str = '';
+                var substr = '';
+                $('.child').remove();
+                if (data.data.list.length == 0) {
+                    $('.text').show();
+                    $('.addTr').hide();
+                } else {
+                    $('.addTr').show();
+                    $('.text').hide();
+                    str0 = '<tr class="addTr">' +
+                        '<th>卖家账号(成交单数)</th>' +
+                        '<th>出售数量</th>' +
+                        '<th>单价(USD)</th>' +
+                        '<th>最低购买额</th>' +
+                        '<th style="text-align:center;">操作</th>' +
+                        '</tr>'
+                    $.each(data.data.list, function (k, val) {
+                        str += '<tr class="child">' +
+                            '<td>' + (val.user_name || '') + '(' + (val.spare5 || '') + ')' + '</td>' +
+                            '<td>' + moneyToFloat(val.sell_number || 0) + '</td>' +
+                            '<td>' + moneyToFloat(val.sell_spare || 0) + '</td>' +
+                            '<td>' + moneyToFloat(val.sell_minimum || 0) + '</td>' +
+                            '<td><div class="buy_btn" data-id=' + val.sell_id + '>购买</div></td>' +
+                            '</tr>';
+                    })
+                    $('.addChild').empty();
+                    $('.addChild').append(str0 + str);
+                    allPage = payPage(data, $('.pagination'), ajaxData.pageNum);
+                }
+            }
+
+            //    分页
+            $('.pagination').on('click', '.starLi', function () { //首页
+                ajaxData.pageNum --;
+                if(ajaxData.pageNum<=1){
+                    ajaxData.pageNum=1;
+                }
+                getData();
+            })
+            $('.pagination').on('click', '.numberLi', function () { //随意页
+                ajaxData.pageNum = $(this).text();
+                getData();
+            })
+            $('.pagination').on('click', '.lastLi', function () { //尾页
+                ajaxData.pageNum ++;
+                if(ajaxData.pageNum>=3){
+                    ajaxData.pageNum=3;
+                }
+                getData();
+            });
+            $('.pagination').on('click', '.gotoPageBtn', function () { //跳转到
+                var gotoPageNum = $('.gotoPage').val();
+                if (gotoPageNum == '') {
+                    return;
+                } else if (gotoPageNum > $(this).attr('data-page')) {
+                    gotoPageNum = $(this).attr('data-page');
+                }
+                ajaxData.pageNum = gotoPageNum;
+                getData();
+            })
+            $('.bit_list li').click(function () {
+                $(this).addClass("on").siblings("li").removeClass("on");
+                ajaxData.commodityTypeId = $(".bit_list .on").val();
+                ajaxData.pageNum = 1;
+                getData();
+            });
+            $('.container>.model>.box>ul>li:odd').css('backgroundColor','#eee');
+            $('.container>.model').hide();
+            $('.model_alert').hide();
+            $('.buy_list').on('click','.buy_btn',function(){
+                var buyForm = {
+                    userId:userInfo.uuid,
+                    systemName:"hsc",
+                    commodityTypeId:ajaxData.commodityTypeId,
+                    num:ajaxData.num,
+                    sellId:$(this).attr("data-id"),
+                    type:0,
+                    purseAddress:"",
+                    ap:$('#hscnum').val(),
+                    paymentType:"alipay"
+                };
+                //hsPayAjax('Sell/buy', buyForm, buyOk, "get");
+                $.ajax({
+                    type:"post",
+                    url:"http://192.168.1.108:8080/Sell/buy",
+                    data:buyForm,
+                    success:function(data){
+                        console.log(data);
+                        if($('#hscnum').val()===''){
+                            $('.model_alert').show();
+                            return;
+                        }else {
+                            if(data.code===9999){
+                                $('.model_alert').show();
+                                $('.model_alert .p2').text('系统异常');
+                                return;
+                            }
+                            $('.container>.model').show();
+                            $('.container>.model>.box>ul>li>span').eq(0).text(data.data.bankUserName);
+                            $('.container>.model>.box>ul>li>span').eq(1).text(data.data.bankNumber);
+                            $('.container>.model>.box>ul>li>span').eq(1).attr('data-ord',data.data.orderId);
+                            $('.container>.model>.box>ul>li>span').eq(2).text(data.data.bankName);
+                            $('.container>.model>.box>ul>li>span').eq(3).text(data.data.bankDetails);
+                            $('.container>.model>.box>ul>li>span').eq(4).text(data.data.bankDetails);
+                            $('.container>.model>.box>ul>li>span').eq(5).text(data.data.orderPrice);
+                        }
+                    }
+                });
+                $('.container>.model_alert span').click(function(){
+                    $('.container>.model_alert').hide();
+                })
+                $('.container>.model #btn2').click(function(){
+                    $('.container>.model').hide();
+                });
+
+                $('.container>.model #btn1').unbind('click').click(function(){
+                    var ord=$('.container>.model>.box>ul>li>span').eq(1).attr('data-ord');
+
+                    var formData=new FormData();
+                    var img_file=document.getElementById('upload');
+                    var fileObj=img_file.files[0];
+                    formData.append('userId',userInfo.uuid);
+                    formData.append('systemName','hsc');
+                    formData.append('orderId',ord);
+                    formData.append('Filedata',fileObj);
+                    $.ajax({
+                        type:'post',
+                        url:'http://192.168.1.108:8080/hsc/uploadPicture',
+                        data:formData,
+                        processData:false,
+                        async:false,
+                        contentType:false,
+                        success:function(data){
+                            if(data.code==0){
+                                alert('上传成功');
+                                $('.container>.model').hide();
+                            }
+                        }
+                    })
+
+                })
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>

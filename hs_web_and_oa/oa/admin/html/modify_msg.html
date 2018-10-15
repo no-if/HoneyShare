@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/basics.css">
+    <!-- <link rel="stylesheet" href="../../css/home.css"> -->
+    <style>
+        .card {
+            display: inline-block;
+            background: #2B2B47;
+            width: 250px;
+            padding: 10px 0;
+        }
+
+        .card>span {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .card:first-child {
+            margin-right: 20px;
+        }
+
+        .card>span.money_text {
+            color: RGBA(253, 178, 56, 1);
+        }
+
+        .notic {
+            margin-top: 20px;
+            color: RGBA(253, 178, 56, 1);
+            font-size: 15px;
+
+        }
+
+        .notic span:nth-child(2n) {
+            color: #fff;
+        }
+
+        .notic span:nth-child(2n+1) {
+            margin: 1px 10px;
+            line-height: 20px;
+        }
+
+        .circle {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 7px;
+            border: 1px solid RGBA(253, 178, 56, 1);
+        }
+
+        .sel_bg {
+            background: RGBA(253, 178, 56, 1);
+        }
+
+        .message span {
+            display: inline-block;
+            width: 150px;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .id_card span {
+            display: inline-block;
+            width: auto;
+        }
+
+        .id_card span:nth-child(1) {
+            width: 150px;
+        }
+
+        .id_card span.circle {
+            width: 15px;
+            height: 15px;
+            border-radius: 7px;
+            margin: 0 10px;
+        }
+
+        .sel {
+            color: RGBA(253, 178, 56, 1);
+            margin-left: 5px;
+            font-size: 12px;
+        }
+
+        select {
+            width: 180px;
+        }
+
+        @media(max-width: 768px) {
+            .end_time {
+                margin-top: 20px;
+            }
+            .card2 {
+                margin-top: 20px;
+            }
+            .card:first-child {
+                margin-right: 0;
+            }
+            .message span {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>修改会员信息</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="message">
+                        <div class="tp">
+                            <span>会员等级：</span>
+                            <select name="value" id="level">
+                                <option value="0">个人代理</option>
+                                <option value="1">1级代理</option>
+                                <option value="2">总代理</option>
+                            </select>
+                        </div>
+                        <div class="tp">
+                            <span>佣金比例：</span>
+                            <select name="value" id="grade">
+                                <!-- <option value="0.55" class="level1">代理55%</option>
+                                <option value="0.5">代理50%</option>
+                                <option value="0.45">代理45%</option>
+                                <option value="0.4">代理40%</option>
+                                <option value="0.35">代理35%</option>
+                                <option value="0.3">代理30%</option>
+                                <option value="0.25">代理25%</option>
+                                <option value="0.2">代理20%</option>
+                                <option value="0.15">代理15%</option>
+                                <option value="0.1">代理10%</option>
+                                <option value="0">代理0%</option> -->
+                            </select>
+                        </div>
+                        <div class="tp">
+                            <span>会员状态：</span>
+                            <select name="value" id="status">
+                                <option value="0">待激活</option>
+                                <option value="1">激活</option>
+                                <option value="2">锁定</option>
+                                <option value="3">无效</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="notic admin" data-user="admin">推荐人信息</div>
+                    <div class="message admin" data-user="admin">
+                        <div class="tp">
+                            <span>推荐人：</span>
+                            <input type="text" placeholder="父级邮箱" id="pre_mail">
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn tp">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery-1.12.2.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        $(function () {
+
+            //渲染佣金比例
+            deltaGoAjax('user/getCommissionRate',"",function(data){
+                var str = '';
+                $.each(data.data,function(k,val){
+                    str += '<option value="'+val.crate+'">'+val.drate+'</option>';
+                })
+                $('#grade').append(str);
+            },'get');
+
+            
+            var request = new GetRequest();
+            var uuid = request['uuid'];
+            var mail = request['mail'];
+            var ajaxData1 = {
+                mail: mail,
+                startRow: 0,
+                pageSize: 20
+            };
+            deltaGoAjax('user/getUserByMail', ajaxData1, getMemberData);
+            function getMemberData(data) {
+                if(data.data.user.isAdmin == 1){
+                    $('.admin').hide();
+                }
+                $('#level').val(data.data.user.memberGrade);
+                $('#grade').val(data.data.user.commissionRate);
+                $('#status').val(data.data.user.status);
+                $('#pre_mail').val(data.data.puser.mail);
+            }
+            $('.btn').click(function () {
+                var ajaxData2 = {};
+                ajaxData2.memberGrade = $('#level').val();
+                ajaxData2.commissionRate = $('#grade').val();
+                ajaxData2.status = $('#status').val();
+                ajaxData2.uuid = uuid;
+                ajaxData2.parentMail = $('#pre_mail').val();
+                deltaGoAjax('user/updateByAdmin', ajaxData2, function (data) {
+                    if (data.status == 0) {
+                        errorMsg('修改成功');
+                        setTimeout(function () {
+                            window.location.href = 'home/home.html';
+                        }, 2000)
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

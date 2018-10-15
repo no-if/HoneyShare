@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+	<meta name="renderer" content="webkit">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>Level01</title>
+	<link rel="stylesheet" href="../../css/bootstrap.css">
+	<link rel="stylesheet" href="../../css/basics.css">
+	<link rel="stylesheet" href="../../css/home.css">
+	<style>
+		.moneyData {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+		}
+
+		.card {
+			display: flex;
+			justify-content: space-between;
+			width: 250px;
+			align-items: center;
+			/* border: 1px solid #F49A06; */
+			/* border-radius: 10px; */
+			position: relative;
+			margin-bottom: 20px;
+			margin-right:80px;
+			text-indent:30px;
+		}
+
+		.card>span {
+			display: inline-block;
+			text-align: center;
+			color: #000;
+		}
+
+		.card>span:nth-child(2) {
+			height: 80px;
+			line-height: 80px;
+			width: 100%;
+			min-width: 200px;
+			margin-left: 35px;
+			border: 1px solid #F49A06;
+			border-radius: 0 7px 7px 0;
+		}
+
+		.icon_bg {
+			position: absolute;
+			width: 80px;
+			/* height: 83px; */
+			height: auto;
+			text-indent: 6px;
+			font-size:14px;
+			line-height: 80px;
+			color: #000;
+			background: url(../../images/bg_left.png) no-repeat;
+			background-size: 100% 100%;
+			left: 0;
+			top: 0;
+		}
+		.notic {
+			margin-top: 20px;
+			color: #F99534;
+			font-size: 15px;
+		}
+
+		table tr td span {
+			display: inline-block;
+			width: 50px;
+			height: 20px;
+			border-radius: 7px;
+			text-align: center;
+
+		}
+
+		table tr td span.lower {
+			cursor: pointer;
+		}
+
+		.status1_color {
+			background: #47C8F5;
+		}
+
+		.status2_color {
+			background: #98B816;
+		}
+
+		.status3_color {
+			/* background: #545469; */
+			border: 1px solid #aeaeb3;
+			background: #fff;
+		}
+
+		.status4_color {
+			background: #7bb4ff;
+		}
+
+		.current {
+			display: none;
+			color: #F99534;
+		}
+		.radio_echarts {
+			width: 100%;
+			height: 300px;
+			text-align: left;
+		}
+		.isAdmin{
+			display: none;
+		}
+		@media(max-width: 768px) {
+			.endTime {
+				margin-top: 20px;
+			}
+			.card2 {
+				margin-top: 20px;
+			}
+			.notic {
+				text-align: center;
+			}
+			.card:first-child {
+				margin-right: 0;
+			}
+			.radio_echarts {
+				width:100%;
+				margin-bottom: 0;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<p>会员资金数据</p>
+			</div>
+			<div class="centent">
+				<div class="box">
+					<div class="bt">
+						<input type="text" placeholder="输入邮箱" id="mail">
+
+					</div>
+					<div class="bt">
+						<!-- <input type="date" placeholder="开始时间" id="startTime">
+						<span class="end">至</span> -->
+						<input type="date" placeholder="结束时间" class="endTime">
+						<span class="search search1">搜索</span>
+					</div>
+					<div class="bt moneyData">
+						<div class="card card2">
+							<span class="icon_bg">推荐奖</span>
+							<span class="money refee_money">0</span>
+						</div>
+						<div class="card card2">
+							<span class="icon_bg">HSC</span>
+							<span class="money lvx_money">0</span>
+						</div>
+						<div class="card card2">
+							<span class="icon_bg">入金</span>
+							<span class="money into_money">0</span>
+						</div>
+						<div class="card card2">
+							<span class="icon_bg">推荐返币</span>
+							<span class="money back_money">0</span>
+						</div>
+						<div class="card card2 isAdmin">
+							<span class="icon_bg">测试HSC</span>
+							<span class="money test_money">0</span>
+						</div>
+					</div>
+					<div class="notic">如未指定时间和用户ID则默认搜索全部成员历史总数据</div>
+				</div>
+			</div>
+			<div class="col-sm-12 radio_echarts" id="radio_echarts"></div>
+			<div class="col-sm-12 title">
+				<p>会员状态数据</p>
+			</div>
+			<div class="centent">
+				<div class="col-sm-12" style="margin-bottom: 20px;">
+					<div class="bt">
+						<input type="text" placeholder="输入邮箱" id="state_mail">
+						<span class="search search2">搜索</span>
+					</div>
+					<div class="bt current">当前会员为：
+						<span class="member_name"></span>
+					</div>
+					<div>
+						<table class="addChild">
+							<tr class="addTr">
+								<th>邮箱</th>
+								<th>佣金比例</th>
+								<th>状态</th>
+								<th class="admin">操作</th>
+								<th>查看下级</th>
+							</tr>
+						</table>
+						<div class="text">暂时没有会员数据</div>
+					</div>
+					<nav aria-label="Page navigation" class="col-xs-12 col-sm-12 col-lg-12 paging">
+						<ul class="pagination pagination1">
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../lib/jquery-1.12.2.js"></script>
+	<script src="../../lib/echarts.min.js"></script>
+	<script src="../../lib/jquery.zclip.min.js"></script>
+	<script src="../../js/common.js"></script>
+	<script>
+		/* 判断角色 */
+		if(userInfo.isAdmin == 0 && userInfo.mail != '3530787163@qq.com'){
+			$('.isAdmin').hide();
+		}else{
+			$('.isAdmin').css('display', 'flex');
+		}
+
+		//折线图
+		/* 汇率 */
+			var rateData = [];
+			var yMin = 0.150;
+			var yMax = 0.2;
+			deltaGoAjax('user/getHscRateList', {}, getHscRateList);
+			function getHscRateList(data) {
+				$.each(data.data, function (k, val) {
+					rateData.push(val.nowHsc)
+				})
+				yMax = (rateData[rateData.length - 1] + 0.01).toFixed(3);
+				getRatioEcharts();
+			}
+
+			var ratioEcharts = echarts.init(document.getElementById('radio_echarts'));
+			function getRatioEcharts(data){
+				ratioEcharts.setOption({
+					tooltip: {
+						trigger: 'axis',
+						position: function (pt) {
+							return [pt[0], '10%'];
+						}
+					},
+					xAxis: {
+						type: 'category',
+						boundaryGap: false,
+						//data: ['Week1', 'Week2', 'Week3', 'Week4'
+						//]
+						data: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8', 'Week9', 'Week10', 'Week11',
+							'Week12', 'Week13', 'Week14'
+						]
+					},
+					yAxis: {
+						min: yMin,
+						max: yMax,
+						type: 'value',
+						boundaryGap: [0, '100%'],
+						splitNumber: 3
+					},
+
+					series: [{
+						name: '价格',
+						type: 'line',
+						smooth: true,
+						symbol: 'none',
+						sampling: 'average',
+						itemStyle: {
+							normal: {
+								color: '#fbbc16'
+							}
+						},
+						areaStyle: {
+							normal: {
+								color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+									offset: 0,
+									color: 'rgb(255, 158, 68)'
+								}, {
+									offset: 1,
+									color: '#ED352E'
+								}])
+							}
+						},
+						data: rateData,
+						// data: [0.150, 0.165, 0.180, 0.195, 0.210, 0.225, 0.240, 0.255, 0.270, 0.285, 0.300, 0.315, 0.330, 0.345],
+					}]
+				})
+			}
+			
+		
+		// 钱包
+		var walletData = {
+			mail: '',
+			endTime: ''
+		}
+		$('.admin').hide();
+		refreshMoney();
+		intoMoney();
+		$('.search1').click(function () {
+			walletData.mail = $('#mail').val();
+			walletData.endTime = $('.endTime').val();
+			deltaGoAjax('user/getLeWalletSum', walletData, getMoney);
+			deltaGoAjax('user/getUsdWalletCount', walletData, getIntoMoney);
+		})
+
+		function refreshMoney() {
+			deltaGoAjax('user/getLeWalletSum', walletData, getMoney);
+		}
+		
+		function intoMoney() {
+			deltaGoAjax('user/getUsdWalletCount', walletData, getIntoMoney);
+		}
+		function getIntoMoney(data){
+			$('.into_money').text(moneyToFloat(data.data.usd));
+			$('.back_money').text(moneyToFloat(data.data.hsc));
+		}
+		
+		function getMoney(data) {
+			if (data.data.list[0].hsc == null) {
+				data.data.list[0].hsc = 0;
+			}
+			if (data.data.list[0].bonus == null) {
+				data.data.list[0].bonus = 0;
+			}
+			$('.lvx_money').text(moneyToFloat(data.data.list[0].hsc));
+			$('.refee_money').text(moneyToFloat(data.data.list[0].bonus) +' CNY');
+			$('.mail').val('');
+			$('.startTime').val('');
+			$('.endTime').val('');
+		}
+
+		deltaGoAjax('user/getLeWalletSum',{}, getLeWalletSum);
+		function getLeWalletSum(data){
+			$('.test_money').text(moneyToFloat(data.data.clist[0].hsc));
+		}
+		// 用户信息
+		var ajaxData = {
+			mail: '',
+			startRow: '1',
+			pageSize: '20'
+		}
+		$('.text').hide();
+		$('.addTr').hide();
+		$('.search2').click(function () {
+			ajaxData.mail = $('#state_mail').val();
+			if ($('#state_mail').val() == '') {
+				$('.current').hide();
+			}
+			deltaGoAjax('user/getUserByProperty', ajaxData, getMemberData);
+		})
+
+		deltaGoAjax('user/getUserByProperty', ajaxData, getMemberData);
+
+		function getMemberData(data) {
+			$('#state_mail').val('');
+			$('.child').remove();
+			var str;
+			var str1;
+			var str2;
+			var str3;
+			var str4;
+			if (data.data.list.length == '0') {
+				$('.text').show();
+				$('.addTr').hide();
+			} else {
+				$('.addTr').show();
+				$('.text').hide();
+				$.each(data.data.list, function (k, val) {
+					if (val.status == 0) {
+						str2 = '<span class="status1_color">待激活</span>';
+					} else if (val.status == 1) {
+						str2 = '<span class="status2_color">激活</span>';
+					} else if (val.status == 2) {
+						str2 = '<span class="status3_color">测试</span>';
+					}
+					if (userInfo.isAdmin == 1) {
+						$('.admin').show();
+						str3 = '<td><span class="status4_color modify" data-uuid="' + val.uuid + '" data-mail="' + val.mail +
+							'">修改</span></td>';
+					} else {
+						$('.admin').hide();
+						str3 = '';
+					}
+					if (val.total == 0) {
+						str4 = '';
+					} else {
+						str4 = '<span class="lower" data-uuid="' + val.uuid + '" data-mail="' + val.mail + '">查看</span>';
+					}
+					str += '<tr class="child">' +
+						'<td>' + (val.mail || '') + '</td>' +
+						'<td><span class="status3_color">' + (val.commissionRate || 0) + '</span></td>' +
+						'<td>'+str2+'</td>' +
+						str3 +
+						'<td>' + str4 + '</td>' +
+						'</tr>';
+				})
+				$('.addChild').append(str);
+				allPage = page(data, $('.pagination'), ajaxData.startRow);
+			}
+		}
+		//    分页
+		$('.pagination').on('click', '.starLi', function () { //首页
+			ajaxData.startRow = '1';
+			ajaxData.mail = $('#state_mail').val();
+			deltaGoAjax('user/getUserByProperty', ajaxData, getMemberData);
+		})
+		$('.pagination').on('click', '.numberLi', function () { //随意页
+			ajaxData.startRow = $(this).text();
+			ajaxData.mail = $('#state_mail').val();
+			deltaGoAjax('user/getUserByProperty', ajaxData, getMemberData);
+		})
+		$('.pagination').on('click', '.lastLi', function () { //尾页
+			ajaxData.startRow = allPage;
+			ajaxData.mail = $('#state_mail').val();
+			deltaGoAjax('user/getUserByProperty', ajaxData, getMemberData);
+		})
+		$('.pagination').on('click', '.gotoPageBtn', function () { //跳转到
+			var gotoPageNum = $('.gotoPage').val();
+			if (gotoPageNum == '') {
+				return;
+			} else if (gotoPageNum > $(this).attr('data-page')) {
+				gotoPageNum = $(this).attr('data-page');
+			}
+			ajaxData.startRow = gotoPageNum;
+			ajaxData.mail = $('#state_mail').val();
+			deltaGoAjax('user/getUserByProperty', ajaxData, getMemberData);
+		})
+
+		$('.addChild').on('click', '.modify', function () {
+			window.location.href = '../modify_msg.html?uuid=' + $(this).attr('data-uuid') + '&mail=' + $(this).attr(
+				'data-mail');
+		})
+		$('.addChild').on('click', '.lower', function () {
+			$('.current').show();
+			$('.member_name').text($(this).attr('data-mail'));
+			var ajaxData = {};
+			ajaxData.uuid = $(this).attr('data-uuid');
+			deltaGoAjax('user/getChildUuid', ajaxData, getMemberData);
+		})
+
+		if (userInfo.mail == $('.member_name').text()) {
+			$('.current').hide();
+		}
+	</script>
+</body>
+
+</html>

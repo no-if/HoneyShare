@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <script src="../../lib/jquery-1.12.2.js"></script>
+	<script src="../../js/common.js"></script>
+    <title>Honey Share</title>
+</head>
+
+<body>
+    <div class="html"></div>
+    <script>
+        $(function () {
+            var Request = new Object();
+            Request = GetRequest();
+            var html = Request["html"];
+            $(".html").html(unescape(html));
+        })
+    </script>
+</body>
+
+</html>

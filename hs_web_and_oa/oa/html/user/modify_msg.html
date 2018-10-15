@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/basics.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <style>
+        .box h4 {
+            font-weight: normal;
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        button {
+            width: 100%;
+            background: RGBA(253, 178, 56, 1);
+            border: none;
+            line-height: 30px;
+            outline: none;
+        }
+
+        .message>div {
+            color: #000;
+            font-size: 14px;
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 15px;
+        }
+
+        .message>div span {
+            display: inline-block;
+            line-height: 40px;
+        }
+
+        .input {
+            width: 100%;
+            color: #fff;
+            font-weight: normal;
+            font-size: 16px;
+        }
+        .message>.ps{
+            color:#F47C26;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>修改用户信息</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="col-sm-12">
+                        <div class="message">
+                            <div class="col-xs-12 col-sm-5">真实姓名
+
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <input type="text" class="input realName">
+                            </div>
+                            <div class="col-xs-12 col-sm-5">身份证/护照号码
+                                <span style="color: Red;">*</span>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <input type="text" class="input idNo">
+                            </div>
+                            <div class="col-xs-12 col-sm-5">手机号码
+                                <span style="color: Red;">*</span>
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <input type="text" class="input phone">
+                            </div>
+                            <div class="col-xs-12 col-sm-5">城市
+
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <input type="text" class="input city">
+                            </div>
+
+                            <div class="col-xs-12 col-sm-5">住址
+
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <input type="text" class="input add">
+                            </div>
+
+                            <div class="col-xs-12 col-sm-5">
+                                以太坊钱包地址
+                            </div>
+                            <div class="col-xs-12 col-sm-7">
+                                <input type="text" class="input yt">
+                            </div>
+                            <div class="col-xs-12 ps">
+                                *请提供一个有效的以太坊钱包地址，用以接收蜜币。如果提供的地址无效，我们将不负责任。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <button class="submite">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+        $(function () {
+            $('.city').val(userInfo.city);
+            $('.idNo').val(userInfo.idNo);
+            $('.phone').val(userInfo.phone);
+            $('.add').val(userInfo.address);
+            $('.yt').val(userInfo.ethAddress);
+            $('.realName').val(userInfo.userRealName);
+
+            var pwdData = {
+                idNo: '',
+                phone: '',
+                city: '',
+                userRealName: '',
+                address: '',
+                idtype: '',
+                ethAddress: ''
+            }
+            $('.submite').click(function () {
+                pwdData.address = $('.add').val();
+                pwdData.ethAddress = $('.yt').val();
+                pwdData.idNo = $('.idNo').val();
+                pwdData.phone = $('.phone').val().length > 12 ? $('.phone').val().length : '+86' + $('.phone').val();
+                pwdData.city = $('.city').val();
+                pwdData.userRealName = $('.realName').val();
+                if ($('.idNo').val().length == 18) {
+                    pwdData.idtype = '1';
+                } else {
+                    pwdData.idtype = '2';
+                }
+                if ($('.idNo').val() == '' || $('.phone').val() == '') {
+                    errorMsg('请完善信息');
+                } else {
+                    deltaGoAjax('user/updateUser', pwdData, function (data) {
+                        
+                        if (data.status == 0) {
+                            errorMsg('修改成功');
+                            userInfo.city = $('.city').val();
+                            userInfo.add = $('.add').val();
+                            userInfo.ethAddress = $('.yt').val();
+                            userInfo.userRealName = $('.realName').val();
+                            userInfo.idNo = $('.idNo').val();
+                            userInfo.phone = $('.phone').val();
+                            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                            $('input').val('');
+                        } else {
+                            errorMsg(data.msg);
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

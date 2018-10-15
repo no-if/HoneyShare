@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+	<meta name="renderer" content="webkit">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>Honey Share</title>
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/basics.css">
+	<style>
+		.card {
+			display: inline-block;
+			background: linear-gradient(to right,#F58625 0,#F58625 30%,#ED352E 100%);
+			width: 250px;
+			padding: 10px 0;
+		}
+
+		.card>span {
+			width: 100%;
+			display: inline-block;
+			text-align: center;
+		}
+
+		.card:first-child {
+			margin-right: 20px;
+		}
+
+		.card>span.money_text {
+			color: #fff;
+		}
+
+		.notic {
+			margin-top: 20px;
+			color: RGBA(253, 178, 56, 1);
+			font-size: 15px;
+
+		}
+
+		.notic span:nth-child(2n) {
+			color: #000;
+		}
+
+		.notic span:nth-child(2n+1) {
+			margin: 1px 10px;
+			line-height: 20px;
+		}
+
+		.circle {
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			border-radius: 7px;
+			border: 1px solid RGBA(253, 178, 56, 1);
+		}
+
+		.sel_bg {
+			background: RGBA(253, 178, 56, 1);
+		}
+		.input_box{
+			margin-bottom: 20px;
+		}
+		.isAdmin{
+			display: none;
+		}
+		@media(max-width: 768px) {
+			.end_time {
+				margin-top: 20px;
+			}
+			.card2 {
+				margin-top: 20px;
+			}
+			.notic {
+				/* text-align: center; */
+			}
+			.card:first-child {
+				margin-right: 0;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<p>会员转账数据</p>
+			</div>
+			<div class="centent">
+				<div class="box">
+					<div class="bt">
+						<input type="text" placeholder="输入邮箱" class="mail">
+						<span class="search">搜索</span>
+					</div>
+					<div class="tp box1">
+						<div class="notic bt">当前目标用户
+							<span class="uuid"></span>
+						</div>
+						<div class="card card2">
+							<span class="money lvx_money">0</span>
+							<br>
+							<br>
+							<span class="money_text">HSC 币</span>
+						</div>
+						<div class="notic bt">转账类型：
+							<!-- <span class="circle sel_bg" data-type="1"></span>
+							<span>本金</span> -->
+							<span class="circle sel_bg" data-type="2"></span>
+							<span>HSC</span>
+						</div>
+						<div class="input_box">
+							<input type="number" placeholder="输入HSC数量" class="in_money">
+						</div>
+						<div class="input_box isAdmin">
+							<input type="number" placeholder="输入人民币金额" class="in_cny_money">
+						</div>
+						<div class="tp">
+							<button class="btn">转账</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../lib/jquery-1.12.2.js"></script>
+	<script src="../js/common.js"></script>
+	<script>
+		$(function () {
+			if(userInfo.isAdmin == 0){
+				$('.isAdmin').hide();
+			}else{
+				$('.isAdmin').show();
+			}
+			$('.box1').hide();
+			// 邮箱查询用户数据
+			var userData = {
+				mail: ''
+			}
+			$('.search').click(function () {
+				if ($('.mail').val() == '') {
+					errorMsg('请输入邮箱');
+					return;
+				} else {
+					userData.mail = $('.mail').val();
+					deltaGoAjax('user/getUserByMail', userData, getUserData);
+				}
+
+			})
+
+			function getUserData(data) {
+				if (data.status == 0) {
+					$('.box1').show();
+					$('.uuid').text(data.data.user.mail);
+					$('.uuid').attr('data-uuid',data.data.user.uuid);
+					$('.lvx_money').text(data.data.leWallet.hsc);
+				}else{
+					errorMsg('该邮箱不存在');
+				}
+
+			}
+			var ajaxData = {
+				
+			};
+			$('.circle').click(function () {
+				$('.circle').removeClass('sel_bg');
+				$(this).addClass('sel_bg');
+			})
+			// 提交
+			$('.btn').click(function () {
+				if(userInfo.status == 2){
+                    errorMsg('您的账号暂时没有转账权限,请联系管理员');
+                    return;
+                }
+				ajaxData.hsc = $('.in_money').val();
+				ajaxData.cny = $('.in_cny_money').val();
+				ajaxData.uuid = $('.uuid').attr('data-uuid');
+				deltaGoAjax('user/changeHsc', ajaxData, submiteMoney);
+			})
+
+			function submiteMoney(data) {
+				if (data.status == 0) {
+					errorMsg('转账成功');
+					$('.box1').hide();
+					$('.mail').val('');
+				} else {
+					errorMsg(data.msg);
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>

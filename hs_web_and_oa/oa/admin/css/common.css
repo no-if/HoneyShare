@@ -1,0 +1,561 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	width:100%;
+	height:100%;
+    background:rgba(255,255,255,0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+li{
+	list-style: none;
+}
+img{
+    display: block;
+}
+
+
+.btn-embossed {
+    padding: 8px;
+    width: 100%;
+    background: #4894d4;
+    border: none !important;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 500;
+}
+.btn-primary {
+    border: 2px solid #2e6da4;
+    color: #2e6da4;
+    border-radius: 0px !important;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 8px 60px;
+    background-color: transparent;
+}
+.btn-primary:hover{
+    border: 2px solid #fff;
+    background-color: transparent;
+}
+
+/*****提示窗口********/
+.msgzz{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.4);
+    /*display: none;*/
+    z-index: 2000;
+}
+.msgBox{
+    background:rgba(255,255,255,1);
+    width:311px;
+    /*padding-top: 5px;*/
+    color:#000;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    top:10%;
+    left:50%;
+    transform: translate(-50%,0%);
+    overflow: hidden;
+}
+.msgBox .title{
+    font-size: 16px;
+    line-height: 40px;
+    background:#fecb00;
+    color:#fff;
+}
+.msgBox .msg{
+    font-size: 16px;
+    line-height: 24px;
+    margin:30px 0 15px;
+    padding-bottom:15px;
+    /*color:#000;*/
+    /*border-bottom:1px solid rgba(45,179,219,0.1);*/
+}
+.msgBtn div{
+    width:155px;
+    float:left;
+    line-height: 40px;
+    background:#cab24f;
+    color:#fff;
+}
+.msgBtn .cancel{
+    border-right:1px solid rgba(45,179,219,0.3);
+    background:#a29667;
+}
+button{
+    width: 100%;
+    background: #4894d4;
+    border:none;
+    line-height: 30px;
+}
+/**********滚动条************/
+*::-webkit-scrollbar{/*滚动条整体部分，其中的属性有width,height,background,border等（就和一个块级元素一样）（位置1）*/
+    width:0;
+    height:0;
+}
+*::-webkit-scrollbar-button{/*滚动条两端的按钮，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置2）*/
+    display:none;
+}
+*::-webkit-scrollbar-track{/*外层轨道，可以用display:none让其不显示，也可以添加背景图片，颜色改变显示效果（位置3）*/
+    display:none;
+}
+*::-webkit-scrollbar-track-piece{/*内层轨道，滚动条中间部分（位置4）*/
+    display:none;
+}
+*::-webkit-scrollbar-thumb{/*滚动条里面可以拖动的那部分（位置5）*/
+    display:none;
+    border-radius:4px;
+}
+*::-webkit-scrollbar-corner {/*边角（位置6）*/
+    display:none;
+}
+*::-webkit-resizer  {/*定义右下角拖动块的样式（位置7）*/
+    display:none;
+}
+*{
+    scrollbar-arrow-color: #f4ae21; /**//*三角箭头的颜色*/
+    scrollbar-face-color: #333; /**//*立体滚动条的颜色*/
+    scrollbar-3dlight-color: #666; /**//*立体滚动条亮边的颜色*/
+    scrollbar-highlight-color: #666; /**//*滚动条空白部分的颜色*/
+    scrollbar-shadow-color: #999; /**//*立体滚动条阴影的颜色*/
+    scrollbar-darkshadow-color: #666; /**//*立体滚动条强阴影的颜色*/
+    scrollbar-track-color: #666; /**//*立体滚动条背景颜色*/
+    scrollbar-base-color:#f8f8f8; /**//*滚动条的基本颜色*/
+}
+
+/*********数据加载loading***********/
+.loading{
+	width:100%;
+	height:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	background:rgba(0,0,0,0.7);
+	z-index: 100000;
+}
+
+.circleBox {
+    min-width: 40px;
+    min-height: 40px;
+    position: absolute;
+    top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+
+.container1 > div, .container2 > div, .container3 > div {
+    width: 20%;
+    height: 20%;
+    background-color:#fff;
+
+    border-radius: 100%;
+    position: absolute;
+    -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+    -moz-animation: bouncedelay 1.2s infinite ease-in-out;
+    -o-animation: bouncedelay 1.2s infinite ease-in-out;
+    animation: bouncedelay 1.2s infinite ease-in-out;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.circleBox .spinner-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.container2 {
+    -webkit-transform: rotateZ(45deg);
+    -moz-transform: rotateZ(45deg);
+    -o-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+.container3 {
+    -webkit-transform: rotateZ(90deg);
+    -moz-transform: rotateZ(90deg);
+    -o-transform: rotateZ(90deg);
+    transform: rotateZ(90deg);
+}
+
+.circle1 { top: 0; left: 0; }
+.circle2 { top: 0; right: 0; }
+.circle3 { right: 0; bottom: 0; }
+.circle4 { left: 0; bottom: 0; }
+
+.container2 .circle1 {
+    -webkit-animation-delay: -1.1s;
+    -moz-animation-delay: -1.1s;
+    -o-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.container3 .circle1 {
+    -webkit-animation-delay: -1.0s;
+    -moz-animation-delay: -1.0s;
+    -o-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.container1 .circle2 {
+    -webkit-animation-delay: -0.9s;
+    -moz-animation-delay: -0.9s;
+    -o-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.container2 .circle2 {
+    -webkit-animation-delay: -0.8s;
+    -moz-animation-delay: -0.8s;
+    -o-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+.container3 .circle2 {
+    -webkit-animation-delay: -0.7s;
+    -moz-animation-delay: -0.7s;
+    -o-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+
+.container1 .circle3 {
+    -webkit-animation-delay: -0.6s;
+    -moz-animation-delay: -0.6s;
+    -o-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+
+.container2 .circle3 {
+    -webkit-animation-delay: -0.5s;
+    -moz-animation-delay: -0.5s;
+    -o-animation-delay: -0.5s;
+    animation-delay: -0.5s;
+}
+
+.container3 .circle3 {
+    -webkit-animation-delay: -0.4s;
+    -moz-animation-delay: -0.4s;
+    -o-animation-delay: -0.4s;
+    animation-delay: -0.4s;
+}
+
+.container1 .circle4 {
+    -webkit-animation-delay: -0.3s;
+    -moz-animation-delay: -0.3s;
+    -o-animation-delay: -0.3s;
+    animation-delay: -0.3s;
+}
+
+.container2 .circle4 {
+    -webkit-animation-delay: -0.2s;
+    -moz-animation-delay: -0.2s;
+    -o-animation-delay: -0.2s;
+    animation-delay: -0.2s;
+}
+
+.container3 .circle4 {
+    -webkit-animation-delay: -0.1s;
+    -moz-animation-delay: -0.1s;
+    -o-animation-delay: -0.1s;
+    animation-delay: -0.1s;
+}
+
+@-webkit-keyframes bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0.0) }
+    40% { -webkit-transform: scale(1.0) }
+}
+@-moz-keyframes bouncedelay {
+    0%, 80%, 100% { -moz-transform: scale(0.0) }
+    40% { -moz-transform: scale(1.0) }
+}
+@-o-keyframes bouncedelay {
+    0%, 80%, 100% { -o-transform: scale(0.0) }
+    40% { -o-transform: scale(1.0) }
+}
+@keyframes bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0.0);
+    } 40% {
+          transform: scale(1.0);
+      }
+}
+.text_color{
+    color:#6781A5;
+    font-size: 12px;
+}
+
+
+
+/*移动端*/
+.navbar-menu{
+    display: none;
+}
+@media (max-width: 768px) {
+    body{
+        margin:0 !important;
+        padding: 0 !important;
+        background-color:#262626 !important;
+    }
+    .container-box{
+        padding-top: 70px !important;
+    }
+    .container-box .row{
+        margin:0;
+    }
+    .container .top-1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .container .income-title{
+        font-size: 16px;
+    }
+    .container .top>div{
+        height: auto;
+    }
+    .container .member_table{
+        height: 300px;
+    }
+    .container .tablebox{
+        height: 240px;
+    }
+    .navbar{
+        margin-bottom: 0 !important;
+        background:none !important;
+        min-height: auto !important;
+    }
+    .navbar .nav_left{
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        
+    }
+    .navbar .nav_left .navbar-header{
+        height:52px;
+    }
+    .navbar .nav_right{
+        padding-bottom: 0;
+        background-color: #fff;
+    }
+    .navbar .navbar-nav{
+        overflow: hidden;
+    }
+    .navbar .navbar-nav li{
+        /*float:left;*/
+    }
+    .navbar .navbar-nav > li > .language-box{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        line-height: 20px;
+    }
+    .navbar .nav-fluid{
+        margin-top:0;
+    }
+
+    .container .level-box{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+    }
+    .level-box .grade-img{
+        margin: 0;
+    }
+    .level-box .grade-img img {
+        width: 100%;
+    }
+    .level-box .grade-text p:last-child{
+        display: none;
+    }
+    .level-box .grade-text{
+        font-size: 12px;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+    .container-box .main{
+        padding: 0;
+    }
+    .container-box .iframe-box{
+        margin: 0 auto;
+        -webkit-overflow-scrolling:touch!important;
+        overflow:scroll!important;
+    }
+    .table tr td img{
+        margin-right: 2% !important;
+    }
+    .tip{
+        top: 20px !important;
+        right: 10px !important;
+    }
+    .col-xs-8{
+        height:100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .top-1 .chText{
+        margin: 0;
+        font-size: 16px; 
+    }
+    .no_money p{
+        font-size: 14px !important;
+    }
+    .container-box .sidebar{
+        position: fixed;
+        left: 0;
+        top: 70px;
+        z-index: 999;
+        bottom: 0;
+        overflow: auto;
+        width: 200px;
+    }
+    .bottom_text{
+        display: none;
+    }
+    .msgzz .msgBox{
+        width: 80%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .container .bottom-2{
+        height: auto;
+    }
+    .container .level_card img{
+        margin-right: 0;
+    }
+    .container .bottom-2 .level_number{
+        margin-top: 20px;
+    }
+    .container .userlevel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+    .navbar-header{
+        position: relative;
+    }
+    .navbar-toggle{
+        width:60px;
+        height: 50px;
+        margin: 0;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+    }
+    .navbar-toggle img{
+        width: 100%;
+    }
+    .navbar-brand{
+        float: none;
+    }
+    .navbar-brand img{
+        display: block;
+        margin: 0 auto;
+    }
+    .navbar-inverse .navbar-toggle:hover
+    , .navbar-inverse .navbar-toggle:focus{
+        background: none !important;
+    }
+    .navbar-menu{
+        display: block;
+        width: 60px;
+        height: 50px;
+        position: absolute;
+        left: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        background:url(../images/setting1.png) no-repeat center;
+        background-size: 100% 100%;
+        border-radius: 4px;
+        outline: none;
+    }
+}
+@media (max-width: 750px) {
+    .login_bg .logo_img{
+        width:120px;
+
+    }
+    .login_bg .language{
+        margin-top: 5px;
+        margin-right: 5px;
+    }
+    .login_bg .login_box{
+        width: 100%;
+        height: 100%;
+        padding: 20px 30px;
+        box-sizing: border-box;
+        position: fixed;
+        border:none;
+    }
+    .login_bg .login_box .login_box_center{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 80%;
+    }
+    .login_box_center>div:first-child {
+        margin-bottom: 15px!important;
+    }
+    .login_bg .login_box_center>div{
+        margin-bottom: 15px;
+    }
+    .login_bg .login_box_center>div input{
+        box-sizing: border-box;
+        width: 100%;
+        line-height: 1;
+    }
+    .login_bg .login_box_center .code_img{
+        height:29px;
+    }
+    .login_box h3{
+        margin-bottom: 10px;
+        font-size: 18px;
+    }
+    .login_bg .phone_code_input_box{
+        width: 100%;
+    }
+    .login_bg footer{
+        display: none;
+    }
+    .login_bg .login_box .login-txt{
+        display: none;
+        /*transform: translate(-50%,-50%) scale(0.6);*/
+    }
+    .sel_lang{
+        position: fixed;
+        right: 20px;
+        top: 20px;
+        z-index: 9999;
+    }
+    .login_bg .zone_list{
+        height:29px;
+        line-height:29px;
+        padding:4px 0 0 6px;
+    }
+    .login_bg .get{
+        height:18px;
+    }
+}

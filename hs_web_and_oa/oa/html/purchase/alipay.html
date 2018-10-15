@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box">
+            <div class="code_img" id="code_img">
+	
+            </div>
+    </div>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../lib/qrcode.js"></script>
+    <script>
+        $(function () {
+            deltaGoAjax('yr/pay',)
+            var url = 'https://www.honeyshare.io/oa/html/register.html' + '?code=' + userInfo.uuid;
+            // 二维码
+            var qrcode1 = new QRCode(document.getElementById("code_img"), {
+                text: url,
+                width: 60,
+                height: 60,
+                colorDark: '#000',
+                colorLight: '#fff',
+                correctLevel: QRCode.CorrectLevel.M,
+                src: 'http://game.enrich-global.com/img/share_logo.jpg'
+            });
+        })
+    </script>
+</body>
+
+</html>

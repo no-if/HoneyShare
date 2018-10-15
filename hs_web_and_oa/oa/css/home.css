@@ -1,0 +1,97 @@
+.small-box {
+    position: relative;
+    display: block;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    /* border:1px solid #F49A06; */
+    /* border-radius: 5px; */
+}
+.small-box>.inner {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 36px;
+    height: 80px;
+    /* line-height: 80px; */
+    border: 1px solid #F49A06;
+    border-radius: 0 5px 5px 0;
+    padding-left:30px;
+}
+.wallet_icon{
+    /* position: relative; */
+    position: absolute;
+    width: 80px;
+    height: 80px;
+}
+.wallet_icon img{
+    width: 100%;
+}
+.small-box h3 {
+    font-size: 16px;
+    margin: 0 0 0 0;
+    white-space: nowrap;
+    text-transform: uppercase;
+    padding: 0;
+    color: #ddd;
+}
+
+.small-box p {
+    font-size: 13px;
+    color: #9b9b9b;
+}
+
+.bg-primary {
+    background-color: transparent;
+}
+
+.account {
+    text-align: center;
+    font-size: 14px;
+}
+
+.account:before,
+.row:after {
+    display: table;
+    content: " ";
+
+}
+
+.account_title {
+
+    display: inline-block;
+}
+
+.box-header {
+    overflow: hidden;
+    height: auto;
+    font-size: 16px;
+}
+
+.box-header strong {
+    color: #c8c8c8;
+}
+
+.msg {
+    color: #c8c8c8;
+    line-height: 40px;
+}
+
+.view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view a {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #F47C26;
+}

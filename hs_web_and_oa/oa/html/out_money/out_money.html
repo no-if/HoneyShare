@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/basics.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <style>
+        .box h4 {
+            font-weight: normal;
+            font-size: 18px;
+            color: #ddd;
+        }
+
+        .icon {
+            font-size: 12px;
+        }
+
+        .border {
+            border: 2px solid #444644;
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            width: 100%;
+            background: RGBA(253, 178, 56, 1);
+            color: #000;
+            border: none;
+            line-height: 30px;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .rate p {
+            margin: 20px auto;
+        }
+
+        .border span {
+            color: #71c8f1;
+        }
+
+        .card {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* .card>div {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 33%;
+            height: 88px;
+            min-width: 295px;
+            background: #316cbc;
+            margin: 10px 0;
+            cursor: pointer;
+        } */
+
+        #sel_method {
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        #sel_method>div {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 220px;
+            cursor: pointer;
+            /* border-radius: 10px; */
+            color: #000;
+        }
+
+        #sel_method>div .left_bg {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            color: #000;
+            background: url(../../images/bg_left.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        #sel_method>div span:nth-child(2) {
+            width: 100%;
+            height: 80px;
+            line-height: 80px;
+            margin-left: 34px;
+            border: 1px solid #F49A06;
+            border-radius: 0 7px 7px 0;
+        }
+
+        .card {
+            position: relative;
+        }
+
+        .color1 {
+            background: #2b2b47;
+        }
+
+
+        #sel_money {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        #sel_money>span {
+            margin-bottom: 20px;
+            padding: 8px 5px;
+            text-align: center;
+            width: 100px;
+            background: #333;
+            cursor: pointer;
+        }
+
+        .input input {
+            background: none;
+            border: 1px solid #316cbc;
+        }
+
+        .input+p {
+            font-size: 16px;
+            color: #316cbc;
+            line-height: 30px;
+        }
+
+        .bg_color {
+            background: #316cbc !important;
+        }
+
+        .limit {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sel_method_icon {
+            position: absolute;
+            left: 186px;
+            top: 0;
+            background: url(../../images/select.png) no-repeat;
+            width: 50px;
+            height: 50px;
+            visibility: hidden;
+        }
+
+        .show {
+            visibility: visible;
+        }
+
+        #wxpay {
+            display: none;
+        }
+
+        .sel_text {
+            color: #337ab7;
+            font-size: 15px;
+            margin: 10px 0;
+        }
+
+        .top_message {
+            font-size: 16px;
+            background: #fff;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 375px;
+            /* height: 800px; */
+            height: auto;
+            z-index: 1;
+            border-radius: 5px;
+            color: #000;
+        }
+
+        .mes_box {
+            /* padding: 20px; */
+        }
+
+        .mes_box span {
+            display: inline-block;
+
+        }
+
+        .time {
+            text-align: center;
+        }
+
+        .mes_top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mes_top .left span,
+        .mes_top .right span {
+            width: 150px;
+        }
+
+        .mes_top .left span {
+            text-align: left;
+        }
+
+        .mes_top .right span {
+            text-align: right;
+        }
+
+        .mes_top,
+        .mes_center,
+        .mes_bottom {
+            padding: 20px;
+        }
+
+        .line {
+            width: 100%;
+            height: 5px;
+            background: #3781d9;
+        }
+
+        .mes_center {
+            text-align: center;
+        }
+
+        .card_img {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #eee;
+            margin: 30px;
+        }
+
+        .mes_center p {
+            font-size: 14px;
+        }
+
+        .mes_bottom>div {
+            overflow: hidden;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            line-height: 30px;
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .mes_bottom>div span:first-child,
+        .mes_bottom>div .copyBtn {
+            width: 103px;
+            text-align: center;
+            border-right: 1px solid #aaa;
+            background: none;
+        }
+
+        .mes_bottom>div span:last-child,
+        .mes_bottom>div .code {
+            flex: 2;
+            width: 220px;
+            padding: 0 10px;
+            text-align: center;
+            text-overflow: ellipsis;
+            height: 30px;
+            background: none;
+        }
+
+        .code {
+            text-overflow: ellipsis;
+        }
+
+        .copy {
+            width: 65px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background: #aaa;
+            position: fixed;
+            bottom: 31px;
+            right: 20px;
+            border-radius: 0 6px 6px 0;
+            color: #3781d9;
+            cursor: pointer;
+            display: none;
+        }
+
+        .close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: #000;
+            font-size: 12px;
+        }
+
+        .bottom {
+            display: none;
+        }
+
+        .bind {
+            display: none;
+        }
+
+        #selBank {
+            display: none;
+        }
+
+        select,
+        button {
+            width: 180px;
+            margin: 10px 0;
+        }
+
+        input {
+            margin: 10px 0;
+        }
+
+        @media(max-width: 768px) {
+            #sel_method {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>提现</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="col-sm-12" style="margin-top: 20px;">
+                        <div class="col-xs-12" id="sel_method">
+                            <div class="card CNY">
+                                <div class="left_bg">CNY</div>
+                                <span class="cny_wallet">0</span>
+                                <span class="sel_method_icon show"></span>
+                            </div>
+                            <div class="card BTC">
+                                <div class="left_bg">BTC</div>
+                                <span class="btc_wallet">0</span>
+                                <span class="sel_method_icon"></span>
+                            </div>
+                            <div class="card ETH">
+                                <div class="left_bg">ETH</div>
+                                <span class="eth_wallet">0</span>
+                                <span class="sel_method_icon"></span>
+                            </div>
+                        </div>
+                        <div class="bottom" id="CNY" style="display: block;">
+                            <input type="text" class="cny_money" placeholder="数量">
+                            <br>
+                            <button class="bind" style="display: block;">绑定银行卡</button>
+                            <select name="value" id="selBank">
+                            </select>
+                        </div>
+                        <div class="bottom" id="BTC" class="btc_money">
+                            <input type="text" placeholder="数量" class="btc_money">
+                            <br>
+                            <input type="text" placeholder="地址" class="btc_add">
+                        </div>
+                        <div class="bottom" id="ETH">
+                            <input type="text" placeholder="数量" class="eth_money">
+                            <br>
+                            <input type="text" placeholder="地址" class="eth_add">
+                        </div>
+                        <button class="next">提现</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery-1.12.2.js "></script>
+    <script src="../../js/common.js "></script>
+    <script>
+        $(function () {
+            $('#CNY').show();
+            var ajaxData = {};
+            // 获取钱包
+            getWallet();
+
+            function getWallet() {
+                deltaGoAjax('wallet/getWallet', "", function (data) {
+                    $('.cny_wallet').text(data.data.bonus);
+                    $('.btc_wallet').text(data.data.btc);
+                    $('.eth_wallet').text(data.data.eth);
+                }, 'get')
+            }
+            // 获取手续费
+            var cny_rate;
+            var btc_rate;
+            var eth_rate;
+
+            deltaGoAjax('outGold/serviceChargeList', "", function (data) {
+                cny_rate = data.data.cnyServiceCharge;
+                btc_rate = data.data.btcServiceCharge;
+                eth_rate = data.data.ethServiceCharge;
+            }, 'get')
+            // 绑定银行卡
+            $('.bind').click(function () {
+                window.location.href = 'add_msg.html';
+            })
+
+            // 渲染银行卡
+            getBank();
+
+            function getBank() {
+                deltaGoAjax('bank/getBankList', "", function (data) {
+                    $('.ad').remove();
+                    if (data.data.length == 0) {
+                        $('.bind').show();
+                    } else {
+                        var str = '';
+                        var str2;
+                        $('.bind').hide();
+                        $('#selBank').show();
+                        $.each(data.data, function (k, val) {
+                            // str2 = val[k].cardNo;
+                            str += '<option value="' + val.id + '" class="ad">' + val.bankName +
+                                '' + val.cardNo.substr(val.cardNo.length - 6, val.cardNo.length) +
+                                '</option>';
+                        })
+                        $('#selBank').append(str);
+                    }
+                }, 'get')
+            }
+
+            // 选择入金方式
+            $('.card').click(function () {
+                $('.card .sel_method_icon').removeClass('show');
+                $(this).find('.sel_method_icon').addClass('show');
+                if ($(this).hasClass('CNY')) {
+                    $('#CNY').show();
+                    $('#BTC').hide();
+                    $('#ETH').hide();
+                    getBank();
+                } else if ($(this).hasClass('BTC')) {
+                    $('#BTC').show();
+                    $('#CNY').hide();
+                    $('#ETH').hide();
+                } else if ($(this).hasClass('ETH')) {
+                    $('#ETH').show();
+                    $('#CNY').hide();
+                    $('#BTC').hide();
+                }
+            })
+
+            // 确认出金
+            $('.next').click(function () {
+                if ($('.show').parent().hasClass('CNY')) { //CNY
+                    if ($('.cny_money').val() == '') {
+                        errorMsg('请完善信息');
+                    } else {
+                        ajaxData.goldType = 1;
+                        ajaxData.bankId = Number($('#selBank').val());
+                        ajaxData.cny = Number($('.cny_money').val());
+                        ajaxData.cnyServiceCharge = cny_rate;
+                        outMoney(ajaxData);
+                    }
+
+                } else if ($('.show').parent().hasClass('BTC')) { //BTC
+                    if ($('.btc_money').val() == '' || $('.btc_add').val() == '') {
+                        errorMsg('请完善信息');
+                    } else {
+                        ajaxData.goldType = 2;
+                        ajaxData.btc = Number($('.btc_money').val());
+                        ajaxData.btcAddress = $('.btc_add').val();
+                        ajaxData.numServiceCharge = btc_rate;
+                        outMoney(ajaxData);
+                    }
+                } else if ($('.show').parent().hasClass('ETH')) { //ETH
+                    if ($('.btc_money').val() == '' || $('.btc_add').val() == '') {
+                        errorMsg('请完善信息');
+                    } else {
+                        ajaxData.goldType = 3;
+                        ajaxData.eth = Number($('.eth_money').val());
+                        ajaxData.ethAddress = $('.eth_add').val();
+                        ajaxData.numServiceCharge = eth_rate;
+                        outMoney(ajaxData);
+                    }
+                } else {
+                    return;
+                }
+
+            })
+
+            function outMoney(ajaxData) {
+                deltaGoAjax('outGold/saveOutGold', ajaxData, function (data) {
+                    $('input').val('');
+                    getWallet();
+                    if (data.status == 0) {
+                        errorMsg('申请成功');
+                    } else {
+                        // errorMsg(data.msg);
+                    }
+                })
+            }
+        })
+    </script>
+</body>
+
+</html>

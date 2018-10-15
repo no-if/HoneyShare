@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/basics.css">
+    <!-- <link rel="stylesheet" href="../../css/home.css"> -->
+    <style>
+        .card {
+            display: inline-block;
+            background: #2B2B47;
+            width: 250px;
+            padding: 10px 0;
+        }
+
+        .card>span {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .card:first-child {
+            margin-right: 20px;
+        }
+
+        .card>span.money_text {
+            color: RGBA(253, 178, 56, 1);
+        }
+
+        .notic {
+            margin-top: 20px;
+            color: RGBA(253, 178, 56, 1);
+            font-size: 15px;
+
+        }
+
+        .notic span:nth-child(2n) {
+            color: #fff;
+        }
+
+        .notic span:nth-child(2n+1) {
+            margin: 1px 10px;
+            line-height: 20px;
+        }
+
+        .circle {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 7px;
+            border: 1px solid RGBA(253, 178, 56, 1);
+        }
+
+        .sel_bg {
+            background: RGBA(253, 178, 56, 1);
+        }
+
+        .message span {
+            display: inline-block;
+            width: 150px;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .id_card span {
+            display: inline-block;
+            width: auto;
+        }
+
+        .id_card span:nth-child(1) {
+            width: 150px;
+        }
+
+        .id_card span.circle {
+            width: 15px;
+            height: 15px;
+            border-radius: 7px;
+            margin: 0 10px;
+        }
+
+        .sel {
+            color: RGBA(253, 178, 56, 1);
+            margin-left: 5px;
+            font-size: 12px;
+        }
+
+        select {
+            width: 180px;
+        }
+
+        @media(max-width: 768px) {
+            .end_time {
+                margin-top: 20px;
+            }
+            .card2 {
+                margin-top: 20px;
+            }
+            .card:first-child {
+                margin-right: 0;
+            }
+            .message span {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>注册新会员</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="notic">新会员信息</div>
+                    <div class="message">
+                        <div class="tp">
+                            <span>邮箱：</span>
+                            <input type="text" placeholder="邮箱" id="mail">
+                            <span class="sel">必填</span>
+                        </div>
+                        <div class="tp">
+                            <span>身份证：</span>
+                            <input type="text" placeholder="身份证" id="idNo">
+                            <span class="sel">必填</span>
+                        </div>
+                        <!-- <div class="tp">
+                            <span>用户名：</span>
+                            <input type="text" placeholder="用户名" id="username">
+                        </div>
+                        <div class="tp">
+                            <span>名字：</span>
+                            <input type="text" placeholder="名字" id="name">
+                        </div> -->
+                        <div class="tp">
+                            <span>密码：</span>
+                            <input type="text" placeholder="密码" id="pwd">
+                            <span class="sel">必填</span>
+                        </div>
+                        <div class="tp">
+                            <span>确认密码：</span>
+                            <input type="text" placeholder="确认密码" id="ver_pwd">
+                            <span class="sel">必填</span>
+                        </div>
+                        <div class="tp">
+                            <span>会员等级：</span>
+                            <select name="value" id="level">
+                                <option value="">请选择</option>
+                                <option value="0">个人代理</option>
+                                <option value="1">1级代理</option>
+                                <option value="2">总代理</option>
+                            </select>
+                            <span class="sel">必填</span>
+                        </div>
+                        <div class="tp">
+                            <span>佣金比例：</span>
+                            <select name="value" id="grade">
+                                <option value="">请选择</option>
+                                <!-- <option value="0.55" class="level1">代理55%</option>
+                                <option value="0.50">代理50%</option>
+                                <option value="0.45">代理45%</option>
+                                <option value="0.40">代理40%</option>
+                                <option value="0.35">代理35%</option>
+                                <option value="0.30">代理30%</option>
+                                <option value="0.25">代理25%</option>
+                                <option value="0.20">代理20%</option>
+                                <option value="0.15">代理15%</option>
+                                <option value="0.10">代理10%</option> -->
+                            </select>
+                            <span class="sel">必填</span>
+                        </div>
+                        <div class="tp">
+                            <span>是否是测试账号：</span>
+                            <select name="value" id="isTest">
+                                <option value="1">否</option>
+                                <option value="2">是</option>
+                            </select>
+                            <span class="sel">必填</span>
+                        </div>
+                        <div class="tp">
+                            <span>HSC:</span>
+                            <input type="text" placeholder="请输入HSC个数" id="lvx_money">
+                        </div>
+                    </div>
+                    <div class="notic admin" data-user="admin">推荐人信息</div>
+                    <div class="message admin" data-user="admin">
+                        <div class="tp">
+                            <span>推荐人：</span>
+                            <input type="text" placeholder="推荐人" id="pre_mail">
+                        </div>
+                    </div>
+                    <!-- <div class="notic">证件信息</div>
+                    <div class="message id_card">
+                        <div class="tp">
+                            <span>证件信息：</span>
+                            <span class="circle sel_bg"></span><span>身份证</span><span class="circle"></span><span>护照</span>
+                        </div>
+                        <div class="tp">
+                            <span>身份证 / 护照号码：</span>
+                            <input type="text" placeholder="身份证 / 护照号码：" id="card_number">
+                        </div>
+                    </div> -->
+                    <div>
+                        <button class="btn tp">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery-1.12.2.js"></script>
+    <script src="../js/common.js"></script>
+    <script>
+        $(function () {
+            //渲染佣金比例
+            deltaGoAjax('user/getCommissionRate',"",function(data){
+                var str = '';
+                $.each(data.data,function(k,val){
+                    str += '<option value="'+val.crate+'">'+val.drate+'</option>';
+                })
+                $('#grade').append(str);
+            },'get');
+
+            // if (userInfo.memberGrade == 2) {
+            //     $('.level1').hide();
+            // }
+            if (userInfo.isAdmin != 1) {
+                $('.admin').hide();
+            }
+            var ajaxData = {
+                mail: '',
+                parentMail: '',
+                password: '',
+                hsc: 0,
+                status: '',
+                commissionRate: 0,
+                memberGrade: 0,
+                idNo: ''
+            }
+            $('.btn').click(function () {
+                var mail = $('#mail').val();
+                var pre_mail = $('#pre_mail').val();
+                var password = $('#pwd').val();
+                var lvx = $('#lvx_money').val();
+                var commissionRate = $('#grade').val();
+                var memberGrade = $('#level').val();
+                if ($('#mail').val() == '' && $('#pwd').val() == '' && $('#ver_pwd').val() == '' && $('#idNo').val() == '') {
+                    errorMsg('请完善会员信息');
+                    return;
+                } else if ($('#pwd').val() != $('#ver_pwd').val()) {
+                    errorMsg('两次输入密码不一致!');
+                    return;
+                } else if ($('#grade').val() == '请选择' || $('#level').val() == '请选择') {
+                    error('请选择');
+                    reutrn;
+                } else {
+                    if ($('#lvx_money').val() == '') {
+                        lvx = 0;
+                    }
+                    ajaxData.mail = mail;
+                    ajaxData.idNo = $('#idNo').val();
+                    ajaxData.parentMail = pre_mail;
+                    ajaxData.hsc = Number(lvx);
+                    ajaxData.status =$('#isTest').val();
+                    ajaxData.commissionRate = parseFloat(commissionRate);
+                    ajaxData.password = password;
+                    ajaxData.memberGrade = Number($('#level').val());
+                    deltaGoAjax('user/saveLeUser', ajaxData, addUser);
+                }
+            })
+
+            function addUser(data) {
+                $('input').val('');
+                $('#grade').val('');
+                $('#level').val('');
+                if (data.status == '0') {
+                    errorMsg('添加新用户成功');
+                    return;
+                } else {
+                    errorMsg(data.msg);
+                    return;
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="17px" viewBox="0 0 20 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>telegram</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="bee-v3/01-hero" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-687.000000, -647.000000)">
+        <g id="hero-content" fill="#FFC107">
+            <g id="social-icons" transform="translate(595.000000, 646.000000)">
+                <path d="M100.24183,11.8946533 L108.422559,4.7135036 C108.78159,4.40354936 108.344154,4.25240271 107.867538,4.53354226 L97.7714067,10.7293664 L93.4104271,9.40535493 C92.4686478,9.12485892 92.461885,8.49535174 93.6218677,8.04277413 L110.615618,1.6687619 C111.391768,1.32600018 112.140895,1.85009612 111.844596,3.00562984 L108.950557,16.2714865 C108.748467,17.2141813 108.162911,17.4396335 107.351595,17.0041883 L102.943063,13.8359336 L100.824019,15.8402457 C100.577838,16.0730628 100.382966,16.2692699 99.941914,16.2692699 L100.242082,11.8948345 Z" id="telegram"></path>
+            </g>
+        </g>
+    </g>
+</svg>

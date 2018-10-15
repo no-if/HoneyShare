@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="176px" height="290px" viewBox="0 0 176 290" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 0 71 0 71 222 0 222"></polygon>
+    </defs>
+    <g id="bee-v3/03-product" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(0.000000, -1.000000)" opacity="0.8">
+        <g id="Group-3" transform="translate(0.000000, 1.000000)">
+            <g id="Group-36" stroke="#FFC107">
+                <path d="M31,148 L42.436,172.909" id="Stroke-49"></path>
+                <g id="Group-54" transform="translate(0.000000, 48.000000)">
+                    <polyline id="Stroke-50" points="0.0088 49.4361 30.7288 49.1321 42.1648 75.4631 30.7288 99.6251"></polyline>
+                    <polyline id="Stroke-52" points="0.0088 0.48 30.8708 1.022 42.1648 26.392 30.8708 49.312"></polyline>
+                </g>
+                <polyline id="Stroke-55" points="31.365 0 42.294 24.171 31 48.712"></polyline>
+                <path d="M84,50.269 L113.757,50" id="Stroke-58"></path>
+                <g id="Group-54" transform="translate(42.000000, 24.000000)">
+                    <polyline id="Stroke-50" points="0.0088 50.4361 30.7288 50.1321 42.1648 76.4631 30.7288 100.6251"></polyline>
+                    <polyline id="Stroke-52" points="0.0088 0.48 30.8708 0.48 42.1648 26.392 30.8708 50.3078014"></polyline>
+                </g>
+            </g>
+            <g id="Page-1" transform="translate(109.000000, 72.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <g id="Clip-2"></g>
+                <polyline id="Stroke-1" stroke="#FFC107" mask="url(#mask-2)" points="6.04320019 5 15.0892097 20.9775931 5 38.7976423 15.0892097 56.6186243 5 74.4396064 15.0892097 92.2596556 5 110.079705 15.0892097 127.899754 5 145.719803 15.0892097 163.539852 5 181.359902 15.0892097 199.179951 35.6558181 199.204206 45.8914093 217 67 217"></polyline>
+            </g>
+        </g>
+    </g>
+</svg>

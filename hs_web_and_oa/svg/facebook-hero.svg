@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="18px" viewBox="0 0 10 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>fb</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="bee-v3/01-hero" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-741.000000, -646.000000)">
+        <g id="hero-content" fill="#FFC107">
+            <g id="social-icons" transform="translate(595.000000, 646.000000)">
+                <path d="M155.076433,3.64069565 L153.48271,3.64177174 C152.232917,3.64177174 151.990578,4.24545652 151.990578,5.13107609 L151.990578,7.08525 L154.971666,7.08525 L154.583289,10.1467174 L151.990578,10.1467174 L151.990578,18 L148.8825,18 L148.8825,10.1467174 L146.283439,10.1467174 L146.283439,7.08525 L148.8825,7.08525 L148.8825,4.82869565 C148.8825,2.20842391 150.456117,0.782608696 152.753576,0.782608696 C153.854155,0.782608696 154.80023,0.865467391 155.076433,0.903130435 L155.076433,3.64069565 Z" id="fb"></path>
+            </g>
+        </g>
+    </g>
+</svg>

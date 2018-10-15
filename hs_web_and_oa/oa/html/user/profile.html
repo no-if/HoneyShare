@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/basics.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <style>
+        .box h4 {
+            font-weight: normal;
+            font-size: 18px;
+            color: #ddd;
+        }
+        .message>span{
+            font-size: 14px;
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 15px;
+            color:#000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>个人信息</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="col-sm-12">
+                        <div class="message">
+                            <span class="col-xs-12 col-sm-5">用户名</span>
+                            <span class="col-xs-12 col-sm-7" id="name"></span>
+                            <span class="col-xs-12 col-sm-5">真实姓名</span>
+                            <span class="col-xs-12 col-sm-7" id="full_name"></span>
+                            <span class="col-xs-12 col-sm-5">护照号码/身份证号码</span>
+                            <span class="col-xs-12 col-sm-7" id="pass_id"></span>
+                            <span class="col-xs-12 col-sm-5">住址</span>
+                            <span class="col-xs-12 col-sm-7" id="add"></span>
+                            <span class="col-xs-12 col-sm-5">手机号</span>
+                            <span class="col-xs-12 col-sm-7" id="phone"></span>
+                            <span class="col-xs-12 col-sm-5">邮箱</span>
+                            <span class="col-xs-12 col-sm-7" id="mail"></span>
+                            <span class="col-xs-12 col-sm-5">以太坊钱包地址</span>
+                            <span class="col-xs-12 col-sm-7" id="yt"></span>
+                            <span class="col-xs-12 col-sm-5">以太坊钱包下载地址</span>
+                            <span class="col-xs-12 col-sm-7" id="ytd">
+                                <a href="https://token.im/download" target="_blank">https://token.im/download</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+        $(function () {
+            var userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            $('#name,#mail').text(userInfo.mail || '');
+            $('#full_name').text(userInfo.userRealName || '');
+            $('#pass_id').text(userInfo.idNo || '');
+            $('#add').text(userInfo.address || '');
+            $('#phone').text(userInfo.phone || '');
+            $('#yt').text(userInfo.ethAddress || '');
+        })
+    </script>
+</body>
+
+</html>

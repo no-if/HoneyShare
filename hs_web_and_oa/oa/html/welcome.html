@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Honey Share</title>
+    <link rel="icon" href="../hsc.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/welcome.css">
+    <style type="text/css">
+        .main_bg {
+            position: relative;
+        }
+
+        .honey_bottom {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 190px;
+            height: 260px;
+            background: url(../images/home/bottom_bg.png) no-repeat;
+            background-size: 100% 100%;
+        }
+
+        @media(max-width: 768px) {
+            .honey_bottom {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="main_bg">
+    <div class="honey_bottom"></div>
+    <!-- 导航 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="nav_left">
+            <div class="container-fluid nav-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-menu"></button>
+                </div>
+            </div>
+        </div>
+        <div class="nav_right">
+            <div class="container-fluid nav-fluid">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="welcome">
+                            <a href="#" style="width: 300px;">
+                                <span style="color: #000;">您好，</span>
+                                <span class="name" style="color: #000;"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- 主体 -->
+    <div class="container-fluid container-box">
+        <div class="row">
+            <!-- 左侧 -->
+            <div class="col-sm-5 col-md-2 sidebar">
+                <div class="logo_box">
+                    <img src="../images/hs/logo.png" class="logo" alt="">
+                </div>
+                <ul class="nav nav-sidebar">
+                    <li class="active first-li" data-href="home/home">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">首页</span>
+                            <br>
+                        </a>
+                    </li>
+                    <li class="first-li" data-href="purchase/purchase">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl"></span>购买</span>
+                        </a>
+                    </li>
+                    <li class="first-li" data-href="transfer">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl"></span>转账</span>
+                        </a>
+                    </li>
+                    <li class="first-li" data-href="#">
+                        <a href="#integral" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">交易</span>
+                            <br>
+                            <span class="icon_down"></span>
+                        </a>
+                        <ul id="integral" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                            <li data-href="transactions/orders">
+                                <a href="javascript:void(0);">订单</a>
+                            </li>
+                            <li data-href="transactions/referrals">
+                                <a href="javascript:void(0);">推荐奖金</a>
+                            </li>
+                            <li data-href="transactions/out_list">
+                                <a href="javascript:void(0);">提现列表</a>
+                            </li>
+                            <li data-href="transactions/history">
+                                <a href="javascript:void(0);">交易历史</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="first-li" data-href="#">
+                        <a href="#user" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">用户</span>
+                            <br>
+                            <span class="icon_down"></span>
+                        </a>
+                        <ul id="user" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                            <li data-href="user/profile">
+                                <a href="javascript:void(0);">个人信息</a>
+                            </li>
+                            <li data-href="user/referral_tree">
+                                <a href="javascript:void(0);">团队列表</a>
+                            </li>
+                            <li data-href="user/settings">
+                                <a href="javascript:void(0);">修改密码</a>
+                            </li>
+                            <li data-href="user/modify_msg">
+                                <a href="javascript:void(0);">修改用户信息</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="first-li" data-href="sys_bulletin/sys_bulletin">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl"></span>系统公告</span>
+                        </a>
+                    </li>
+                    <!-- <li class="first-li" data-href="hs_pay">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl"></span>HS-PAY</span>
+                        </a>
+                    </li> -->
+                    <li class="first-li logout">
+                        <a href="#" class="nav-header collapsed btm" id="logout">
+                            <span class="mgl">退出</span>
+                            <br>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- main -->
+            <div class="col-sm-9 col-md-10 main">
+                <div class="iframe-box">
+                    <iframe id="my-iframe" src="home/home.html" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../lib/jquery-1.12.2.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/welcome.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>

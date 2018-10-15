@@ -1,0 +1,141 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    display: block;
+    padding: 0px 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    /*border-right: 1px solid rgba(255,255,255,0.1);*/
+    box-shadow: 0px 0px 10px RGBA(35, 45, 70, 0.4);
+    width:210px;
+  }
+}
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar>li>a:hover,
+.nav-sidebar>li>a:focus{
+  /*字体颜色*/
+  color: rgba(255,255,255,1);
+  background: none;
+}
+.nav-sidebar > li > a {
+  color: #000;
+  padding-right: 20px;
+  padding-left: 20px;
+  background: none;
+  text-indent: 30px;
+}
+.nav-sidebar li ul a{
+  background-color: #ccc;
+  color: #000;
+}
+.nav-sidebar li ul a:hover{
+  color:#fff;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .first-li > a:hover,
+.nav-sidebar > .first-li > a:focus {
+  
+  color: #fff;
+  background:linear-gradient(to right,#F58625 0,#F58625 30%,#ED352E 100%); 
+}
+.nav-sidebar > .active{
+  position: relative;
+}
+.nav-sidebar > .active:after{
+  display: block;
+  content: '';
+  width: 18px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: url("../images/home/left.png");
+  background-size: 18px 40px;
+  transform: translate(0,0);
+  z-index: 100;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+  margin-left: 0;
+}
+@media (min-width: 769px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-left: 219px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+

@@ -1,0 +1,77 @@
+.small-box {
+    position: relative;
+    display: block;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.small-box>.inner {
+    padding: 10px 18px;
+    color: white;
+    height: 95px;
+    background: #2b2b47;
+}
+
+.small-box h3 {
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    text-transform: uppercase;
+    padding: 0;
+    color: #ddd;
+}
+
+.small-box p {
+    font-size: 13px;
+    color: #9b9b9b;
+}
+
+.bg-primary {
+    background-color: #2b2b47;
+}
+
+.account {
+    text-align: center;
+    font-size: 14px;
+}
+
+.account:before,
+.row:after {
+    display: table;
+    content: " ";
+
+}
+
+.account_title {
+
+    display: inline-block;
+}
+
+.box-header {
+    overflow: hidden;
+    height: auto;
+    font-size: 16px;
+}
+
+.box-header strong {
+    color: #c8c8c8;
+}
+
+.msg {
+    color: #c8c8c8;
+    line-height: 40px;
+}
+
+.view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view a {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}

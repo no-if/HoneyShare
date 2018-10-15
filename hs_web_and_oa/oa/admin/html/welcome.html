@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Honey Share</title>
+    <link rel="icon" href="../hsc.ico">
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/welcome.css">
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <!-- 导航 -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="nav_left">
+            <div class="container-fluid nav-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-menu"></button>
+                </div>
+            </div>
+        </div>
+        <div class="nav_right">
+            <div class="container-fluid nav-fluid">
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="welcome">
+                            <a href="#" style="width: 300px;">
+                                <span style="color: #000;">您好，</span>
+                                <span class="name" style="color: #000;"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- 主体 -->
+    <div class="container-fluid container-box">
+        <div class="row">
+            <!-- 左侧 -->
+            <div class="col-sm-3 col-md-2 sidebar">
+                <div class="logo_box">
+                    <img src="../images/hs/logo.png" class="logo" alt="">
+                </div>
+
+                <ul class="nav nav-sidebar">
+                    <li class="active first-li" data-href="home/home">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">首页</span>
+                            <br>
+                        </a>
+                    </li>
+                    <li class="first-li" data-href="transfer" id="transfer">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl"></span>转账</span>
+                            <br>
+                            
+                        </a>
+                    </li>
+                    <!-- <li class="first-li admin" data-href="#">
+                        <a href="#widthdraw" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl"></span>提现</span>
+                            <br>
+                            <span class="icon_down"></span>
+                        </a>
+                        <ul id="widthdraw" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                                <li data-href="out_money/out_money">
+                                    <a href="javascript:void(0);">提现</a>
+                                </li>
+                                <li data-href="out_money/add_card">
+                                    <a href="javascript:void(0);">添加银行卡</a>
+                                </li>
+                                <li data-href="out_list">
+                                    <a href="javascript:void(0);">提现列表</a>
+                                </li>
+                            </ul>
+                    </li> -->
+                    <li class="first-li" data-href="#">
+                        <a href="#member_manage" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">会员管理</span>
+                            <br>
+                            <span class="icon_down"></span>
+                        </a>
+                        <ul id="member_manage" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                            <li data-href="new_register">
+                                <a href="javascript:void(0);">注册新会员</a>
+                            </li>
+                            <!-- <li data-href="modify_msg">
+                                <a href="javascript:void(0);">修改会员信息</a>
+                            </li> -->
+                            <li data-href="map">
+                                <a href="javascript:void(0);">会员组织结构图</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="first-li" data-href="#">
+                        <a href="#integral" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">交易记录</span>
+                            <br>
+                            <span class="icon_down"></span>
+                        </a>
+                        <ul id="integral" class="nav nav-list collapse secondmenu" style="height: 0px;">
+                            <li data-href="transactions/orders">
+                                <a href="javascript:void(0);">线上订单</a>
+                            </li>
+                            <li data-href="transactions/orders_under"  class="isAdmin">
+                                <a href="javascript:void(0);">线下订单</a>
+                            </li>
+                            <li data-href="transactions/referrals">
+                                <a href="javascript:void(0);">代理推荐奖金</a>
+                            </li>
+                            <li data-href="transactions/referrals2">
+                                <a href="javascript:void(0);">会员推荐奖金</a>
+                            </li>
+                            <li data-href="transactions/out_list">
+                                <a href="javascript:void(0);">提现列表</a>
+                            </li>
+                            <li data-href="transactions/history">
+                                <a href="javascript:void(0);">交易历史</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li class="first-li isAdmin" data-href="out_money">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">出金审核</span>
+                            <br>
+                        </a>
+                    </li> -->
+                    <li class="first-li isAdmin" data-href="order_generation/order_generation">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">订单生成</span>
+                            <br>
+                        </a>
+                    </li>
+                    <li class="first-li isAdmin" data-href="change_info">
+                        <a href="#" class="nav-header collapsed btm" data-toggle="collapse">
+                            <span class="mgl">修改入金信息</span>
+                            <br>
+                        </a>
+                    </li>
+                    
+                    <li class="first-li" class="logout">
+                        <a href="#" class="nav-header collapsed btm" id="logout">
+                            <span class="mgl">退出</span>
+                            <br>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- main -->
+            <div class="col-sm-9 col-md-10 main">
+                <div class="iframe-box">
+                    <iframe id="my-iframe" src="home/home.html" frameborder="0" width="100%" height="100%" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="../lib/jquery-1.12.2.js"></script>
+    <script src="../lib/bootstrap.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/welcome.js"></script>
+    <script>
+        /* 判断角色 */
+        if(userInfo.isAdmin == 0 && userInfo.mail != '3530787163@qq.com'){
+            $('.isAdmin').hide();
+            $('.secondmenu li[data-href="transactions/orders"] a').text('订单');
+        }else{
+            $('.isAdmin').show();
+        }
+        $('#new_register').hide(); //会员注册
+        if (userInfo.isAdmin == 0 && userInfo.memberGrade == 2) { //总代理
+            $('#new_register').show();
+        }
+        $('.name').text(userInfo.mail);
+    </script>
+</body>
+
+</html>

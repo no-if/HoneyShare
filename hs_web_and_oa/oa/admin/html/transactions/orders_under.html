@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/basics.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <style>
+        .box h4 {
+            font-weight: normal;
+            font-size: 16px;
+            color: #aaa;
+        }
+        .row:first-child{
+            margin-bottom: -20px;
+        }
+        .row:first-child .centent{
+            padding:20px 60px;
+        }
+        .row:first-child .centent input{
+            vertical-align: top;
+        }
+        .row:first-child .centent .sel{
+            display: inline-block;
+            width: 82px;
+            height: 30px;
+            vertical-align: top;
+            cursor: pointer;
+            border-radius: 4px;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+        }
+        .row:first-child .centent .sel:hover{
+            overflow:visible;
+        }
+        .row:first-child .centent ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 60px;
+            display: inline-block;
+            width: 82px;
+            background: RGBA(0, 0, 0, 0.25);
+            border-radius: 4px;
+        }
+        .row:first-child .centent li{
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            color: #666;
+            padding-left: 16px;
+        }
+        .row:first-child .centent i{
+            border: 6px solid transparent;
+            border-top-color: #666;
+            position: absolute;
+            top:13px;
+            right: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>线下订单</p>
+            </div>
+            <!--<div class="title">-->
+                <!--<p>会员转账数据</p>-->
+            <!--</div>-->
+            <div class="centent">
+                <div class="box">
+                    <div class="bt">
+                        <input type="text" placeholder="输入邮箱" class="mail">
+                        <div class="sel">
+                            <ul>
+                                <li data-shu="0">未支付</li>
+                                <li data-shu="1">已支付</li>
+                            </ul>
+                            <i></i>
+                        </div>
+                        <span class="search">搜索</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centent">
+                <div class="box">
+                    <!-- <div class="col-sm-12">
+                        <button class="export" download>导出</button>
+                    </div> -->
+                    <div class="col-sm-12">
+                        <!-- <h4>当前余额
+                            <span class="remain">0.00</span>
+                        </h4> -->
+                        <div class="">
+                            <table class="addChild">
+                                <tr class="addTr">
+                                    <th>邮箱</th>
+                                    <th>订单号</th>
+                                    <th>时间</th>
+                                    <th>HSC</th>
+                                    <th>人民币</th>
+                                    <th>美元</th>
+                                    <th>汇率</th>
+                                    <th>操作</th>
+                                </tr>
+                            </table>
+                            <div class="text">没有找到记录。</div>
+                        </div>
+                        <nav aria-label="Page navigation" class="col-xs-12 col-sm-12 col-lg-12 paging">
+                            <ul class="pagination">
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="msgzz">
+        <div class="msgBox">
+            <div class="title">提示</div>
+            <div class="msg"> 是否继续？</div>
+             <div class="msgBtn">
+                <div class="cancel">取消</div>
+                <div class="ok">确认</div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+        $(function () {
+            $('.msgzz').hide();
+            //导出文件
+            $('.export').click(function(){
+                // location.href = 'https://api.level01.club:12443/level/user/export?tokenId='+userInfo.tokenId;
+                deltaGoAjax('user/export',"",function(){
+                    location.href = 'https://api.level01.club:12443/level/user/export?tokenId='+userInfo.tokenId;
+                },'get')
+
+            })
+            var ajaxData = {
+                startRow: 1,
+                pageSize: 20,
+                mail: '',
+                state: 0
+            }
+            $('.text').hide();
+            $('.addTr').hide();
+            //余额
+            // deltaGoAjax('',{},getRemain);
+            function getRemain(data){
+                $('.remain').text(data.data.list);
+            }
+            getData();
+            function getData(){
+                deltaGoAjax('user/getUserNoRecharge', ajaxData, getMemberData);
+            }
+            function getMemberData(data) {
+                $('.child').remove();
+                var str;
+                if (data.data.list.length == 0) {
+                    $('.text').show();
+                    $('.addTr').hide();
+                } else {
+                    $('.addTr').show();
+                    $('.text').hide();
+                    $.each(data.data.list, function (k, val) {
+                        str += '<tr class="child">' +
+                            '<td>'+(val.mail || '')+'</td>' +
+                            '<td>'+(val.orderNo || '')+'</td>' +
+                            '<td>'+formDate(val.creatTime || '')+'</td>' +
+                            '<td>'+(val.commodityNum || '')+'</td>' +
+                            '<td>'+moneyToFloat(val.cny || 0)+'</td>' +
+                            '<td>'+moneyToFloat(val.usd || 0)+'</td>' +
+                            '<td>'+(val.rateValue || 0)+'</td>';
+                        if(ajaxData.state == 0){
+                            str += `<td><a href="${val.orderNo}">上分</a> </td>` ;
+                        }else{
+                            str += `<td><a href="${val.orderNo}">下分</a> </td>` ;
+                        }
+
+                            str += '</tr>';
+                    })
+                    $('.addChild').append(str);
+                    allPage = page(data, $('.pagination'), ajaxData.startRow);
+                }
+            }
+
+            $('.row:first-child .centent ul').on('click','li',function () {
+                var p = $(this).text();
+                var q = $(this).attr('data-shu');
+                $(this).remove();
+                $('.row:first-child .centent ul').prepend(`<li data-shu="${q}">${p}</li>`);
+            });
+
+            $('.row:first-child .centent .search').click(function () {
+                //console.log($('.row:first-child .centent input').val());
+                ajaxData = {
+                    startRow: 1,
+                    pageSize: 20,
+                    mail: $('.row:first-child .centent input').val(),
+                    state:$('.row:first-child .centent ul li').eq(0).attr('data-shu')
+                }
+                getData();
+            })
+            $('.addChild').on('click','a',function (e){
+                e.preventDefault();
+                var zhi=$(this).attr('href');
+                if($(this).text()==="上分"){
+                    $('.msgzz').show();
+                    $('.cancel').click(function () {
+                        $('.msgzz').hide();
+                    })
+                    $('.ok').unbind('click').click(function () {
+                        $('.msgzz').hide();
+                        deltaGoAjax('transfer/callback?orderNo='+zhi,'',function () {
+                            errorMsg('操作成功！');
+                            getData();
+                        },'get');
+                    })
+
+                }else if($(this).text()==="下分"){
+                    $('.msgzz').show();
+                    $('.cancel').click(function () {
+                        $('.msgzz').hide();
+                    })
+                    $('.ok').unbind('click').click(function () {
+                        $('.msgzz').hide();
+                        deltaGoAjax('user/lowerScoreHsc?orderNo='+zhi,'',function () {
+                            errorMsg('操作成功！');
+                            getData();
+                        },'get');
+                    })
+                }
+            })
+
+            //    分页
+            $('.pagination').on('click', '.starLi', function () { //首页
+                ajaxData.startRow = '1';
+                getData();
+            })
+            $('.pagination').on('click', '.numberLi', function () { //随意页
+                ajaxData.startRow = $(this).text();
+                getData();
+            })
+            $('.pagination').on('click', '.lastLi', function () { //尾页
+                ajaxData.startRow = allPage;
+                getData();
+            })
+            $('.pagination').on('click', '.gotoPageBtn', function () { //跳转到
+                var gotoPageNum = $('.gotoPage').val();
+                if (gotoPageNum == '') {
+                    return;
+                } else if (gotoPageNum > $(this).attr('data-page')) {
+                    gotoPageNum = $(this).attr('data-page');
+                }
+                ajaxData.startRow = gotoPageNum;
+                getData();
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>

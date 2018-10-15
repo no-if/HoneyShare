@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="icon" href="hsc.ico">
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/basics.css">
+    
+    <style>
+        .container{
+            color:#000;
+        }
+        .centent{
+            width:92%;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+        }
+        .bank_area{
+        	padding:10px;
+        	border:1px solid #9b9292;
+        	max-width:500px;
+        	margin: 0 20px 20px 0;
+        }
+        .select{
+        	border:2px solid #fdb238;
+        }
+        .into_title{
+            font-size:14px;
+            line-height: 30px;
+        }
+        .bank_box{
+            margin-top:50px;
+        }
+        .btn{
+            margin-top:20px;
+        }
+        input{
+            width:220px;
+        }
+        .ps{
+            color:#F58625;
+            font-size:14px;
+        }
+
+        .other_bank_box{
+            width:92%;
+            margin:0 auto;
+        }
+        .other_bank_area{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .other_bank{
+            margin-right:20px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body class="login_bg">
+    <div class="container">
+        <div class="into_title">
+            <p>修改入金信息</p>
+        </div>
+        <div class="centent">
+        	
+            
+        </div>
+        
+        <div class="other_bank_box">
+        	<div class="btn addBtn">添加银行</div>
+            <div class="into_title">其他银行信息:</div>
+            <div class="other_bank_area">
+            </div>
+        </div>
+    </div> 
+</body>
+<script src="../lib/jquery-1.12.2.js"></script>
+<script src="../lib/jquery.cookie.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="../js/common.js"></script>
+<script>
+    $(function () {
+        var bankData = [
+            {
+                bankName: '民生银行',
+                bankAdress: '上海市九星支行',
+                username: '李刚',
+                bankNum: '6216 9102 0946 1115',
+            },{
+                bankName: '农业银行',
+                bankAdress: '湖南省衡阳市分行',
+                username: '罗益凯',
+                bankNum: '6228 4808 0946 3199 772',
+            },{
+                bankName: '民生银行',
+                bankAdress: '上海市九星支行',
+                username: '李刚',
+                bankNum: '6216 9102 1115 6036',
+            },{
+                bankName: '民生银行',
+                bankAdress: '浙江省温州分行鹿城支行',
+                username: '刘金凤',
+                bankNum: '6216 9128 0415 3446',
+            },{
+                bankName: '平安银行',
+                bankAdress: '广东省广州市江南西支行',
+                username: '陈华妹',
+                bankNum: '6230 5800 0018 9806 297',
+            },{
+                bankName: '民生银行',
+                bankAdress: '广州轻纺城支行',
+                username: '陈华妹',
+                bankNum: '6226 1903 0462 8633',
+            }
+        ];
+
+        /* 其他银行信息 */
+        $.each(bankData,function(k,val){
+            var str = '<div class="other_bank">'+
+                            '<table>'+
+                                '<tr>'+
+                                    '<td>银行:</td>'+
+                                    '<td class="bankName">'+val.bankName+'</td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<td>支行:</td>'+
+                                    '<td class="bankAdress">'+val.bankAdress+'</td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<td>收款人:</td>'+
+                                    '<td class="username">'+val.username+'</td>'+
+                                '</tr>'+
+                                '<tr>'+
+                                    '<td>卡号:</td>'+
+                                    '<td class="bankNum">'+val.bankNum+'</td>'+
+                                '</tr>'+
+                            '</table>'+
+                            '<div class="btn select_bank" data-bankName="'+val.bankName+'" data-bankAdress="'+val.bankAdress+'" data-username="'+val.username+'" data-bankNum="'+val.bankNum+'">使用此银行信息</div>'+
+                        '</div>';
+            $('.other_bank_area').append(str);
+        })
+
+		/*查询所有银行信息*/
+        deltaGoAjax('user/findBankCodeFinalList','',findBankCodeFinal,'get');
+        function findBankCodeFinal(data){
+        	$('.centent').html('');
+        	addBank(data.data,1)
+        }
+        
+        function addBank(data,type){
+        	str = '';
+        	$.each(data,function(k,val){
+        		var selctClass = '';
+        		if(k == 0 && type == 1){
+        			selctClass="select"
+        		}
+        		str += '<div class="bank_area '+selctClass+'">'+
+			        		'<div class="code_box">'+
+				                '<div class="into_title">每日验证码:</div>'+
+				                '<input type="text" class="code_input" value="'+val.code+'">'+
+				            '</div>'+
+				            '<div class="bank_box">'+
+				                '<div class="into_title">当前银行信息:</div>'+
+				                '<table>'+
+				                    '<tr>'+
+				                        '<td>银行:</td>'+
+				                        '<td>'+
+				                            '<input type="text" class="bankName" value="'+val.bankName+'">'+
+				                        '</td>'+
+				                    '</tr>'+
+				                    '<tr>'+
+				                        '<td>支行:</td>'+
+				                        '<td>'+
+				                           ' <input type="text" class="bankAdress" value="'+val.payee+'">'+
+				                       ' </td>'+
+				                    '</tr>'+
+				                    '<tr>'+
+				                        '<td>收款人:</td>'+
+				                        '<td>'+
+				                           ' <input type="text" class="username" value="'+val.branchName+'">'+
+				                        '</td>'+
+				                   ' </tr>'+
+				                    '<tr>'+
+				                        '<td>卡号:</td>'+
+				                        '<td>'+
+				                            '<input type="text" class="bankNum" value="'+val.bankNo+'">'+
+				                       ' </td>'+
+				                    '</tr>'+
+				                '</table> '+
+				                '<div class="ps">*输入银行卡号，请按照每四位一个空格格式输入</div>'+
+				                '<div class="btn btn_bank" data-id="'+val.id+'">修改信息</div>'+
+				            '</div>'+
+				        '</div>';
+        	})
+            $('.centent').append(str);
+        }
+        
+        /*添加*/
+		$('.addBtn').click(function(){
+			var data = [{
+					id: '',
+	                code: '',
+	                bankName: '', 
+	                payee: '', 
+	                branchName: '', 
+	                bankNo: '' 
+			}];
+			addBank(data,2);
+		})
+
+		/*选择要修改的银行信息*/
+		$('.centent').on('click','.bank_area',function(){
+			$('.centent').find('.bank_area').removeClass('select');
+			$(this).addClass('select');
+		})
+		/*修改信息*/
+        var data;
+        $('.centent').on('click','.btn_bank',function(){
+        	var _this = $(this).closest('.bank_area');
+        	var isOk = true;
+        	if(_this.find('.code_input').val() == ''){
+                errorMsg('请输入每日验证码!');
+                return;
+           }
+            $.each(_this.find('input'),function(k,val){
+                if($(val).val() == ''){
+                    errorMsg('请完善信息！')
+                    isOk = false;
+                    return false;
+                }
+            })
+            if(!isOk){
+            	return;
+            }
+            errorMsg('银行账号：'+$('.bankNum').val(),'btn');
+            data = {
+                id: $(this).attr('data-id'),
+                code:  _this.find('.code_input').val(),
+                bankName: _this.find('.bankName').val(),
+                payee: _this.find('.bankAdress').val(),
+                branchName: _this.find('.username').val(),
+                bankNo: _this.find('.bankNum').val()
+            };
+        })
+
+       
+
+        /* 选择银行信息 */
+        $('.other_bank_area').on('click','.select_bank',function(){
+            if($('.centent').find('.select .code_input').val() == ''){
+                errorMsg('请输入每日验证码!');
+                return;
+            }
+            errorMsg('银行账号：'+$(this).attr('data-bankNum'),'btn');
+            data = {
+                id: $('.centent').find('.select .btn_bank').attr('data-id'),
+                code:  $('.centent').find('.select .code_input').val(),
+                bankName: $(this).attr('data-bankName'),
+                payee: $(this).attr('data-bankAdress'),
+                branchName: $(this).attr('data-username'),
+                bankNo: $(this).attr('data-bankNum')
+            };
+            
+        })
+
+        $('body',parent.document).on('click','.ok',function(){
+        	if($('.centent').find('.select .btn_bank').attr('data-id')){
+        		deltaGoAjax('user/updateBankCodeFinal',data,updateBankCodeFinal);
+        	}else{
+        		deltaGoAjax('user/addBankCodeFinal',data,updateBankCodeFinal);
+        	}
+            
+        })
+        function updateBankCodeFinal(data){
+            errorMsg('修改成功!');
+            $('body', parent.document).find('.msgzz').remove();
+            deltaGoAjax('user/findBankCodeFinalList','',findBankCodeFinal,'get');
+        }
+        $('body',parent.document).on('click','.cancel',function(){
+            $('body', parent.document).find('.msgzz').remove();
+        })
+    })
+</script>
+
+</html>

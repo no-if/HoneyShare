@@ -1,0 +1,87 @@
+
+/*表格*/
+*{
+	outline: none;
+}
+table{
+	background: #272727;
+	border: none;
+}
+table tr{
+	display: block;
+	height: 40px;
+	border-top: none;
+	border-bottom: none;
+	line-height: 40px;
+	font-size: 14px;
+	color: RGBA(162, 162, 162, 1);
+	box-sizing:border-box;
+}
+table tr:first-child{
+	border-top:none;
+}
+table tr td{
+	width: 15%;
+	min-width: 100px;
+	display: inline-block;
+	border-top: none!important;
+	border-right: none!important;
+}
+ .table > tbody > tr > td{
+	padding: 0;
+	line-height: 40px;
+ }
+.table_title{
+	background: linear-gradient(to bottom,#222222 0%,#2D2D2D 100%);
+}
+.color{
+	color: RGBA(193, 160, 74, 1);
+}
+.color1{
+	background:RGBA(54, 54, 54, 1);
+}
+.color2{
+	color:RGBA(113, 139, 56, 1);
+}
+.table_btn{
+	color: RGBA(193, 160, 74, 1);
+	background: linear-gradient(to bottom,RGBA(34, 34, 34, 1) 70%,RGBA(55, 55, 55, 1) 100%);
+	border-radius: 3px;
+	box-shadow: 2px 0 4px RGBA(0, 0, 0, 0.37);
+}
+		.text_left{
+			display: inline-block;
+			width: 100px;
+			color: RGBA(229, 189, 81, 1);
+		}
+		.text_right{
+			display: inline-block;
+			width: auto;
+			color: RGBA(229, 189, 81, 1);
+		}
+		.text_center{
+			display: inline-block;
+			width: 100px;
+			margin-left: 20px;
+			color: RGBA(229, 189, 81, 1);
+		}
+		.box_child{
+			height: 50px;
+			color:#fff;
+			font-size: 14px;
+		}
+		.btn{
+			padding: 5px 50px;
+			color: #000;
+			outline: none;
+			background: linear-gradient(to bottom,RGBA(130, 107, 48, 1) 0%,RGBA(229, 189, 81, 1) 50%,RGBA(55, 55, 55, 1) 100%);
+			border:none;
+		}
+		.text{
+			color:RGBA(193, 160, 74, 1);
+			margin-bottom: 20px;
+			cursor: pointer;
+		}
+/*分页*/
+
+

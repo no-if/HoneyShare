@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/basics.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <style>
+        .box h4 {
+            font-weight: normal;
+            font-size: 18px;
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>推荐</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="bt">
+                        <input type="text" placeholder="输入邮箱" class="mail">
+                        <span class="search">搜索</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="">
+                            <table class="addChild">
+                                <tr class="addTr">
+                                    <th>邮箱</th>
+                                    <th>CNY</th>
+                                    <th>BTC</th>
+                                    <th>ETH</th>
+                                    <th>HSC</th>
+                                    <th>时间</th>
+                                    <th>类型</th>
+                                </tr>
+                            </table>
+                            <div class="text">没有找到记录。</div>
+                        </div>
+                        <nav aria-label="Page navigation" class="col-xs-12 col-sm-12 col-lg-12 paging">
+                            <ul class="pagination">
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+        $(function () {
+            var ajaxData = {
+                startRow: '1',
+                pageSize: '20',
+                userLogType: 3
+            }
+            $('.text').hide();
+            $('.addTr').hide();
+
+            $('.search').click(function () {
+                ajaxData.mail = $('.mail').val();
+                getData();
+            })
+            getData();
+
+            function getData() {
+                deltaGoAjax('user/getLeWalletCount', ajaxData, getMemberData);
+            }
+
+            function getMemberData(data) {
+                $('.child').remove();
+                var str;
+                if (data.data.list.length == 0) {
+                    $('.text').show();
+                    $('.addTr').hide();
+                } else {
+                    $('.addTr').show();
+                    $('.text').hide();
+                    $.each(data.data.list, function (k, val) {
+                        str += '<tr class="child">' +
+                            '<td>' + val.mail + '</td>' +
+                            '<td>' + moneyToFloat(val.bonus || 0) + '</td>' +
+                            '<td>' + moneyToFloat(val.btc || 0) + '</td>' +
+                            '<td>' + moneyToFloat(val.eth || 0) + '</td>' +
+                            '<td>' + moneyToFloat(val.hsc || 0) + '</td>' +
+                            '<td>' + formDate(val.logDate || '') + '</td>' +
+                            '<td>' + (val.stateName || '') + '</td>' +
+                            '</tr>';
+                    })
+                    $('.addChild').append(str);
+                    allPage = page(data, $('.pagination'), ajaxData.startRow);
+                }
+            }
+
+            // 分页
+            $('.pagination').on('click', '.starLi', function () { //首页
+                ajaxData.startRow = '1';
+                getData();
+            })
+            $('.pagination').on('click', '.numberLi', function () { //随意页
+                ajaxData.startRow = $(this).text();
+                getData();
+            })
+            $('.pagination').on('click', '.lastLi', function () { //尾页
+                ajaxData.startRow = allPage;
+                getData();
+            })
+            $('.pagination').on('click', '.gotoPageBtn', function () { //跳转到
+                var gotoPageNum = $('.gotoPage').val();
+                if (gotoPageNum == '') {
+                    return;
+                } else if (gotoPageNum > $(this).attr('data-page')) {
+                    gotoPageNum = $(this).attr('data-page');
+                }
+                ajaxData.startRow = gotoPageNum;
+                getData();
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Level01</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/basics.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <style>
+        .box h4 {
+            font-weight: normal;
+            font-size: 18px;
+            color: #ddd;
+        }
+        p{
+            font-size: 15px;
+        }
+        button {
+            width: 100%;
+            background: #316cbc;
+            border: none;
+            line-height: 30px;
+        }
+        
+        #sel_method {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        #sel_method>div {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            padding: 16px 5px;
+            text-align: center;
+            width: 220px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .card {
+            position: relative;
+        }
+
+        /* .card::before {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 0;
+            background: url(../../images/select.png) no-repeat;
+            width: 50px;
+            height: 50px;
+            z-index: 1;
+            display: block;
+        } */
+
+        /* .show{
+            display: block;
+        } */
+
+        #sel_method>div img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .color1 {
+            background: #2b2b47;
+        }
+
+        /* .color2 {
+            background: #70f2ff;
+        }
+
+        .color3 {
+            background: #03cb9a;
+        }
+
+        .color4 {
+            background: #f6bd3f;
+        } */
+
+        .sel_money {
+            position: relative;
+            font-size: 14px;
+        }
+
+        .sel_box {
+            width: 229px;
+            position: absolute;
+            left: 15px;
+            top: 30px;
+        }
+
+        .in_box {
+            width: 229px;
+            height: 30px;
+            background: #323232;
+            line-height: 30px;
+            text-indent: 10px;
+            cursor: pointer;
+        }
+
+        ul {
+            padding: 0;
+            width: 100%;
+            z-index: 1;
+            display: none;
+        }
+
+        li {
+            list-style: none;
+            background: #323232;
+            text-align: center;
+        }
+
+        .sel_icon {
+            position: absolute;
+            left: 214px;
+            top: 0;
+            background: url(../../images/right.png) no-repeat;
+            width: 30px;
+            height: 30px;
+        }
+        .sel_method_icon{
+            position: absolute;
+            left: 177px;
+            top: 0;
+            background: url(../../images/select.png) no-repeat;
+            width: 50px;
+            height: 50px;
+            visibility: hidden;
+        }
+        .show{
+            visibility: visible;
+        }
+        #wxpay{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>充值</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <div class="col-sm-12" style="margin-top: 20px;">
+                        <div class="col-xs-12" id="sel_method">
+                            <div class="card color1 alipay">
+                                <img src="../../images/zhifu1.png" alt="">
+                                <span>支付宝</span>
+                                <span class="sel_method_icon show"></span>
+                            </div>
+                            <div class="card color1 wxpay">
+                                <img src="../../images/zhifu5.png" alt="">
+                                <span>微信</span>
+                                <span class="sel_method_icon"></span>
+                            </div>
+                            <!-- <div class="card color3">
+                                <img src="../../images/zhifu2.png" alt="">
+                                <span>LEVEL</span>
+                            </div> -->
+                            <!-- <div class="card color2">
+                                <img src="../../images/zhifu3.png" alt="">
+                                <span>比特币</span>
+                            </div>
+                            <div class="card color1">
+                                <img src="../../images/zhifu4.png" alt="">
+                                <span>冷链钱包</span>
+                            </div> -->
+                        </div>
+                        <div class="col-xs-12 sel_money" style="margin: 60px 0 20px 0;" id="alipay">
+                            <div class="in_box z_m">请选择金额</div>
+                            <span class="sel_icon"></span>
+                            <ul class="sel_box">
+                                <li>1000</li>
+                                <li>2000</li>
+                                <li>3000</li>
+                                <li>4000</li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 sel_money" style="margin: 60px 0 20px 0;" id="wxpay">
+                            <div class="in_box w_m" contenteditable="true"></div>
+                        </div>
+                        <div class="col-xs-12" style="margin-bottom: 20px;">
+                            <p>当前美元兑换人民币的汇率为：
+                                <span class="rate"></span>
+                            </p>
+                            <p>您当前充值的美元金额为：$
+                                <span class="dor">0</span>
+                            </p>
+                        </div>
+                        <button class="next">下一步</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="" class="new_page" target="_blank"></a>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+        $(function () {
+            // 美元汇率
+            var dor_money;
+            var rate;
+            var wxcode = wxcode;
+            var moneyData = {
+                rate: 0,
+                usd: 0,
+                cny: 0,
+                type: ''
+            };
+            deltaGoAjax('user/exchange', "", function (data) {
+                rate = data.data.RMB;
+                moneyData.rate = data.data.RMB;
+                $('.rate').text(rate);
+            }, 'get')
+            // 选择金额
+            $('#alipay').click(function () {
+                $('.sel_box').toggle();
+            })
+            // 支付宝选择框
+            $('#alipay').on('click', 'li', function () {
+                $('.z_m').text($(this).text());
+                dor_money = (parseInt($('.z_m').text()) / rate).toFixed(2);
+                $('.dor').text(dor_money);
+                $('.sel_box').hide();
+                return false;
+            })
+            //微信输入框
+            $('.w_m').keyup(function(){
+                if($('.w_m').text() == ''){
+                    $('.dor').text(0); 
+                }else{
+                    dor_money = (parseInt($('.w_m').text()) / rate).toFixed(2);
+                    $('.dor').text(dor_money);
+                }
+                
+            })
+            //选择入金方式
+            $('.card').click(function(){
+                $('.card .sel_method_icon').removeClass('show');
+                $(this).find('.sel_method_icon').addClass('show');
+                if($(this).hasClass('wxpay')){//微信支付
+                    $('#alipay').hide();
+                    $('#wxpay').show();
+                    $('.dor').text('0');
+                    $('.w_m').text('');
+                }else if($(this).hasClass('')){//支付宝支付
+                    $('.z_m').text('请选择金额');
+                    $('.dor').text('0');
+                    $('#wxpay').hide();
+                    $('#alipay').show();
+                }else{
+                    return;
+                }
+            })  
+            // 第三方   
+            $('.next').click(function () {
+                if ($('.in_box').text() == '请选择金额' || $('.in_box').text() == '') {
+                    errorMsg('请选择金额');
+                    return;
+                } else {
+                    if ($('.show').parent().hasClass('wxpay')) {//微信支付
+                        moneyData.type = 'wxcode';
+                        moneyData.cny = $('.w_m').text();
+                        moneyData.usd = $('dor').text();
+                        deltaGoAjax('yyPay/weChatPay', moneyData, function (data) {
+                            $('.new_page').html(data.data);
+                        })
+                    } else if ($('.show').parent().hasClass('alipay')) {//支付宝支付
+                        moneyData.type = 'alipay';
+                        moneyData.cny = $('.z_m').text();
+                        moneyData.usd = $('.dor').text();
+                        deltaGoAjax('yyPay/weChatPay', moneyData, function (data) {
+                            $('.new_page').html(data.data);
+                        })
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

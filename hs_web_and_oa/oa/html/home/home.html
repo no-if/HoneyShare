@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+	<meta name="renderer" content="webkit">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>Honey Share</title>
+	<link rel="stylesheet" href="../../css/bootstrap.css">
+	<link rel="stylesheet" href="../../css/basics.css">
+	<link rel="stylesheet" href="../../css/home.css">
+	<style>
+		.link {
+			display: flex;
+			justify-content: space-between;
+			cursor: pointer;
+			overflow: hidden;
+			background: #fff;
+			align-items: center;
+		}
+
+		.code_img {
+			width: 50px;
+		}
+
+		.link .left {
+			padding: 30px;
+			background: #BFC2C0;
+			border-radius: 5px 0 0 5px;
+		}
+
+		.link .left img {
+			width: 25px;
+			height: auto;
+		}
+
+		.link .center {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-around;
+		}
+
+		.link_text {
+			color: #000;
+			background: #FCCB06;
+			border-radius: 5px;
+		}
+
+		.text_notic {
+			color: #000;
+		}
+
+		.link .right img {
+			width: 150px;
+			height: 100%;
+		}
+
+		.box_code {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(255, 255, 255, 0.1) !important;
+			display: none;
+		}
+
+		.code_box {
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%) !important;
+			background: #fff;
+			border-radius: 10px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			width: 300px;
+			z-index: 100;
+		}
+
+		.code_box .top {
+			width: 100%;
+			height: 100px;
+			background: url('../../images/hs/top.png') no-repeat;
+			background-size: 100% 100%;
+		}
+
+		.code_box #big_code_img {
+			width: 100px;
+			height: 100px;
+		}
+
+		.code_box .bottom {
+			margin: 50px auto;
+		}
+
+		.code_box .hs {
+			position: absolute;
+			top: -20px;
+			right: -20px;
+			width: 50px;
+			height: 50px;
+			background: url(../../images/hs/honey.png) no-repeat;
+			background-size: 100% 100%;
+			cursor: pointer;
+		}
+
+		h3 {
+			color: #F49A06 !important;
+			font-size: 22px;
+			margin: 0 0 0 0;
+		}
+
+		.radio_echarts {
+			width: 100%;
+			height: 300px;
+			text-align: left;
+		}
+
+		.rate_box {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		.rate_box>div {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			align-items: center;
+			color: #000;
+			font-size: 14px;
+			margin: 20px 0;
+		}
+
+		.rate_box>div>img {
+			width: 50px;
+			height: auto;
+		}
+
+		.rate_box>div>span:nth-child(3) {
+			display: block;
+			width: 100%;
+			height: 30px;
+			border-radius: 7px;
+			background: #fbbc16;
+			color: #fff;
+			text-align: center;
+			line-height: 30px;
+		}
+		.wallet_box{
+			display:flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+		}
+		.wallet_box>div{
+			margin:10px 30px;
+		}
+		.hsc_to_money{
+			font-size:14px;
+			color:#000;
+			line-height: 30px;
+			margin-bottom: 20px;
+		}
+		.money_usd_cny{
+			margin-top: 20px;
+		}
+		.money_usd_cny > div{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			font-size:14px;
+			padding-left:16px;
+		}
+		.money_usd_box{
+			color:#F58625;
+		}
+		.money_usd_cny > div > p{
+			margin-right: 40px;
+			width:300px;
+		}
+		.money_cny_box{
+			color:#EE3E2D;
+		}
+		@media(max-width: 768px) {
+			.link {
+				justify-content: space-between;
+			}
+			#code_img {
+				margin-right: 20px;
+			}
+			.link .right,
+			.link .center {
+				display: none;
+			}
+			.radio_echarts {
+				width:100%;
+				margin-bottom: 0;
+				padding:0
+			}
+			.wallet_box{
+				justify-content: center;
+			}
+			.wallet_box>div{
+				margin: 10px 0;
+			}
+			.money_usd_cny > div{
+				padding-left:0;
+			}
+		}
+	</style>
+</head>
+
+<body style="position: relative;">
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<p>首页</p>
+			</div>
+			<div class="centent">
+				<div class="box">
+					<div class="wallet_box">
+						<div class="">
+							<a href="javascript:void(0);">
+								<div class="small-box bg-primary">
+									<div class="wallet_icon">
+										<img src="../../images/home/wallet1.png" alt="">
+									</div>
+									<div class="inner">
+										<p>
+											<b>
+												<span id="hsc_money">0.00</span>
+											</b>
+										</p>
+										<h3>
+											HSC
+										</h3>
+									</div>
+								</div>
+
+							</a>
+						</div>
+						<div class="">
+							<div class="small-box bg-primary">
+								<div class="wallet_icon">
+									<img src="../../images/home/wallet2.png" alt="">
+								</div>
+								<div class="inner">
+									<p>
+										<b>
+											<span class="back_money"></span>
+										</b>
+									</p>
+									<h3>
+										推荐返币
+									</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="hsc_money">
+						<div class="hsc_box">
+							<div class="left">
+								<img src="../../images/home/hsc_usd.png" alt="">
+							</div>
+							<div class="right">
+								<h4>HSC/USD</h4>
+								<p>0</p>
+							</div>
+						</div>
+						<div class="hsc_box">
+							<div class="left">
+								<img src="../../images/home/hsc_rmb.png" alt="">
+							</div>
+							<div class="right">
+								<h4>HSC/RMB</h4>
+								<p>0</p>
+							</div>
+						</div>
+						<div class="hsc_box">
+							<div class="left">
+								<img src="../../images/home/hsc_btc.png" alt="">
+							</div>
+							<div class="right">
+								<h4>BTC/HSC</h4>
+								<p>0</p>
+							</div>
+						</div>
+						<div class="hsc_box">
+							<div class="left">
+								<img src="../../images/home/hsc_eth.png" alt="">
+							</div>
+							<div class="right">
+								<h4>ETH/HSC</h4>
+								<p>0</p>
+							</div>
+						</div>
+					</div>
+					<div class="money_usd_cny">
+						<div class="money_usd_box">
+							<p class="money_usd">
+								<span>当前HSC换算美元为：</span>
+								<span class="hsc_to_usd"></span>
+							</p>
+							<!-- <p class="up_money_usd">
+								<span>当前HSC升值换算美元为：</span>
+								<span class="up_hsc_to_usd"></span>
+							</p> -->
+						</div>
+						<div class="money_cny_box">
+							<p class="money_cny">
+								<span>当前HSC换算人民币为：</span>
+								<span class="hsc_to_cny"></span>
+							</p>
+							<!-- <p class="up_money_cny">
+								<span>当前HSC升值换算人民币为：</span>
+								<span class="up_hsc_to_cny"></span>
+							</p> -->
+						</div>
+					</div>
+					<div class="col-sm-12 radio_echarts" id="radio_echarts"></div>
+					<div class="account col-sm-12">
+						<div class="box-header">
+							<label class="pull-left">
+								<strong>邀请链接:
+								</strong>
+							</label>
+						</div>
+						<div class="box-body link">
+							<div class="left">
+								<img src="../../images/home/register.png" alt="" class="register_icon">
+							</div>
+							<div class="center">
+								<span class="link_text">https://www.honeyshare.io/oa/html/register.html</span>
+								</span>
+								<span class="text_notic">分享你的推荐链接，通过你的推荐，在所有注册账户购买上加5%的奖金。</span>
+							</div>
+							<div class="code_img" id="code_img">
+					
+							</div>
+							<div class="right">
+								<img src="../../images/home/bg.png" alt="">
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-sm-12" style="margin-top: 20px;">
+						<div class="view box-header">
+							<strong>近期活动</strong>
+							<a href="../transactions/orders.html">查看更多</a>
+						</div>
+						<div class="max" style="margin-top: 5px;">
+							<table class="addChild">
+								<tr class="addTr">
+									<th>订单号</th>
+									<th>时间</th>
+									<th>人民币</th>
+									<th>汇率</th>
+									<th>美元</th>
+									<th>类型</th>
+								</tr>
+							</table>
+							<div class="text" style="display: block;">没有找到记录。</div>
+						</div>
+						<nav aria-label="Page navigation" class="col-xs-12 col-sm-12 col-lg-12 paging">
+							<ul class="pagination pagination1">
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="box_code">
+		<div class="code_box">
+			<div class="top"></div>
+			<div class="big_code_img" id="big_code_img">
+
+			</div>
+			<div class="bottom">邀请二维码</div>
+			<div class="hs"></div>
+		</div>
+	</div>
+	<script src="../../lib/jquery-1.12.2.js"></script>
+	<script src="../../lib/echarts.min.js"></script>
+	<script src="../../js/common.js"></script>
+	<script src="../../lib/qrcode.js"></script>
+	<script>
+		$(function () {
+			/* 汇率 */
+            function getHscRate(){
+				deltaGoAjax('getHscRate','',getHscRateOk,'get',1);
+			}
+			function getHscRateOk(data){
+				$('.hsc_box:nth-child(1) p').css('color',$('.hsc_box:nth-child(1) p').text() <= data.data.HSCUSD ? 'green' : 'red').text(data.data.HSCUSD);
+				$('.hsc_box:nth-child(2) p').css('color',$('.hsc_box:nth-child(2) p').text() <= data.data.HSCCNY ? 'green' : 'red').text(data.data.HSCCNY);
+				$('.hsc_box:nth-child(3) p').css('color',$('.hsc_box:nth-child(3) p').text() <= data.data.BTCHSC ? 'green' : 'red').text(data.data.BTCHSC);
+				$('.hsc_box:nth-child(4) p').css('color',$('.hsc_box:nth-child(4) p').text() <= data.data.ETHHSC ? 'green' : 'red').text(data.data.ETHHSC);
+			}
+            getHscRate();
+            setInterval(function () {
+                getHscRate();
+            }, 10000);
+
+
+			var url = 'https://www.honeyshare.io/oa/html/register.html' + '?code=' + userInfo.uuid;
+			// 二维码
+			var qrcode1 = new QRCode(document.getElementById("code_img"), {
+				text: url,
+				width: 60,
+				height: 60,
+				colorDark: '#000',
+				colorLight: '#fff',
+				correctLevel: QRCode.CorrectLevel.M,
+				src: 'http://game.enrich-global.com/img/share_logo.jpg'
+			});
+			var qrcode2 = new QRCode(document.getElementById("big_code_img"), {
+				text: url,
+				width: 100,
+				height: 100,
+				colorDark: '#000',
+				colorLight: '#fff',
+				correctLevel: QRCode.CorrectLevel.M,
+				src: 'http://game.enrich-global.com/img/share_logo.jpg'
+			});
+			$('#code_img').click(function () {
+				$('.box_code').show();
+			})
+			$('.hs').click(function () {
+				$('.box_code').hide();
+			})
+			$('.center').click(function () {
+				window.top.location = $('.link_text').text() + '?code=' + userInfo.uuid;
+			})
+			// $('#btnCopy').attr('data-url', $('.link_text').text() + '?code=' + userInfo.uuid);
+			// $('#btnCopy').zclip({
+			// 	path: "../../lib/ZeroClipboard.swf",
+			// 	copy: function () {
+			// 		return $('#btnCopy').attr('data-url');
+			// 	}
+			// })
+
+			// 钱包
+			deltaGoAjax('wallet/getWallet', "", getMoney, 'get');
+			function getMoney(data) {
+				if (data.status == 0) {
+					$('#hsc_money').text(moneyToFloat(data.data.hsc || 0));
+					getUsd(data.data.hsc || 0);
+				} else {
+					return;
+				}
+			}
+
+			deltaGoAjax('user/getUsdWalletCount', {}, getUsdWalletCount);
+			function getUsdWalletCount(data) {
+				if (data.status == 0) {
+					$('.back_money').text(moneyToFloat(data.data.hsc || 0));
+				} else {
+					return;
+				}
+			}
+			/* hsc换算美元 人民币 */
+			var rmb_num, usd_num;
+			function getUsd(hsc_num) {
+				deltaGoAjax('wallet/getHscRate', '', function (data) {
+					usd_num = (data.data.nowHsc || 0) * hsc_num;
+					$('.hsc_to_usd').text('$' + moneyToFloat(usd_num.toFixed(2)));
+					getRmb(usd_num);
+				}, 'get')
+			}
+			function getRmb(usd) {
+				deltaGoAjax('user/exchange', '', function (data) {
+					rmb_num = usd * data.data.RMB;
+					$('.hsc_to_cny').text('￥' + moneyToFloat(rmb_num.toFixed(2)));
+				}, 'get')
+			}
+
+
+			// 近期活动
+			var ajaxData = {
+				uuid: userInfo.uuid,
+				startRow: '1',
+				pageSize: '20',
+				startTime: '',
+				endTime: ''
+			}
+			// $('.text').hide();
+			$('.addTr').hide();
+
+			getData();
+
+			function getData() {
+				deltaGoAjax('user/getUserRecharge', ajaxData, getMemberData);
+			}
+
+			function getMemberData(data) {
+				$('.child').remove();
+				var str;
+				if (data.data.list.length == 0) {
+					$('.text').show();
+					$('.addTr').hide();
+				} else {
+					$('.addTr').show();
+					$('.text').hide();
+					$.each(data.data.list, function (k, val) {
+						str += '<tr class="child">' +
+							'<td>' + (val.orderNo || '') + '</td>' +
+							'<td>' + formDate(val.okTime || '') + '</td>' +
+							'<td>' + moneyToFloat(val.cny || 0) + '</td>' +
+							'<td>' + (val.rate || 0) + '</td>' +
+							'<td>' + moneyToFloat(val.usd || 0) + '</td>' +
+							'<td>' + (val.stateName || '') + '</td>' +
+							'</tr>';
+					})
+					$('.addChild').append(str);
+					allPage = page(data, $('.pagination'), ajaxData.startRow);
+				}
+			}
+			//    分页
+			$('.pagination').on('click', '.starLi', function () { //首页
+				ajaxData.startRow = '1';
+				getData();
+			})
+			$('.pagination').on('click', '.numberLi', function () { //随意页
+				ajaxData.startRow = $(this).text();
+				getData();
+			})
+			$('.pagination').on('click', '.lastLi', function () { //尾页
+				ajaxData.startRow = allPage;
+				getData();
+			})
+			$('.pagination').on('click', '.gotoPageBtn', function () { //跳转到
+				var gotoPageNum = $('.gotoPage').val();
+				if (gotoPageNum == '') {
+					return;
+				} else if (gotoPageNum > $(this).attr('data-page')) {
+					gotoPageNum = $(this).attr('data-page');
+				}
+				ajaxData.startRow = gotoPageNum;
+				getData();
+			})
+			
+			/* 汇率 */
+			var rateData = [];
+			var yMin = 0.150;
+			var yMax = 0.2;
+			deltaGoAjax('user/getHscRateList',{}, getHscRateList);
+			function getHscRateList(data){
+				$.each(data.data,function(k,val){
+					rateData.push(val.nowHsc)
+				})
+				yMax = (rateData[rateData.length - 1] + 0.01).toFixed(3);
+				getRatioEcharts();
+			}
+
+			//图表			
+			var ratioEcharts = echarts.init(document.getElementById('radio_echarts'));
+			function getRatioEcharts(){
+				ratioEcharts.setOption({
+					tooltip: {
+						trigger: 'axis',
+						position: function (pt) {
+							return [pt[0], '10%'];
+						}
+					},
+					grid: {
+						x: 40,
+						y: 20,
+						x2: 30,
+						y2: 60
+					},
+					xAxis: {
+						type: 'category',
+						boundaryGap: false,
+						//data: ['Week1', 'Week2', 'Week3', 'Week4'
+						//]
+						data: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7', 'Week8', 'Week9', 'Week10', 'Week11',
+							'Week12', 'Week13', 'Week14'
+						]
+					},
+					yAxis: {
+						min: yMin,
+						max: yMax,
+						type: 'value',
+						boundaryGap: [0, '100%'],
+						splitNumber: 3,
+					},
+
+					series: [{
+						name: '价格',
+						type: 'line',
+						smooth: true,
+						symbol: 'none',
+						sampling: 'average',
+
+						itemStyle: {
+							normal: {
+								color: '#fbbc16'
+							}
+						},
+						areaStyle: {
+							normal: {
+								color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+									offset: 0,
+									color: 'rgb(255, 158, 68)'
+								}, {
+									offset: 1,
+									color: '#ED352E'
+								}])
+							}
+						},
+						data: rateData,
+						// data: [0.150, 0.165, 0.180, 0.195, 0.210, 0.225, 0.240, 0.255, 0.270, 0.285, 0.300, 0.315, 0.330, 0.345],
+					}]
+				})
+			}
+			
+		})
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+
+<head>
+	<meta name="renderer" content="webkit">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<title>Honey Share</title>
+	<link rel="stylesheet" href="../../css/bootstrap.css">
+	<link rel="stylesheet" href="../../css/basics.css">
+	<link rel="stylesheet" href="../../css/home.css">
+	<style>
+		.box h4 {
+			font-weight: normal;
+			font-size: 18px;
+			color: #ddd;
+		}
+
+		.icon {
+			font-size: 12px;
+		}
+
+		.border {
+			border: 2px solid #444644;
+			padding: 0 15px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		button {
+			width: 100%;
+			background: RGBA(253, 178, 56, 1);
+			border: none;
+			line-height: 30px;
+			outline: none;
+		}
+
+		.rate p {
+			margin: 20px auto;
+		}
+
+		.border span {
+			color: #71c8f1;
+		}
+
+		.card {
+			padding: 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
+		.card>div {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			width: 33%;
+			height: 88px;
+			min-width: 295px;
+			background: RGBA(253, 178, 56, 1);
+			margin: 10px 0;
+			cursor: pointer;
+		}
+
+		#sel_method {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		#sel_method>div {
+			/* border: 1px solid #F49A06; */
+			display: flex;
+			color: #000;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 20px;
+			text-align: center;
+			width: 200px;
+			cursor: pointer;
+			/* border-radius: 10px; */
+		}
+
+		#sel_method>div>span:nth-child(2) {
+			/* margin-right: 45px; */
+			height: 80px;
+			text-align: center;
+			line-height: 80px;
+			width: 100%;
+			min-width: 200px;
+			border-radius: 0 7px 7px 0;
+			border: 1px solid #F49A06;
+		}
+
+		.card {
+			position: relative;
+		}
+
+		.color1 {
+			background: #fff;
+		}
+
+		#sel_method>div img {
+			width: 80px;
+			height: auto;
+			position: absolute;
+			left: -18%;
+			top: 0;
+		}
+
+		#sel_money {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			align-items: center;
+		}
+
+		#sel_money>span {
+			margin-bottom: 20px;
+			padding: 8px 5px;
+			text-align: center;
+			width: 100px;
+			background: #fff;
+			border: 1px solid #F49A06;
+			border-radius: 10px;
+			color: #EF9121;
+			cursor: pointer;
+		}
+
+		.input input {
+			background: none;
+			border: 1px solid RGBA(253, 178, 56, 1);
+			color: #000;
+		}
+
+		.input+p {
+			font-size: 16px;
+			color: RGBA(253, 178, 56, 1);
+			line-height: 30px;
+		}
+
+		.bg_color {
+			background: linear-gradient(to right, #F58625 0, #F58625 30%, #ED352E 100%) !important;
+			color: #fff !important;
+		}
+
+		.limit {
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+
+		.sel_method_icon {
+			position: absolute;
+			left: 166px;
+			top: 0;
+			background: url(../../images/select.png) no-repeat;
+			width: 50px;
+			height: 50px;
+			visibility: hidden;
+		}
+
+		.show {
+			visibility: visible;
+		}
+
+		#wxpay {
+			display: none;
+		}
+
+		.sel_text {
+			color: #000;
+			font-size: 15px;
+			margin: 10px 0;
+		}
+
+		.transfer_top_box,
+		.alipay_code_box {
+			display: none;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background: RGBA(0, 0, 0, 0.8);
+			left: 0;
+			top: 0;
+		}
+
+		.alipay_code_box>div {
+			position: absolute;
+			width: 30%;
+			/* height: 300px; */
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: #fff;
+			border-radius: 7px 7px 0 0;
+			text-align: center;
+			/* padding-top: 30px; */
+		}
+
+		.pay_code_img {
+			padding: 50px;
+		}
+
+		.pay_code_img img {
+			display: block;
+			margin: 0 auto;
+		}
+
+		.transfer_top_box>div {
+			position: absolute;
+			/* width: 30%; */
+			height: auto;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background: #fff;
+			border-radius: 7px 7px 0 0;
+		}
+
+		.top_message {
+			font-size: 16px;
+			background: #fff;
+			position: fixed;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			width: 375px;
+			height: auto;
+			z-index: 1;
+			border-radius: 5px;
+			color: #000;
+		}
+
+		.mes_box {
+			/* padding: 20px; */
+		}
+
+		.mes_box span {
+			display: inline-block;
+
+		}
+
+		.time {
+			text-align: center;
+		}
+
+		.mes_top {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.mes_top .left span,
+		.mes_top .right span {
+			width: 150px;
+		}
+
+		.mes_top .left span {
+			text-align: left;
+		}
+
+		.mes_top .right span {
+			text-align: right;
+		}
+
+		.mes_top,
+		.mes_center,
+		.mes_bottom {
+			padding: 20px;
+		}
+
+		.line {
+			width: 100%;
+			height: 5px;
+			background: #3781d9;
+		}
+
+		.mes_center {
+			text-align: center;
+		}
+
+		.card_img {
+			width: 150px;
+			height: 150px;
+			border: 1px solid #eee;
+			margin: 30px;
+		}
+
+		.mes_center p {
+			font-size: 14px;
+		}
+
+		.mes_bottom>div {
+			overflow: hidden;
+			border: 1px solid #aaa;
+			border-radius: 5px;
+			line-height: 30px;
+			margin-bottom: 10px;
+			display: flex;
+		}
+
+		.mes_bottom>div span:first-child,
+		.mes_bottom>div .copyBtn {
+			width: 103px;
+			text-align: center;
+			border-right: 1px solid #aaa;
+			background: none;
+		}
+
+		.mes_bottom>div span:last-child,
+		.mes_bottom>div .code {
+			flex: 2;
+			width: 220px;
+			padding: 0 10px;
+			text-align: center;
+			text-overflow: ellipsis;
+			height: 30px;
+			background: none;
+		}
+
+		.code {
+			text-overflow: ellipsis;
+		}
+
+		.copy {
+			width: 65px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			background: #aaa;
+			position: fixed;
+			bottom: 31px;
+			right: 20px;
+			border-radius: 0 6px 6px 0;
+			color: #3781d9;
+			cursor: pointer;
+			display: none;
+		}
+
+		.close {
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			color: #000;
+			font-size: 12px;
+		}
+
+		.advise p span {
+			color: #EF9121;
+		}
+
+		.transfer_money {
+			color: #000;
+		}
+
+		.transfer_money>p {
+			margin: 10px 0;
+		}
+
+		.transfer_money>p>span:nth-child(2) {
+			color: #EF9121;
+		}
+
+		.transfer_money>p>span:nth-child(1) {
+			display: inline-block;
+			width: 100px;
+		}
+
+		.transfer_money table {
+			border: 1px solid #fbba18;
+			margin-top: 10px;
+			width: 30%;
+		}
+
+		.transfer_top_box table {
+			border: 1px solid #fbba18;
+			margin-top: 10px;
+			width: 100%;
+		}
+
+		table tr:nth-child(odd) {
+			background: #f7dd80;
+		}
+
+		table tr:nth-child(even) {
+			background: #fff;
+		}
+
+		.transfer_top_box .transfer_title {
+			text-align: center;
+			background: #fbba18;
+			height: 40px;
+			line-height: 40px;
+			color: #fff;
+			border-radius: 7px 7px 0 0;
+		}
+
+		.transfer_top_box .content {
+			padding: 0 20px;
+		}
+
+		.transfer_top_box .content p {
+			margin: 10px 0;
+			color: #000;
+			font-size: 16px;
+		}
+
+		.transfer_top_box .content .notic_text {
+			font-size: 15px;
+			color: #EF9121;
+		}
+
+		
+
+		@media(max-width: 768px) {
+			#sel_method {
+				justify-content: center;
+			}
+			.transfer_money table {
+				width: 100%;
+			}
+			.transfer_top_box>div {
+				width: 100%;
+				height: auto;
+			}
+			.alipay_code_box>div {
+				width: 100%;
+			}
+		}
+
+
+		.code_msg > span{
+			font-size: 15px;
+			line-height: 30px;
+		}
+		.code_num{
+			background:#deb272;
+			padding:4.5px 10px;
+		}
+		.code_box{
+			margin-bottom:10px;
+		}
+
+		.bank_img{
+			display: none;
+		}
+		.bankmsg {
+			margin-bottom: 15px;
+		}
+
+		.bankmsg p {
+			margin-bottom: 10px;
+		}
+
+		.bank_select,
+		.sel_usd_money,
+		.wap_sel_usd {
+			width: 182px;
+		}
+
+		.bank_select select,
+		.sel_usd_money select,
+		.wap_sel_usd select {
+			color: #fff;
+		}
+
+		.notic_text {
+			font-size: 15px;
+			color: #EF9121;
+		}
+
+		.copy_btn {
+			width: 50px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			cursor: pointer;
+			display: inline-block;
+			background: #aaa;
+			border-radius: 10px;
+			margin-left: 20px;
+			color: #000;
+
+		}
+
+		.money_input input{
+			background: none;
+			border: 1px solid RGBA(253, 178, 56, 1);
+			color: #000;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="title">
+				<p>购买</p>
+			</div>
+			<div class="centent">
+				<div class="box">
+					<div class="col-sm-12" style="margin-top: 20px;">
+						<p class="sel_text">请选择支付方式</p>
+						<div class="col-xs-12" id="sel_method">
+                            <!-- <div class="card color1 payment">
+                                <img src="../../images/zhifu6.png" alt="">
+                                <span>网关支付</span>
+                                <span class="sel_method_icon show"></span>
+                            </div> -->
+                            <!--<div class="card color1 alipay">-->
+                            	<!--<img src="../../images/zhifu1.png" alt="">-->
+                            	<!--<span>支付宝</span>-->
+                            	<!--<span class="sel_method_icon"></span>-->
+                            <!--</div>-->
+                            <div class="card color1 transfer YL">
+                            	<img src="../../images/zhifu7.png" alt="">
+                            	<span>银联汇款</span>
+                            	<span class="sel_method_icon show"></span>
+                            </div>
+                            <!-- <div class="card color1 payment">
+                                <img src="../../images/zhifu6.png" alt="">
+                                <span>网关汇款</span>
+                                <span class="sel_method_icon"></span>
+                            </div> -->
+                            <div class="card color1 BT">
+                            	<img src="../../images/zhifu3.png" alt="">
+                            	<span>比特币</span>
+                            	<span class="sel_method_icon"></span>
+                            </div>
+                            <div class="card color1 YT">
+                            	<img src="../../images/zhifu4.png" alt="">
+                            	<span>以太坊</span>
+                            	<span class="sel_method_icon"></span>
+                            </div>
+                        </div>
+                        <p style="font-size: 13px;margin-top: 5px; color: #F49A06;">当前的价格：
+                        	<span class="lvx_rate">0</span> USD/HSC</p>
+                        	<p class="sel_text sel_text1">请选择或输入购买数量</p>
+                        	<!-- 选择数量 -->
+                        	<div class="col-xs-12" id="sel_money">
+                            <!-- <span>31</span>
+                            <span>3</span> -->
+                            <!-- <span>2000</span> -->
+                            <!-- <span value="5000">5,000</span> -->
+                            <!--<span value="'">15,000</span>-->
+                            <span value="30000">30,000</span>
+                            <span value="50000">50,000</span>
+                            <span value="100000">100,000</span>
+                            <span value="200000">200,000</span>
+                            <span value="300000">300,000</span>
+                            <span value="500000">500,000</span>
+                            <span value="1000000">1,000,000</span>
+                        </div>
+
+                        <div class="col-xs-12" style="margin:20px 0 20px 0;">
+                        	<!-- 输入金额 -->
+                        	<div class="input">
+                        		<input type="number" placeholder="输入数量" id="count"><span style="font-size: 15px;margin-left: 10px;color: #000;">HSC的最小购买数量为30,000个</span>
+                        	</div>
+                        	<!-- 选择金额 -->
+                        	<div class="sel_usd_money">
+                        		<select name="value" id="">
+                        			<option value="0">美元金额</option>
+                        			<!-- <option value="0.145">0.145</option> -->
+                        		</select>
+                        	</div>
+                        	<div class="wap_sel_usd">
+                        		<select name="value" id="">
+                        			<option value="0">HSC 数量</option>
+                        			<!--<option value="5000">5000</option>-->
+                        			<option value="10000">10,000</option>
+                        			<option value="30000">30,000</option>
+                        			<option value="50000">50,000</option>
+                        			<option value="100000">100,000</option>
+                        			<option value="200000">200,000</option>
+                        			<option value="300000">300,000</option>
+                        			<option value="500000">500,000</option>
+                        			<option value="1000000">1,000,000</option>
+                        		</select>
+                        	</div>
+                        	<div class="advise">
+                                <!-- <p style="font-size: 13px;margin-top: 5px;">
+                                    <span>最少 = 5,000.00 HSC</span>
+                                    <span>&nbsp;&nbsp;</span>
+                                    <span>最多 = 800,000.00 HSC</span>
+                                </p> -->
+                                <p style="font-size: 15px;margin-top: 10px;color: #000;" class="usd_text">您需要支付USD：&nbsp;
+                                	<span class="dor">0</span>
+                                </p>
+                                <p style="font-size: 15px;margin-top: 10px;color: #000;" class="cny_text">您需要支付CNY：&nbsp;
+                                	<span class="cny">0</span>
+                                </p>
+                                <p style="font-size: 15px;margin-top: 10px;color: #000;" class="hsc_count">您购买的HSC数量为：&nbsp;
+                                	<span class="hsc">0</span>
+                                </p>
+                                <p style="font-size: 15px;margin-top: 10px;color: #000;" class="btc_text">您需要支付BTC：&nbsp;
+                                	<span class="btc">0</span>
+                                </p>
+                                <p style="font-size: 15px;margin-top: 10px;color: #000;" class="ltc_text">您需要支付ETH：&nbsp;
+                                	<span class="ltc">0</span>
+                                </p>
+                            </div>
+                            <div class="transfer_money">
+								<table class="bank_img">
+									<tr>
+										<td>银行:</td>
+										<td class="bankName"></td>
+									</tr>
+									<tr>
+										<td>支行:</td>
+										<td class="bankAdress"></td>
+									</tr>
+									<tr>
+										<td>收款人:</td>
+										<td class="username"></td>
+									</tr>
+									<tr>
+										<td>卡号:</td>
+										<td  class="bankNum"></td>
+									</tr>
+								</table>
+
+							<!-- 	<div class="code_msg">
+									<span>请输入验证密码获取银行信息</span>
+									<div class="code_box">
+										<input type="text" class="code_input">
+									</div>
+									<div class="btn getBankInfo">获取银行信息</div>
+								</div> -->
+
+                                <!-- <img class="bank_img" style="margin-top: 10px" src="../../images/purchase_table2.png"> -->
+                                <p>
+                                	<strong>注意</strong>
+                                </p>
+                                <p class="notic_text">1.当您汇款成功后，请尽快通知您的客户经理并发送汇款凭证，这个步骤将确保您的购买审核能被尽快处理。</p>
+                                <p class="notic_text">2.当您汇款时，请在整数金额上随机加小数位，更方便我们付款信息的核对。比如说，当需要付款100,000.00用来购买HSC，您可以转账时多加上2分钱，也就是100,000.02，然后提供转账凭证给到客户经理。</p>
+                            </div>
+                            <div class="bankmsg">
+                            	<p style="font-size: 15px;margin-top: 10px;color: #000;">请选择银行
+                            	</p>
+                            	<div class="bank_select">
+                            		<select id="bankcode">
+                            			<option value="CCB">建设银行</option>
+                            			<option value="ABC">农业银行</option>
+                            			<option value="ICBC">工商银行</option>
+                            			<option value="BOC">中国银行</option>
+                            			<option value="SPDB">浦发银行</option>
+                            			<option value="CEB">光大银行</option>
+                            			<option value="PINGAN">平安银行</option>
+                            			<option value="CIB">兴业银行</option>
+                            			<option value="PSBC">邮政储蓄银行</option>
+                            			<option value="CITIC">中信银行</option>
+                            			<option value="HXB">华夏银行</option>
+                            			<option value="CMB">招商银行</option>
+                            			<option value="CGB">广发银行</option>
+                            			<option value="BOB">北京银行</option>
+                            			<option value="SHB">上海银行</option>
+                            			<option value="CMBC">民生银行</option>
+                            			<option value="BCM">交通银行</option>
+                            			<option value="BJRCB">北京农村商业银行</option>
+                            		</select>
+                            	</div>
+                            	<p style="font-size: 15px;margin-top: 10px;color: #000;">请输入银行卡号
+                            	</p>
+                            	<div class="bank_input">
+                            		<input type="text" placeholder="请输入银行卡号" id="bankcard">
+                            	</div>
+                            </div>
+                        </div>
+                        <button class="next">确认购买</button>
+                        <!-- <button class="submite">提交</button> -->
+                    </div>
+                    <div class="transfer_top_box">
+                    	<div>
+                    		<span class="close">关闭</span>
+                    		<div class="transfer_box">
+                    			<div class="transfer_title">提交成功</div>
+                    			<div class="content">
+                    				<p>您购买的HSC数量为：
+                    					<span class="count_hsc"></span>
+                    				</p>
+                    				<p>您需要支付USD：
+                    					<span class="count_usd"></span>
+                    				</p>
+                    				<p>您需要支付CNY：
+                    					<span class="count_cny"></span>
+									</p>
+									
+									<table>
+										<tr>
+											<td>银行:</td>
+											<td class="bankName"></td>
+										</tr>
+										<tr>
+											<td>支行:</td>
+											<td class="bankAdress"></td>
+										</tr>
+										<tr>
+											<td>收款人:</td>
+											<td class="username"></td>
+										</tr>
+										<tr>
+											<td>卡号:</td>
+											<td  class="bankNum"></td>
+										</tr>
+									</table>
+
+                                    <!-- <img style="margin-top: 10px" src="../../images/purchase_table2.png"> -->
+                                   
+                                    <p class="notic_text">1.当您汇款成功后，请尽快通知您的客户经理并发送汇款凭证，这个步骤将确保您的购买审核能被尽快处理。</p>
+                                    <p class="notic_text">2.当您汇款时，请在整数金额上随机加小数位，更方便我们付款信息的核对。比如说，当需要付款100,000.00用来购买HSC，您可以转账时多加上2分钱，也就是100,000.02，然后提供转账凭证给到客户经理。</p>
+                                </div>
+
+                            </div>
+                        </div>
+					</div>
+					
+					<form name="dinpayForm" class="dinpayForm" method="post" style="height:0" action="https://pay.vsdpay.com/gateway?input_charset=UTF-8" target="_top">
+						
+						<!--<input Type="submit" value="速汇宝支付">-->
+					</form>
+
+
+                    <div class="top_message" style="display: none;">
+                    	<span class="close">关闭</span>
+                    	<div class="mes_box">
+                    		<div class="mes_top">
+                    			<div class="left">
+                    				<span>Purchase HSC</span>
+                    				<span class="count_lvx"></span>
+                    			</div>
+                    			<div class="right">
+                    				<span class="count_trade1"></span>
+                    				<span class="count_usd"></span>
+                    			</div>
+                    		</div>
+                    		<div class="line"></div>
+                    		<div class="mes_center">
+                                <!-- <h2 class="time">
+                                    请尽快在4分钟内付款
+                                </h2> -->
+                                <img src="" alt="" class="card_img">
+                                <p>Send the indicated amount to the address below</p>
+                            </div>
+                            <div class="mes_bottom">
+                            	<div>
+                            		<span class="trade_name"></span>
+                            		<span class="count_trade"></span>
+                            	</div>
+                            	<div>
+                            		<!-- <span class="copyBtn" data-clipboard-target="code">Copy</span> -->
+                            		<button class="copyBtn" data-clipboard-action="copy" data-clipboard-target="#code">Copy</button>
+                            		<!-- <input type="text" id="code" class="code" disabled> -->
+                            		<span class="code" id="code" contenteditable="true"></span>
+                            	</div>
+                            	<!-- <span class="copy">copy</span> -->
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="alipay_code_box">
+
+                    	<div>
+                    		<span class="close">关闭</span>
+                    		<div class="pay_code_img" id="pay_code_img">
+                    		</div>
+                    	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="" class="new_page" target="_blank"></a>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/clipboard.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script src="../../lib/qrcode.js"></script>
+    <script>
+    	$(function () {
+			
+
+            //渲染美元金额
+            deltaGoAjax('usdNum', {}, function (data) {
+            	var str = '';
+            	$.each(data.data, function (k, val) {
+            		str += '<option value="' + val.usd + '">' + val.usd + '</option>';
+            	})
+            	$('.sel_usd_money select').append(str);
+
+            })
+            $('.top_message').hide();
+            var btc_rate;
+            var ltc_rate;
+            // 获取各种汇率
+            $.ajax({
+            	url: 'https://api.exchangerate.enrich-global.com:8443/ExRate/pair/numf/3',
+            	type: 'get',
+            	success: function (data) {
+            		btc_rate = data[0].price;
+            		ltc_rate = data[1].price;
+            	}
+            })
+
+            function getBRate(data) {
+            	btc_rate = data.data;
+            }
+
+            function getLRate(data) {
+            	ltc_rate = data.data;
+            }
+            var count = 0;
+            var rate;
+            var lvx_rate;
+            deltaGoAjax('user/exchange', "", function (data) {
+            	rate = data.data.RMB;
+            }, 'get')
+            deltaGoAjax('wallet/getHscRate', "", function (data) {
+            	lvx_rate = data.data.nowHsc;
+            	$('.lvx_rate').text(lvx_rate);
+            }, 'get')
+
+
+            // 选择入金方式
+            select_type($('.YL'));
+            $('.card').click(function () {
+                select_type($(this));
+            })
+            function select_type(_this){
+                $('.card .sel_method_icon').removeClass('show');
+                _this.find('.sel_method_icon').addClass('show');
+                if (_this.hasClass('wxpay')) { //微信
+                    errorMsg('该通道正在维护');
+                    $('.sel_method_icon').removeClass('show');
+                    $('.alipay').find('.sel_method_icon').addClass('show');
+                    $('.bankmsg').hide();
+                    $('.btc_text').hide();
+                    $('.ltc_text').hide();
+                    $('#sel_money').hide();
+                    $('.input').hide();
+                    $('.cny_text').show();
+                    $('.hsc_count').show();
+                    $('.sel_usd_money').show();
+                    $('.wap_sel_usd').hide();
+                    $('.sel_text1').text('请选择购买金额');
+                    $('.transfer_money').hide();
+                    $('.next').text('确认购买');
+                } else if (_this.hasClass('BT')) { //比特币
+                    $('.usd_text').show();
+                    $('.cny_text').hide();
+                    $('.ltc_text').hide();
+                    $('.btc_text').show();
+                    $('#sel_money').show();
+                    $('.input').show();
+                    $('.bankmsg').hide();
+                    $('.hsc_count').hide();
+                    $('.sel_usd_money').hide();
+                    $('.wap_sel_usd').hide();
+                    $('.sel_text1').text('请选择或输入购买数量');
+                    $('.transfer_money').hide();
+                    $('.next').text('确认购买');
+                } else if (_this.hasClass('YT')) { //以太坊
+                    $('.usd_text').show();
+                    $('.ltc_text').show();
+                    $('#sel_money').show();
+                    $('.input').show();
+                    $('.cny_text').hide();
+                    $('.btc_text').hide();
+                    $('.bankmsg').hide();
+                    $('.hsc_count').hide();
+                    $('.sel_usd_money').hide();
+                    $('.wap_sel_usd').hide();
+                    $('.sel_text1').text('请选择或输入购买数量');
+                    $('.transfer_money').hide();
+                    $('.next').text('确认购买');
+                } else if (_this.hasClass('alipay')) { //支付宝
+                    $('.bankmsg').hide();
+                    $('.btc_text').hide();
+                    $('.ltc_text').hide();
+                    $('#sel_money').hide();
+                    $('.input').hide();
+                    $('.cny_text').show();
+                    $('.hsc_count').show();
+                    $('.sel_usd_money').show();
+                    $('.wap_sel_usd').hide();
+                    $('.sel_text1').text('请选择购买金额');
+                    $('.transfer_money').hide();
+                    $('.cny').text(0);
+                    $('.dor').text(0);
+                    $('.hsc').text(0);
+                    $('.wap_sel_usd select').val(0);
+                    $('.next').text('确认购买');
+                } else if (_this.hasClass('payment')) { //网关支付
+                   	$('.btc_text').hide();
+                    $('.ltc_text').hide();
+                    $('.cny_text').show();
+                    $('.usd_text').show();
+                    $('.bankmsg').hide();
+                    $('#sel_money').show();
+                    $('.input').show();
+                    $('.hsc_count').hide();
+                    $('.sel_usd_money').hide();
+                    $('.wap_sel_usd').hide();
+                    $('.sel_text1').text('请选择或输入购买数量');
+                    $('.transfer_money').hide();
+                    $('.next').text('确认购买');
+                } else if (_this.hasClass('transfer')) { //银联汇款
+                    $('.btc_text').hide();
+                    $('.ltc_text').hide();
+                    $('.cny_text').show();
+                    $('.usd_text').show();
+                    $('.bankmsg').hide();
+                    $('#sel_money').show();
+                    $('.input').show();
+                    $('.hsc_count').hide();
+                    $('.sel_usd_money').hide();
+                    $('.wap_sel_usd').hide();
+                    $('.sel_text1').text('请选择或输入购买数量');
+                    $('.transfer_money').hide();
+                    $('.transfer_money').show();
+                    $('.next').text('提交购买申请');
+                }
+            }
+
+
+            // 选择数量
+            $('#sel_money').on('click', 'span', function () {
+            	$('.input input').val('');
+            	$('#sel_money>span').removeClass('bg_color');
+            	$(this).toggleClass('bg_color');
+            	if ($(this).hasClass('bg_color')) {
+            		count = $(this).attr("value");
+            		dor = count * lvx_rate;
+            		var cny = (dor * rate).toFixed(2);
+            		var btc = (dor / btc_rate).toFixed(4);
+            		var ltc = (dor / ltc_rate).toFixed(4);
+            		$('.dor').text(moneyToFloat(dor.toFixed(2)));
+            		$('.cny').text(moneyToFloat(cny));
+            		$('.btc').text(moneyToFloat(btc));
+            		$('.ltc').text(moneyToFloat(ltc));
+            	} else {
+            		return;
+            	}
+            })
+
+            $('.input input').blur(function () {
+            	if ($(this).val() < 30000) {
+            		errorMsg('HSC的最小购买数量为30,000个');
+            		$(this).val('');
+            		$('.dor').text(0);
+            		$('.cny').text(0);
+            		$('.btc').text(0);
+            		$('.ltc').text(0);
+            		return;
+            	}
+            })
+            $('.input input').keyup(function () {
+            	$('#sel_money>span').removeClass('bg_color');
+            	count = $(this).val();
+            	dor = count * lvx_rate;
+            	var cny = (dor * rate).toFixed(2);
+            	var btc = (dor / btc_rate).toFixed(4);
+            	var ltc = (dor / ltc_rate).toFixed(4);
+            	$('.dor').text(moneyToFloat(dor.toFixed(2)));
+            	$('.cny').text(moneyToFloat(cny));
+            	$('.btc').text(moneyToFloat(btc));
+            	$('.ltc').text(moneyToFloat(ltc));
+            	if ($(this).val() == '' || $(this).val() == 0) {
+            		$('.dor').text(0);
+            		$('.cny').text(0);
+            		$('.btc').text(0);
+            		$('.ltc').text(0);
+            	}
+            })
+
+            // 支付宝选择金额
+            $('.sel_usd_money select').change(function () {
+            	$('.dor').text(moneyToFloat($(this).val()));
+            	$('.cny').text(moneyToFloat($(this).val() * 6.9));
+            	$('.hsc').text(moneyToFloat(($(this).val() / lvx_rate).toFixed(4)));
+            })
+            $('.wap_sel_usd select').change(function () {
+            	$('.dor').text(moneyToFloat($(this).val() * lvx_rate));
+            	$('.cny').text(moneyToFloat(Math.floor($(this).val() * lvx_rate * rate)));
+                // $('.cny').text(moneyToFloat($(this).val() * lvx_rate * rate));
+            })
+
+			/* 银联入金 先验证再获取银行信息 */
+			var isCodeOk = false;  //是否验证成功
+
+			/* 点击获取银行信息 */
+			$('.getBankInfo').click(function(){
+				if($('.code_input').val() == ''){
+					errorMsg('请输入验证码！');
+					return;
+				}
+				deltaGoAjax('user/findBankCodeFinal',{code: $('.code_input').val()},findBankCodeFinal,'post');
+			})
+			
+			function findBankCodeFinal(data){
+				todayCode = data.data.code;
+				$('.bankName').text(data.data.bankName);
+				$('.bankAdress').text(data.data.payee);
+				$('.username').text(data.data.branchName);
+				$('.bankNum').text(data.data.bankNo);
+				$('.code_msg').hide();
+				$('.bank_img').show();
+				isCodeOk = true;
+			}
+
+            // 点击下一步
+            $('.next').click(function () {
+            	if (userInfo.status == 2) {
+            		errorMsg('您的账号暂时没有入金权限,请联系管理员');
+            		return;
+				}
+            	if (count < 30000) {
+            		errorMsg('HSC的最小购买数量为30,000个');
+            	} else {
+                    if ($('.show').parent().hasClass('wxpay')) { //微信支付
+                    	var walletData1 = {};
+                    	walletData1.rate = rate;
+                    	walletData1.type = 'wxcode';
+                    	walletData1.hsc = count;
+                    	walletData1.usd = count * lvx_rate;
+                    	walletData1.cny = $('.cny').text();
+                    	deltaGoAjax('yyPay/weChatPay', walletData1, wxpay);
+                    } else if ($('.show').parent().hasClass('alipay')) { //支付宝支付
+                    	var walletData2 = {};
+                    	walletData2.rate = rate;
+                        // walletData2.type = 'alipay';
+                        // walletData2.hsc = count;
+                        walletData2.usd = $('.sel_usd_money select').val();
+                        walletData2.cny = $('.sel_usd_money select').val() * 6.9;
+                        // walletData2.cny = 0.01;
+                        walletData2.hsc = $('.sel_usd_money select').val() / lvx_rate;
+                        deltaGoAjax('yr/yr', walletData2, wxpay);
+                    } else if ($('.show').parent().hasClass('BT')) { //BTC
+                    	var walletData3 = {};
+                    	walletData3.rate = rate;
+                    	walletData3.usd = dor;
+                    	walletData3.from = 'BTC';
+                    	walletData3.to = btc_rate;
+                    	walletData3.hsc = count;
+                    	walletData3.money = Number($('.btc').text());
+                    	deltaGoAjax('secret/pay', walletData3, btcpay);
+                    } else if ($('.show').parent().hasClass('YT')) { //ETH
+                    	var walletData4 = {};
+                    	walletData4.rate = rate;
+                    	walletData4.usd = dor;
+                    	walletData4.from = 'ETH';
+                    	walletData4.to = ltc_rate;
+                    	walletData4.hsc = count;
+                    	walletData4.money = Number($('.ltc').text());
+                    	deltaGoAjax('secret/pay', walletData4, btcpay);
+                    } else if ($('.show').parent().hasClass('payment')) { //网关支付
+                    	var walletData5 = {};
+                    	walletData5.rate = rate;
+                    	walletData5.usd = dor;
+                    	walletData5.cny = (dor * rate).toFixed(4);
+                    	walletData5.hsc = count;
+                    	deltaGoAjax('vst/pay', walletData5, payment);
+                    } else if ($('.show').parent().hasClass('transfer')) { //银联
+						if(!isCodeOk){
+							errorMsg('请先进行验证以获取银行信息!');
+							return;
+						}
+                    	var walletData6 = {};
+                        // walletData6.usd = $('.wap_sel_usd select').val() * lvx_rate;
+                        // walletData6.cny = $('.wap_sel_usd select').val() * lvx_rate * rate;
+                        // walletData6.hsc = $('.wap_sel_usd select').val();
+                        walletData6.usd = dor;
+                        walletData6.cny = dor * rate;
+                        walletData6.hsc = count;
+                        deltaGoAjax('transfer/getOrder', walletData6, transferPay);
+                    } else {
+                    	return;
+                    }
+                }
+
+            })
+
+            function transferPay(data) {
+            	if (data.status == 0) {
+            		$('.transfer_top_box').show();
+                    $('.count_hsc').text(moneyToFloat(count));
+                    $('.count_usd').text($('.dor').text());
+                    $('.count_cny').text($('.cny').text());
+                    return;
+                } else {
+
+                }
+            }
+
+
+
+            function wxpay(data) {
+            	$('.alipay_code_box').show();
+            	$('#pay_code_img').empty();
+                // return;
+                //支付宝二维码
+                var url = JSON.parse(data.data).data.qrcode;
+                var qrcode1 = new QRCode(document.getElementById("pay_code_img"), {
+                	text: url,
+                	width: 150,
+                	height: 150,
+                	colorDark: '#000',
+                	colorLight: '#fff',
+                	correctLevel: QRCode.CorrectLevel.M,
+                	src: 'http://game.enrich-global.com/img/share_logo.jpg'
+                });
+                // if (data.status == 0) {
+                //     $('.alipay_code_box').show();
+                //     $('.pay_code_img').attr('src','JSON.parse(data.data).data.qrcode');
+                // }else{
+                //     errorMsg(data.msg);
+                // }
+                // if (data.status == 0) {
+                //     $('.sel_usd_money select').val('0');
+                //     $('.dor').text(0);
+                //     $('.cny').text(0);
+                //     $('.hsc').text(0);
+                //     window.top.location = JSON.parse(data.data).data.qrcode;
+                // } else {
+                //     errorMsg(data.msg);
+                // }
+            }
+
+            function btcpay(data) {
+            	$('.top_message').show();
+            	$('.count_lvx').text(moneyToFloat(data.data.hscNum) + '  HSC')
+            	$('.count_trade1').text(moneyToFloat(data.data.tradingMoney) + ' ' + data.data.tradingType)
+            	$('.count_trade').text(moneyToFloat(data.data.tradingMoney));
+            	$('.count_usd').text(moneyToFloat(data.data.usdMoney) + '  USD');
+            	$('.card_img').attr('src', data.data.qrcodeUrl);
+            	$('.trade_name').text(data.data.tradingType);
+            	$('.code').text(data.data.address);
+            	$('.copy').attr('title', data.data.address);
+            }
+
+            function payment(data) {
+				$('.dinpayForm').attr('action',data.data)
+				document.dinpayForm.submit();
+            }
+            //copy
+            var clipboard1 = new Clipboard('.copyBtn');
+            clipboard1.on('success', function (e) {
+            	errorMsg('复制成功!');
+            });
+
+            clipboard1.on('error', function (e) {
+            	errorMsg('复制成功!');
+            });
+            var clipboard2 = new Clipboard('.copy_btn');
+            clipboard2.on('success', function (e) {
+            	errorMsg('复制成功!');
+            });
+
+            clipboard2.on('error', function (e) {
+            	errorMsg('复制成功!');
+            });
+            $('.close').click(function () {
+            	$('.top_message').hide();
+            	$('.transfer_top_box').hide();
+            	$('.alipay_code_box').hide();
+            })
+            $(".alipay").trigger("click");
+
+        })
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>

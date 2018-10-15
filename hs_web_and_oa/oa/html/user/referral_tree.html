@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html style="font-size:20px;">
+<head>
+    <meta name="renderer" content="webkit">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Honey Share</title>
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/basics.css">
+    <link rel="stylesheet" href="../../css/team.css">
+    <!-- <link rel="stylesheet" href="../../css/home.css"> -->
+    <style>
+        input{
+            font-size: 14px;
+            text-indent: 10px;
+        }
+        .lower{
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="title">
+                <p>团队列表</p>
+            </div>
+            <div class="centent">
+                <div class="box">
+                    <!-- <div class="bt">
+                        <input type="text" placeholder="输入ID" id="mail">
+                        <span class="search">搜索</span>
+                    </div> -->
+                    <ul class="team_list">
+                    </ul>
+                    <div class="page_label">
+                        <div class="label_left">
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../lib/jquery-1.12.2.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+        $(function () {
+            var ajaxData = {
+            }
+            $('.search').click(function(){
+                ajaxData.mail = $('#mail').val();
+                deltaGoAjax('user/getChildUuid', ajaxData, getListOK);
+            })
+            function getList() {
+                deltaGoAjax('user/getChildUuid', {}, getListOK);
+            }
+            getList();
+            function getListOK(data) {
+                var str0 = '<div data-id=' + data.data.uuid + ' class="self team_msg more">' + data.data.mail +
+                    '<br><span class="lower">下级总数：' + data.data.total + '</span></div>' +
+                    '<ul></ul>';
+                $('.team_list').empty();
+                $('.team_list').append(str0);
+                var str = '';
+                $.each(data.data.userList, function (k, val) {
+                    if (data.data.list.length == 0) {
+                        $('.team_msg.more:after').remove();
+                        return;
+                    }
+                    str += '<li>' +
+                        '<div data-id=' + val.uuid + ' class="team_msg more">' + val.mail +
+                        '<br><span class="lower">下级总数：' + val.total +
+                        '&nbsp;&nbsp;&nbsp;&nbsp;个人 HSC：' + (val.hsc || 0) + '</span></div>' +
+                        '<ul></ul>' +
+                        '</li>';
+                });
+                $('.team_list .self').next('ul').empty();
+                $('.team_list .self').next('ul').append(str);
+                $('.team_list .self').next('ul').hide();
+                $('.team_list').on('click', '.team_msg', function () {
+                    var that = this;
+                    var params = {
+                        uuid: $(this).attr('data-id')
+                    };
+                    $(this).removeClass('more');
+                    deltaGoAjax('user/getChildUuid', params, function (data) {
+                        if (data.data.list.length == 0) {
+                            $('.team_msg.more:after').remove();
+                            return;
+                        }
+                        var str = '';
+                        $.each(data.data.list, function (k, val) {
+                            str += '<li>' +
+                                '<div data-id=' + val.uuid + ' class="team_msg more">' +
+                                val.mail + '<br><span class="lower">下级总数：' + val.total +
+                                '&nbsp;&nbsp;&nbsp;&nbsp;个人 HSC：' + (val.hsc || 0) +
+                                '</span></div>' +
+                                '<ul></ul>' +
+                                '</li>';
+                        });
+                        $(that).next('ul').empty();
+                        $(that).next('ul').append(str);
+                        $(that).addClass('more');
+                        if ($(that).attr('data-show') == 1) {
+                            $(that).attr('data-show', '0');
+                            $(that).next('ul').hide();
+                            $(that).removeClass('on');
+                        } else {
+                            $(that).attr('data-show', '1');
+                            $(that).next('ul').show();
+                            $(that).addClass('on');
+                        }
+                    });
+                    return false;
+                })
+
+            }
+        })
+    </script>
+</body>
+
+</html>
